@@ -1,3 +1,7 @@
+__latexindent_temp.tex
+*_temp.tex
+*.synctex.gz
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -10,9 +14,7 @@
 *.fot
 *.cb
 *.cb2
-.*.lb
-
-__latexindent_temp.tex
+.*.l
 
 ## Intermediate documents:
 *.dvi
