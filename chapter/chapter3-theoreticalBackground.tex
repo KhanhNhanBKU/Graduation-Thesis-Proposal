@@ -3,8 +3,130 @@
 Lorem ipsum
 
 CheckList:
-    [] Mô hình Convolution Neural Network - CNN
+    [...] Mô hình Convolution Neural Network - CNN
     [] Media Pipe -> Lấy từ eureka
-    [] Distance Matrix
+    [...] Distance Matrix
     [] BeamSearch with CTC decode
+
+  \section{ Convolution Neural Network - CNN }
+    Convolution Neural Networks are a special class of Neural Networks. They are made up 
+    of neurons that have learnable weights and biases. Each neuron receives some inputs, 
+    performs a dot product and optionally follows it with a non-linearity. CNN mainly consist
+    of Convolution Layers, Pooling Layers, Activation Layers and Fully Connected Layers.
+    ConvNet architectures make the explicit assumption that the inputs are images, 
+    which allows us to encode certain properties into the architecture. These then 
+    make the forward function more efficient to implement and vastly reduce the amount 
+    of parameters in the network. Some of the main uses of CNN can be mentioned as: image
+    classification, object detection, semantic segmentation, face recognition, etc.
+    
+    # Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
+    
+      The figure above shows an example of convolution neural network, which is taking an image 
+    as input and then extracting features from it through various layers and then finally predicting the
+    class of the object in the given image
+
+    % CNN can be divided into two phases:
+    %   + Convolution layer: 
+    \subsection{ Architecture }
+      Convolutional Neural Networks have a different architecture than regular Neural Networks.
+      Regular Neural Networks transform an input by putting it through a series of hidden layers. 
+      Every layer is made up of a set of neurons, where each layer is fully connected to all neurons 
+      in the layer before. Finally, there is a last fully-connected layer — the output layer — that 
+      represent the predictions.
+      Convolutional Neural Networks are a bit different. First of all, the layers are organised in 
+      3 dimensions: width, height and depth. Further, the neurons in one layer do not connect to all 
+      the neurons in the next layer but only to a small region of it. Lastly, the final output will 
+      be reduced to a single vector of probability scores, organized along the depth dimension.
+        # Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+      CNN can be divided into two parts:
+        + The hidden layers/ Feature extraction part
+          In this part, the network will perform a series of convolutions and 
+          pooling operations during which the features are detected. If you had a 
+          picture of a zebra, this is the part where the network would recognise 
+          its stripes, two ears, and four legs.
+        + The Classification part
+          Here, the fully connected layers will serve as a classifier on top of 
+          these extracted features. They will assign a probability for the object 
+          on the image being what the algorithm predicts it is.
+        # Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+    \subsection{ Feature extraction part }
+      \subsubsection{ Convolutional Layer }
+        Convolution Layer is the core building block of a Convolutional Network that does most
+        the computational heavy lifting. A convolution is executed by sliding the filter over
+        the input. At every location, a matrix multiplication is performed and sums the result onto 
+        the feature map. This process of extracting features from image happens throughout the CNN's convolutional
+        layers. This process is illustrated in Fig...
+
+        # https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
+
+        When the feature map is made, we can pass each value in
+        the feature map through a non-linearity function, such as ReLU, sigmoid, etc. Before it
+        becomes the input of the next convolution layer.
+
+        Because the size of the feature map is always smaller than the input, we have 
+        to do something to prevent our feature map from shrinking. This is where we use 
+        padding. A layer of zero-value pixels is added to surround the input with zeros, 
+        so that our feature map will not shrink. In addition to keeping the spatial 
+        size constant after performing convolution, padding also improves performance 
+        and makes sure the kernel and stride size will fit in the input. => Need picture
+      \subsubsection{ Pooling Layers }
+        After a convolution layer, it is common to add a pooling layer in between CNN layers. 
+        The function of pooling is to continuously reduce the dimensionality to reduce the number 
+        of parameters and computation in the network. This shortens the training time and controls 
+        overfitting.
+
+        There are mainly two types of Pooling Layers in a CNN: Max Pooling and Average
+        Pooling. The functionality of these two types of layers are demonstrated in Figure
+        ... .Max Pooling restores the maximum value from the segment of the picture covered
+        by the Kernel. Whereas, Average Pooling restores the average of the multitude of
+        values from the bit of the picture covered by the Kernel. => Insert Picture
+
+      \subsubsection{ Activation Layers }
+        Neural networks in general and CNNs in particular rely on a non-linear “trigger” function 
+        to signal distinct identification of likely features on each hidden layer. CNNs may use a 
+        variety of specific functions, such as rectified linear
+        units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
+        # Insert picture of some function like ReLU, tanh ....
+    \subsection{ Classification part }
+      \subsubsection{ Fully connected layers }
+        The last layers of a CNN are fully connected layers. Neurons in a 
+        fully connected layer have full connections to all the activations in the previous 
+        layer. This part is in principle the same as a regular Neural Network.
+
+        Figure ... illustrate the way of input value stream into the fully connected layer.
+        Because these fully connected layer can only accept 1 Dimensional data. So, we need convert our 3D
+        data to 1D data. After pass through some FCL, we will get the result is the data
+        classification.
+
+        #Insert picture ...
+  \section{ Media Pipe }
+    # Lấy từ eureka bỏ vào
+
+
+  \section{ Distance Matrix }
+    A distance matrix is a table that shows the distance between pairs of objects.
+    For example, in the figure ..., we can see the distance of A and B is 16, B and C is 37
+    and so on. In the diagonal of table is the distance of object from itself, so the value
+    as we can see is 0. Distance matrices are sometimes called dissimilarity matrices.
+
+    # Insert picture of distance matrix
+
+    \subsection{ Create Distance Matrix }
+      A distance matrix is computed from a raw data table (Figure ...). 
+      
+      In the example below, we can use high school math (Pythagoras) to work out 
+      that distance between A and B. 
+        # Chèn công thức vào đây
+      
+      We can use same formula with more than two variables, and this is known as 
+      the Euclidean distance.
+
+      In result, we have the distance matrix represented like Figure ...
+      # Chèn bảng kết quả vào
+  
+  \section{ Beam search with CTC decoder }
+
+  
+
+      
 
