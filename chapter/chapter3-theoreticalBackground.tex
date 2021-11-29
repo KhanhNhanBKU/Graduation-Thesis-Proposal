@@ -156,6 +156,7 @@ CheckList:
       mention to CTC decoder but in the way of it combines with Beam Search. Because CTC
       in decoding context, it can combine with another algorithm like best-path decoding, etc...
 
+      \subsubsection{ Beam search }
       In computer science, beam search is a heuristic search algorithm that
       explores a graph by expanding the most promising node in a limited set.
       Beam search is an optimization of best-first search the reduces its memory
@@ -166,15 +167,45 @@ CheckList:
 
       # Insert image about pseudo-code for beam-search
       
-      The list of beams is initialized with an empty beam (line 1) and a corresponding 
-      score (2). Then, the algorithm iterates over all time-steps of the NN output 
-      matrix (3–15). At each time-step, only the best scoring beams from the 
-      previous time-step are kept (4). The beam width (BW) specifies the number 
-      of beams to keep. For each of these beams, the score at the current 
-      time-step is calculated (8). Further, each beam is extended by all possible 
-      characters from the alphabet (10) and again, a score is calculated (11). 
-      After the last time-step, the best beam is returned as a result (16).
+      Beam search algorithm will be implemented through the following steps, with two
+      parameter will be included: output matrix and beam width (BW) which specifies the number
+      of beams to keep . First of all, the list of beam and corresponding score is 
+      initialized (line 1 and 2). After that, from 3-15, the algorithm will loop over all time-steps
+      of the matrix output. At this point, only the best scoring beams (equal BW) from the previous
+      time-step are kept (line 4). Each of beam, we calculate the score and get result (line 8), we will cover
+      this step in more detail later. Further, each beam is extended by all possible characters from
+      the alphabet (line 10) and again, a score is calculated (line 11). After the last time-step,
+      the best beams is returned as a result (line 16).
 
+      # Insert image about beam search
 
+      As we can see, in Fig ..., both output matrix to be decoded and the tree of beams are shown. 
+      Beam search algorithm extended as possible and keep exactly BW candidates . Finally,
+      we finished the last iteration and the final step of the algorithm is to return the beam 
+      with the highest score, which is “a” in this example.
       
+      \subsubsection{ Calculating the score }
+      As we just discuss above, in this part, we will talk about how to scoring the beam.
+      We will split the beam-score into the score of paths ending with a blank(e.g.. 'aa-')
+      and paths ending with non-blank (e.g. 'aaa'). 
+      
+      + We denote the probability of all paths ending with a blank and corresponding to a beam b at time-step t 
+      by Pb(b,t) and by Pnb(b,t) for the non-blank case.
+      + The probability Ptot(b,t) of a beam b at time-step t is simply the sum of Pb and Pnb, for example:
+      Ptot(b,t) = Pb(b,t) + Pnb(b,t)
+
+      In Fig .., we will see what happens when we extend a path. Three main case we can mention
+      is: 
+        + Extend by blank ('a' + '-' = 'a-' )
+        + Extend by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
+        + Extend by some other character ('aa' + 'b' = 'aab')
+      
+      And when we collapse the extended paths, two result we will get and some case we needed to handle:
+        + The unchanged (copied) beam ('a' -> 'a'):
+          + To copy a beam, we can extended corresponding paths by a blank and get
+          paths ending with a blank: Pb (n,t) += Ptot(b, t-1)*mat(blank, t)
+          + Beside, with non-blank ending paths case, if we extend it by the last
+          character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
+          with -1 indexes the last character in the beam
+        + An extended beam ('a' -> 'aa' or 'ab')
 
