@@ -122,13 +122,59 @@ CheckList:
       In result, we have the distance matrix represented like Figure ...
       # Chèn bảng kết quả vào
   
-  \section{ Beam search with CTC decoder }
+  \section{ Beam search and Connectionist Temporal Classification }
     CheckList:
-      [] BeamSearch
-      [] CTC recap
-      [] Combination
+      [...] BeamSearch
+      [x] CTC recap
+      [...] Combination
       [] Pseudo code
-    \subsection{ Beam Search }
+      \subsection{ Connectionist Temporal Classification }
+      Connectionist Temporal Classification (CTC) is a type of Neural Network output helpful
+      in tackling sequence problems like handwriting and speech recognition where the timing varies.
+      Using CTC ensures that one does not need an aligned dataset, which makes the training process
+      more straightforward.
+      \subsection{ Why we want to use CTC }
+        In context of hand written recognition, we could create a data-set with
+        images of text-lines, and then specify for each horizontal position of the image
+        the corresponding character as shown in Fig ... Then, we could train a model to output
+        a character-score for each horizontal position. However, there are two problem with this
+        solution.
+          + It takes a lot of time, annotating dataset at the character level is a boring task.
+          + What if the character takes up more than one time-step ?. We could get "tooo" because
+          the "o" is a wide character as shown in Fig..... We have to remove all duplicate character
+          like "t" and "o".
+          # Insert image ...
+        CTC can solves both problem for us:
+          + We can ignore both the position and width of the character in the image
+          and only requires the text that occurs in the image.
+          + Using decode techniques, we can directly get the result of the network and
+          no further post-processing of the recongnized text is needed. 
+
+    \subsection{ Beam Search with CTC decoder }
+      CTC has more than Decoding phase, it can have the Encoding, Loss calculation, but in
+      this graduation thesis scope, we don't need it anymore. So, in here, we only
+      mention to CTC decoder but in the way of it combines with Beam Search. Because CTC
+      in decoding context, it can combine with another algorithm like best-path decoding, etc...
+
+      In computer science, beam search is a heuristic search algorithm that
+      explores a graph by expanding the most promising node in a limited set.
+      Beam search is an optimization of best-first search the reduces its memory
+      requirements. Best-first search is a graph search which orders all
+      partial solutions (states) according to some heuristic. But in beam search,
+      only a predetermined number of best partial solutions are kept as candidates.
+      Pseudo-code for basic version of beam-search is shown is Fig....
+
+      # Insert image about pseudo-code for beam-search
       
+      The list of beams is initialized with an empty beam (line 1) and a corresponding 
+      score (2). Then, the algorithm iterates over all time-steps of the NN output 
+      matrix (3–15). At each time-step, only the best scoring beams from the 
+      previous time-step are kept (4). The beam width (BW) specifies the number 
+      of beams to keep. For each of these beams, the score at the current 
+      time-step is calculated (8). Further, each beam is extended by all possible 
+      characters from the alphabet (10) and again, a score is calculated (11). 
+      After the last time-step, the best beam is returned as a result (16).
+
+
       
 
