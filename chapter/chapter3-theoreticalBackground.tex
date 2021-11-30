@@ -1,13 +1,5 @@
 \chapter{Theoretical Background}
 
-Lorem ipsum
-
-CheckList:
-    [x] Mô hình Convolution Neural Network - CNN
-    [...] Media Pipe -> Lấy từ eureka
-    [x] Distance Matrix
-    [x] BeamSearch with CTC decode
-
   \section{ Convolution Neural Network - CNN }
     Convolution Neural Networks are a special class of Neural Networks. They are made up 
     of neurons that have learnable weights and biases. Each neuron receives some inputs, 
@@ -20,34 +12,58 @@ CheckList:
     classification, object detection, semantic segmentation, face recognition, etc.
     
     %Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
-    
-      The figure above shows an example of convolution neural network, which is taking an image 
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{img/Chap3/Cover.png}
+      \caption{Convolution Neural Network}
+      \label{fig:Chap3-OverviewTheCNN}
+    \end{figure}
+      The figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of convolution neural network, which is taking an image 
     as input and then extracting features from it through various layers and then finally predicting the
-    class of the object in the given image
+    class of the object in the given image.
 
     \subsection{ Architecture }
-      Convolutional Neural Networks have a different architecture than regular Neural Networks.
+      Convolution Neural Networks have a different architecture than regular Neural Networks, we can see
+      this different in figure \ref{fig:Chap3-DiffArchCNN_NNN} below.
       Regular Neural Networks transform an input by putting it through a series of hidden layers. 
       Every layer is made up of a set of neurons, where each layer is fully connected to all neurons 
-      in the layer before. Finally, there is a last fully-connected layer — the output layer — that 
+      in the layer before. Finally, there is a last fully-connected layer (the output layer) that 
       represent the predictions.
-      Convolutional Neural Networks are a bit different. First of all, the layers are organised in 
+      With CNN architecture. First of all, the layers are organized in 
       3 dimensions: width, height and depth. Further, the neurons in one layer do not connect to all 
       the neurons in the next layer but only to a small region of it. Lastly, the final output will 
       be reduced to a single vector of probability scores, organized along the depth dimension.
-      FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
-      CNN can be divided into two parts:
-        + The hidden layers/ Feature extraction part
-          In this part, the network will perform a series of convolutions and 
-          pooling operations during which the features are detected. If you had a 
-          picture of a zebra, this is the part where the network would recognise 
-          its stripes, two ears, and four legs.
-        + The Classification part
-          Here, the fully connected layers will serve as a classifier on top of 
-          these extracted features. They will assign a probability for the object 
-          on the image being what the algorithm predicts it is.
+      %FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap3/DiffArchCNN-ANN}
+        \caption{Different between Normal Neural Network and Convolution Neural Network}
+        \label{fig:Chap3-DiffArchCNN_NNN}
+      \end{figure}
+      As we can see in figure \ref{fig:Chap3-CNN_Arch}. CNN can be divided into two parts:
+      %FIXME: Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap3/CNN-Arch}
+        \caption{Convolution Neural Network Architecture}
+        \label{fig:Chap3-CNN_Arch}
+      \end{figure}
 
-        FIXME: Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+      \begin{enumerate}
+        \item The hidden layers/ Feature extraction part
+          \begin{itemize}
+            \item In this part, the network will perform a series of convolutions and 
+            pooling operations during which the features are detected. If you had a 
+            picture of a zebra, this is the part where the network would recognise 
+            its stripes, two ears, and four legs.
+          \end{itemize}
+        \item The Classification part
+          \begin{itemize}
+            \item Here, the fully connected layers will serve as a classifier on top of 
+            these extracted features. They will assign a probability for the object 
+            on the image being what the algorithm predicts it is.
+          \end{itemize}
+      \end{enumerate}
 
     \subsection{ Feature extraction part }
       \subsubsection{ Convolutional Layer }
@@ -55,20 +71,32 @@ CheckList:
         the computational heavy lifting. A convolution is executed by sliding the filter over
         the input. At every location, a matrix multiplication is performed and sums the result onto 
         the feature map. This process of extracting features from image happens throughout the CNN's convolutional
-        layers. This process is illustrated in Fig...
+        layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
 
-        FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
-
+        % FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/ConvLayer}
+          \caption{Convolution Neural Network Layer}
+          \label{fig:Chap3-CNN_Layer}
+        \end{figure}
         When the feature map is made, we can pass each value in
         the feature map through a non-linearity function, such as ReLU, sigmoid, etc. Before it
         becomes the input of the next convolution layer.
 
         Because the size of the feature map is always smaller than the input, we have 
         to do something to prevent our feature map from shrinking. This is where we use 
-        padding. A layer of zero-value pixels is added to surround the input with zeros, 
+        padding (\ref{fig:Chap3-CNN_Padding}). A layer of zero-value pixels is added to surround the input with zeros, 
         so that our feature map will not shrink. In addition to keeping the spatial 
         size constant after performing convolution, padding also improves performance 
-        and makes sure the kernel and stride size will fit in the input. => Need picture
+        and makes sure the kernel and stride size will fit in the input. 
+        % FIXME: => Need picture
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/CNN_Padding}
+          \caption{Using padding for strike one in Convolution Layer}
+          \label{fig:Chap3-CNN_Padding}
+        \end{figure}
       \subsubsection{ Pooling Layers }
         After a convolution layer, it is common to add a pooling layer in between CNN layers. 
         The function of pooling is to continuously reduce the dimensionality to reduce the number 
@@ -76,56 +104,93 @@ CheckList:
         overfitting.
 
         There are mainly two types of Pooling Layers in a CNN: Max Pooling and Average
-        Pooling. The functionality of these two types of layers are demonstrated in Figure
-        ... .Max Pooling restores the maximum value from the segment of the picture covered
+        Pooling. The functionality of these two types of layers are demonstrated in figure \ref{fig:Chap3-CNN_Pooling} .
+        Max Pooling restores the maximum value from the segment of the picture covered
         by the Kernel. Whereas, Average Pooling restores the average of the multitude of
-        values from the bit of the picture covered by the Kernel. => Insert Picture
+        values from the bit of the picture covered by the Kernel.
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/Pooling}
+          \caption{Max Pooling and Average Pooling}
+          \label{fig:Chap3-CNN_Pooling}
+        \end{figure}
+
+        % FIXME: Insert image about max pooling and average pooling
 
       \subsubsection{ Activation Layers }
         Neural networks in general and CNNs in particular rely on a non-linear “trigger” function 
         to signal distinct identification of likely features on each hidden layer. CNNs may use a 
-        variety of specific functions, such as rectified linear
+        variety of specific functions (figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear
         units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
-        FIXME: Insert picture of some function like ReLU, tanh ....
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/ActiveFunction}
+          \caption{ Some Active Function common used in CNN }
+          \label{fig:Chap3-CNN_ActiveFunction}
+        \end{figure}
+        % FIXME: Insert picture of some function like ReLU, tanh ....
     \subsection{ Classification part }
       \subsubsection{ Fully connected layers }
         The last layers of a CNN are fully connected layers. Neurons in a 
         fully connected layer have full connections to all the activations in the previous 
         layer. This part is in principle the same as a regular Neural Network.
 
-        Figure ... illustrate the way of input value stream into the fully connected layer.
-        Because these fully connected layer can only accept 1 Dimensional data. So, we need convert our 3D
-        data to 1D data. After pass through some FCL, we will get the result is the data
+        Figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the fully connected layer.
+        Because these fully connected layer can only accept one dimensional data. So, we need convert our 3D
+        data to 1D data. After pass through some FC, we will get the result is the data
         classification.
 
-        FIXME: Insert picture ...
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/FC}
+          \caption{ Fully connected Layer}
+          \label{fig:Chap3-FC}
+        \end{figure}
+        % FIXME: Insert picture ...
   \section{ Media Pipe }
     FIXME: Lấy từ eureka bỏ vào
 
 
   \section{ Distance Matrix }
     A distance matrix is a table that shows the distance between pairs of objects.
-    For example, in the figure ..., we can see the distance of A and B is 16, B and C is 37
+    For example, in the figure \ref{fig:Chap3-DM}., we can see the distance of A and B is 16, B and C is 37
     and so on. In the diagonal of table is the distance of object from itself, so the value
     as we can see is 0. Distance matrices are sometimes called dissimilarity matrices.
 
-    FIXME: Insert picture of distance matrix
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{img/Chap3/DM}
+      \caption{ Distance Matrix }
+      \label{fig:Chap3-DM}
+    \end{figure}
+
+    % FIXME: Insert picture of distance matrix
 
     \subsection{ Create Distance Matrix }
-      A distance matrix is computed from a raw data table (Figure ...). 
-      
-      In the example below, we can use high school math (Pythagoras) to work out 
+      A distance matrix is computed from a raw data table. In the example below (\ref{fig:Chap3-DM_Formula} ), we can use high school math (Pythagoras) to work out 
       that distance between A and B. 
 
-      FIXME: Chèn công thức vào đây
+      % FIXME: Chèn công thức vào đây
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/Chap3/DM_Formula}
+        \caption{ Calculating distance between A and B}
+        \label{fig:Chap3-DM_Formula}
+      \end{figure}
       
       We can use same formula with more than two variables, and this is known as 
       the Euclidean distance.
-
-      In result, we have the distance matrix represented like Figure ...
-      FIXME: chèn bảng kết quả vào
-  
-  \section{ Beam search and Connectionist Temporal Classification }
+      In result, we have the distance matrix represented like figure \ref{fig:Chap3-DM-Raw}
+      % FIXME: chèn bảng kết quả vào
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/Chap3/DM-Raw}
+        \caption{ The Distance Matrix is constructed from Raw Data }
+        \label{fig:Chap3-DM-Raw}
+      \end{figure}
+      
+      \section{ Beam search and Connectionist Temporal Classification }
     CheckList:
       [x] BeamSearch
       [x] CTC recap
@@ -133,25 +198,44 @@ CheckList:
       [x] Pseudo code
       \subsection{ Connectionist Temporal Classification }
       Connectionist Temporal Classification (CTC) is a type of Neural Network output helpful
-      in tackling sequence problems like handwriting and speech recognition where the timing varies.
+      in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies.
       Using CTC ensures that one does not need an aligned dataset, which makes the training process
       more straightforward.
+      % FIXME: Insert about CTC in speech recognition
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap3/Overview-CTC}
+        \caption{ Overview of a Neural Network for handwriting recognition }
+        \label{fig:Chap3-Overview-CTC}
+      \end{figure}
+
       \subsection{ Why we want to use CTC }
         In context of hand written recognition, we could create a data-set with
         images of text-lines, and then specify for each horizontal position of the image
-        the corresponding character as shown in Fig ... Then, we could train a model to output
+        the corresponding character as shown in figure \ref{fig:Chap3-Annottion-image-CTC} Then, we could train a model to output
         a character-score for each horizontal position. However, there are two problem with this
         solution.
-          + It takes a lot of time, annotating dataset at the character level is a boring task.
-          + What if the character takes up more than one time-step ?. We could get "tooo" because
+        \begin{itemize}
+          \item It takes a lot of time, annotating dataset at the character level is a boring task.
+          \item What if the character takes up more than one time-step ?. We could get "tooo" because
           the "o" is a wide character as shown in Fig..... We have to remove all duplicate character
           like "t" and "o".
-          FIXME: Insert image ...
+        \end{itemize}
+
+        % FIXME: Insert image ...
+          \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\textwidth]{img/Chap3/Annotation-image-CTC}
+            \caption{ Annotation for each horizontal position of the image }
+            \label{fig:Chap3-Annottion-image-CTC}
+          \end{figure}
         CTC can solves both problem for us:
-          + We can ignore both the position and width of the character in the image
+        \begin{itemize}
+          \item We can ignore both the position and width of the character in the image
           and only requires the text that occurs in the image.
-          + Using decode techniques, we can directly get the result of the network and
+          \item Using decode techniques, we can directly get the result of the network and
           no further post-processing of the recongnized text is needed. 
+        \end{itemize}
 
     \subsection{ Beam Search with CTC decoder }
       CTC has more than Decoding phase, it can have the Encoding, Loss calculation, but in
@@ -166,9 +250,16 @@ CheckList:
       requirements. Best-first search is a graph search which orders all
       partial solutions (states) according to some heuristic. But in beam search,
       only a predetermined number of best partial solutions are kept as candidates.
-      Pseudo-code for basic version of beam-search is shown is Fig....
+      Pseudo-code for basic version of beam-search is shown is figure \ref{fig:Chap3-Basic-Version-BeamSearch}
 
-      FIXME: Insert image about pseudo-code for beam-search
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/Chap3/Basic-Version-BeamSearch}
+        \caption{ Basic version of Beam Search }
+        \label{fig:Chap3-Basic-Version-BeamSearch}
+      \end{figure}
+      
+      % FIXME: Insert image about pseudo-code for beam-search
       
       Beam search algorithm will be implemented through the following steps, with two
       parameter will be included: output matrix and beam width (BW) which specifies the number
@@ -180,9 +271,16 @@ CheckList:
       the alphabet (line 10) and again, a score is calculated (line 11). After the last time-step,
       the best beams is returned as a result (line 16).
 
-      FIXME: Insert image about beam search
+      % FIXME: Insert image about beam search
 
-      As we can see, in Fig ..., both output matrix to be decoded and the tree of beams are shown. 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap3/BeamSearchTree}
+        \caption{ NN output and tree of beams with alphabet = {“a”, “b”} and BW = 2 }
+        \label{fig:Chap3-BSTree}
+      \end{figure}
+
+      As we can see, in figure \ref{fig:Chap3-BSTree}, both output matrix to be decoded and the tree of beams are shown. 
       Beam search algorithm extended as possible and keep exactly BW candidates . Finally,
       we finished the last iteration and the final step of the algorithm is to return the beam 
       with the highest score, which is “a” in this example.
