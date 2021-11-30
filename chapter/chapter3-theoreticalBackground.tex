@@ -149,7 +149,35 @@
         \end{figure}
         % FIXME: Insert picture ...
   \section{ Media Pipe }
-    FIXME: Lấy từ eureka bỏ vào
+    % FIXME: Lấy từ eureka bỏ vào
+    \subsection{Introduction to Media Pipe Hands}
+        MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system for hands and fingers. It uses machine learning to infer 21 3D hand landmarks from a single frame. This solution delivers real-time performance on a cell phone and even scales to many hands, whereas current state-of-the-art systems rely primarily on powerful desktop environments for inference.
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.8\textwidth]{img/Chap3/Media Pipe}
+          \caption{ Media Pipe real time tracking 3D hand landmarks}
+          \label{fig:Chap3-MediaPipe}
+        \end{figure}
+
+        MediaPipe Hands makes use of a machine learning pipeline that consists of several models that work together: A palm detection model, which acts on the entire image, will return an orientated hand bounding box. A hand landmark model that returns high-fidelity 3D hand key points from the cropped image region determined by the palm detector.
+
+        However, providing the hand landmark model with a correctly cropped hand image minimizes the requirement for data augmentation drastically (such as rotations, translations, and scaling) and instead allows the network to focus on coordinate prediction accuracy. Furthermore, in this ML pipeline, crops can be created based on the hand landmarks recognized in the previous frame, and palm detection is only used to localize the hand when the landmark model can no longer detect its presence.
+      \subsection{ Palm detection model }
+        The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
+        
+        According to their statement, the methods they use to address the above challenges vary in many strategies. First, instead of training a hand detector, they train a palm detector because estimating bounding boxes of inflexible objects like palms and fists is much easier than recognizing hands with articulated fingers. Furthermore, the non-maximum suppression method performs effectively even in two-hand self-occlusion situations such as handshakes because palms are small objects. Furthermore, palms can be simulated using square bounding boxes (anchors in ML language) that ignore other aspect ratios, reducing 3-5 anchors. Second, even for tiny objects, an encoder-decoder feature extractor is used for more extensive picture context awareness (similar to the Retina Net approach). Finally, the significant scale variance limits focus loss during training to support many anchors.
+
+        Using the strategies described above gives an average precision of 95.7 percent in palm detection. With no decoder and a regular cross-entropy loss, the baseline is just 86.22 percent.
+
+      \subsection{ Hand landmark model }
+        Following palm detection over the entire image, our next hand landmark model uses regression to accomplish exact key point localization of 21 3D hand-knuckle coordinates (see figure \ref{fig:Chap3-HandLandMark}) within the detected hand regions, i.e., direct, coordinate prediction. Even with partially visible hands and self-occlusions, the model develops a consistent internal hand posture representation.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{img/Chap3/HandLandMark}
+          \caption{ 21 Hand Landmarks }
+          \label{fig:Chap3-HandLandMark}
+        \end{figure}
 
 
   \section{ Distance Matrix }
@@ -289,37 +317,60 @@
       As we just discuss above, in this part, we will talk about how to scoring the beam.
       We will split the beam-score into the score of paths ending with a blank(e.g.. 'aa-')
       and paths ending with non-blank (e.g. 'aaa'). 
-      
-      + We denote the probability of all paths ending with a blank and corresponding to a beam b at time-step t 
-      by Pb(b,t) and by Pnb(b,t) for the non-blank case.
-      + The probability Ptot(b,t) of a beam b at time-step t is simply the sum of Pb and Pnb, for example:
-      Ptot(b,t) = Pb(b,t) + Pnb(b,t)
+      \begin{itemize}
+        \item We denote the probability of all paths ending with a blank and corresponding to a beam b at time-step t 
+        by Pb(b,t) and by Pnb(b,t) for the non-blank case.
+        \item The probability Ptot(b,t) of a beam b at time-step t is simply the sum of Pb and Pnb, for example:
+        Ptot(b,t) = Pb(b,t) + Pnb(b,t)
+      \end{itemize}
 
-      In Fig .., we will see what happens when we extend a path. Three main case we can mention
-      is: 
-        + Extend by blank ('a' + '-' = 'a-')
-        + Extend by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
-        + Extend by some other character ('aa' + 'b' = 'aab')
-      
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{img/Chap3/CTC_Scoring}
+        \caption{ The effect of appending a character to paths ending with blank and non-blank }
+        \label{fig:Chap3-CTC_Scoring}
+      \end{figure}
+
+      In figure \ref{fig:Chap3-CTC_Scoring}, we will see what happens when we extend a path. Three main case we can mention
+      is:
+      \begin{itemize}
+        \item Extend by blank ('a' + '-' = 'a-')
+        \item Extend by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
+        \item Extend by some other character ('aa' + 'b' = 'aab')
+      \end{itemize}
+
       And when we collapse the extended paths, two result we will get and some case we needed to handle:
-        + The unchanged (copied) beam ('a' -> 'a'):
-          + To copy a beam, we can extend corresponding paths by a blank and get
-          paths ending with a blank: Pb (n, t) += Ptot(b, t-1)*mat(blank, t)
-          + Beside, with non-blank ending paths case, if we extend it by the last
-          character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
-          with -1 indexes the last character in the beam
-        + An extended beam ('a' -> 'aa' or 'ab'):
-          + To extend a beam. With the last character is different from the character we need
-          to extend, then there is no need for separating blanks ('-') in the paths:
-            Pnb(b+c,t) += Ptot(b,t-1)*mat(c,t)
-          + Or the last character of beam is repeated, we must ensure that the paths
-          end with a blank: Pnb(b+c,t) += Pb(b,t-1)*mat(c,t)
-          + We don't need t care about Pb(b+c,t) because we added a non-blank character
+        \begin{itemize}
+          \item The unchanged (copied) beam ('a' -> 'a'):
+          \begin{itemize}
+            \item To copy a beam, we can extend corresponding paths by a blank and get
+            paths ending with a blank: Pb (n, t) += Ptot(b, t-1)*mat(blank, t)
+            \item Beside, with non-blank ending paths case, if we extend it by the last
+            character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
+            with -1 indexes the last character in the beam
+          \end{itemize}
+          \item An extended beam ('a' -> 'aa' or 'ab'):
+            \begin{itemize}
+              \item To extend a beam. With the last character is different from the character we need
+              to extend, then there is no need for separating blanks ('-') in the paths:
+                Pnb(b+c,t) += Ptot(b,t-1)*mat(c,t)
+              \item Or the last character of beam is repeated, we must ensure that the paths
+              end with a blank: Pnb(b+c,t) += Pb(b,t-1)*mat(c,t)
+              \item We don't need t care about Pb(b+c,t) because we added a non-blank character
+            \end{itemize}
+        \end{itemize}
+
       \subsubsection{ Putting it all together }
-        Fig ... depicts the CTC beam search algorithm. It is similar to the basic version
+        Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version
         previously displayed. However, it includes the code to score the beams: copied beams
         (lines 7-10) and extended beams(line 15-19). Finally, when we looking for the best scoring
         beams, the programs ranks them according to Ptot (line 4) and then take the BW best ones.
-        ```Insert image about combination of this```
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.8\textwidth]{img/Chap3/BS_CTC}
+          \caption{ CTC beam search }
+          \label{fig:Chap3-BS_CTC}
+        \end{figure}
       
 
