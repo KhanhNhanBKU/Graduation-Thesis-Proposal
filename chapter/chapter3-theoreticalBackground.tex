@@ -19,7 +19,7 @@ CheckList:
     of parameters in the network. Some of the main uses of CNN can be mentioned as: image
     classification, object detection, semantic segmentation, face recognition, etc.
     
-    \\Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
+    %Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
     
       The figure above shows an example of convolution neural network, which is taking an image 
     as input and then extracting features from it through various layers and then finally predicting the
@@ -35,7 +35,7 @@ CheckList:
       3 dimensions: width, height and depth. Further, the neurons in one layer do not connect to all 
       the neurons in the next layer but only to a small region of it. Lastly, the final output will 
       be reduced to a single vector of probability scores, organized along the depth dimension.
-        # Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+      FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
       CNN can be divided into two parts:
         + The hidden layers/ Feature extraction part
           In this part, the network will perform a series of convolutions and 
@@ -46,7 +46,9 @@ CheckList:
           Here, the fully connected layers will serve as a classifier on top of 
           these extracted features. They will assign a probability for the object 
           on the image being what the algorithm predicts it is.
-        # Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+
+        FIXME: Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
+
     \subsection{ Feature extraction part }
       \subsubsection{ Convolutional Layer }
         Convolution Layer is the core building block of a Convolutional Network that does most
@@ -55,7 +57,7 @@ CheckList:
         the feature map. This process of extracting features from image happens throughout the CNN's convolutional
         layers. This process is illustrated in Fig...
 
-        # https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
+        FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 
         When the feature map is made, we can pass each value in
         the feature map through a non-linearity function, such as ReLU, sigmoid, etc. Before it
@@ -84,7 +86,7 @@ CheckList:
         to signal distinct identification of likely features on each hidden layer. CNNs may use a 
         variety of specific functions, such as rectified linear
         units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
-        # Insert picture of some function like ReLU, tanh ....
+        FIXME: Insert picture of some function like ReLU, tanh ....
     \subsection{ Classification part }
       \subsubsection{ Fully connected layers }
         The last layers of a CNN are fully connected layers. Neurons in a 
@@ -96,9 +98,9 @@ CheckList:
         data to 1D data. After pass through some FCL, we will get the result is the data
         classification.
 
-        #Insert picture ...
+        FIXME: Insert picture ...
   \section{ Media Pipe }
-    # Lấy từ eureka bỏ vào
+    FIXME: Lấy từ eureka bỏ vào
 
 
   \section{ Distance Matrix }
@@ -107,20 +109,21 @@ CheckList:
     and so on. In the diagonal of table is the distance of object from itself, so the value
     as we can see is 0. Distance matrices are sometimes called dissimilarity matrices.
 
-    # Insert picture of distance matrix
+    FIXME: Insert picture of distance matrix
 
     \subsection{ Create Distance Matrix }
       A distance matrix is computed from a raw data table (Figure ...). 
       
       In the example below, we can use high school math (Pythagoras) to work out 
       that distance between A and B. 
-        # Chèn công thức vào đây
+
+      FIXME: Chèn công thức vào đây
       
       We can use same formula with more than two variables, and this is known as 
       the Euclidean distance.
 
       In result, we have the distance matrix represented like Figure ...
-      # Chèn bảng kết quả vào
+      FIXME: chèn bảng kết quả vào
   
   \section{ Beam search and Connectionist Temporal Classification }
     CheckList:
@@ -143,7 +146,7 @@ CheckList:
           + What if the character takes up more than one time-step ?. We could get "tooo" because
           the "o" is a wide character as shown in Fig..... We have to remove all duplicate character
           like "t" and "o".
-          # Insert image ...
+          FIXME: Insert image ...
         CTC can solves both problem for us:
           + We can ignore both the position and width of the character in the image
           and only requires the text that occurs in the image.
@@ -165,7 +168,7 @@ CheckList:
       only a predetermined number of best partial solutions are kept as candidates.
       Pseudo-code for basic version of beam-search is shown is Fig....
 
-      # Insert image about pseudo-code for beam-search
+      FIXME: Insert image about pseudo-code for beam-search
       
       Beam search algorithm will be implemented through the following steps, with two
       parameter will be included: output matrix and beam width (BW) which specifies the number
@@ -177,7 +180,7 @@ CheckList:
       the alphabet (line 10) and again, a score is calculated (line 11). After the last time-step,
       the best beams is returned as a result (line 16).
 
-      # Insert image about beam search
+      FIXME: Insert image about beam search
 
       As we can see, in Fig ..., both output matrix to be decoded and the tree of beams are shown. 
       Beam search algorithm extended as possible and keep exactly BW candidates . Finally,
@@ -196,14 +199,14 @@ CheckList:
 
       In Fig .., we will see what happens when we extend a path. Three main case we can mention
       is: 
-        + Extend by blank ('a' + '-' = 'a-' )
+        + Extend by blank ('a' + '-' = 'a-')
         + Extend by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
         + Extend by some other character ('aa' + 'b' = 'aab')
       
       And when we collapse the extended paths, two result we will get and some case we needed to handle:
         + The unchanged (copied) beam ('a' -> 'a'):
-          + To copy a beam, we can extended corresponding paths by a blank and get
-          paths ending with a blank: Pb (n,t) += Ptot(b, t-1)*mat(blank, t)
+          + To copy a beam, we can extend corresponding paths by a blank and get
+          paths ending with a blank: Pb (n, t) += Ptot(b, t-1)*mat(blank, t)
           + Beside, with non-blank ending paths case, if we extend it by the last
           character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
           with -1 indexes the last character in the beam
