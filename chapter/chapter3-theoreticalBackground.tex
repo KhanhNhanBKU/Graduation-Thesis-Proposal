@@ -3,10 +3,10 @@
 Lorem ipsum
 
 CheckList:
-    [...] Mô hình Convolution Neural Network - CNN
-    [] Media Pipe -> Lấy từ eureka
-    [...] Distance Matrix
-    [...] BeamSearch with CTC decode
+    [x] Mô hình Convolution Neural Network - CNN
+    [...] Media Pipe -> Lấy từ eureka
+    [x] Distance Matrix
+    [x] BeamSearch with CTC decode
 
   \section{ Convolution Neural Network - CNN }
     Convolution Neural Networks are a special class of Neural Networks. They are made up 
@@ -124,10 +124,10 @@ CheckList:
   
   \section{ Beam search and Connectionist Temporal Classification }
     CheckList:
-      [...] BeamSearch
+      [x] BeamSearch
       [x] CTC recap
-      [...] Combination
-      [] Pseudo code
+      [x] Combination
+      [x] Pseudo code
       \subsection{ Connectionist Temporal Classification }
       Connectionist Temporal Classification (CTC) is a type of Neural Network output helpful
       in tackling sequence problems like handwriting and speech recognition where the timing varies.
@@ -207,5 +207,18 @@ CheckList:
           + Beside, with non-blank ending paths case, if we extend it by the last
           character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
           with -1 indexes the last character in the beam
-        + An extended beam ('a' -> 'aa' or 'ab')
+        + An extended beam ('a' -> 'aa' or 'ab'):
+          + To extend a beam. With the last character is different from the character we need
+          to extend, then there is no need for separating blanks ('-') in the paths:
+            Pnb(b+c,t) += Ptot(b,t-1)*mat(c,t)
+          + Or the last character of beam is repeated, we must ensure that the paths
+          end with a blank: Pnb(b+c,t) += Pb(b,t-1)*mat(c,t)
+          + We don't need t care about Pb(b+c,t) because we added a non-blank character
+      \subsubsection{ Putting it all together }
+        Fig ... depicts the CTC beam search algorithm. It is similar to the basic version
+        previously displayed. However, it includes the code to score the beams: copied beams
+        (lines 7-10) and extended beams(line 15-19). Finally, when we looking for the best scoring
+        beams, the programs ranks them according to Ptot (line 4) and then take the BW best ones.
+        ```Insert image about combination of this```
+      
 
