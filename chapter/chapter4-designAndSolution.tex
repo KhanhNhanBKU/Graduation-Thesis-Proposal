@@ -31,7 +31,7 @@ This module uses the output of the hand landmark model, which is a matrix size o
 \end{figure}
 
 \subsection{Direction determination}
-
+FIXME: Thêm các hình ảnh về cách xác định hướng, lấy từ ppt
 The directions of the hand include four directions, i.e., right, left, up, down, front, and back. Each hand’s pattern combined with different directions leads to a different meaning. For example, the pattern that points at someone means the word “you”; on the other hand, when we point it to ourselves, it means the word I (see Figure \ref{fig:Chap4-WordYouInSignLanguage} and Figure \ref{fig:Chap4-WordIInSignLanguage}).
 
 \begin{figure}[H]
@@ -53,6 +53,8 @@ To determine the hand’s direction, we use the hand landmark model provided in 
 For instance, a hand is known to be pointing toward the left direction. The value of the distance, when projected on the axis Ox, will be the biggest one among the three projected values. Then, calculate the vector drawn from the wrist to the tip of the index finger; we will know the direction of the hand itself.
 
 \subsection{Location detection}
+FIXME: Giới thiệu previous approach về sử dụng độ zoom, các khó khăn
+FIXME: Thêm các hình ảnh về cảm biến sóng âm, các thông số, tại sao lại sử dụng, sử dụng như thế nào
 
 Locations of hand vary, is the hand put at forehead, mouth or the chest level, and so on. Every hand pattern that goes with every location will result in different words. Nevertheless, it is hard for the AI to know the hand’s location with only one camera, and its view is from above (see Figure \ref{fig:Chap4-ViewFromCamera}). However, we came up with some solutions to this issue.
 
@@ -66,6 +68,9 @@ Firstly, we will take pictures of the hand and calculate the size of the hand in
 \end{figure}
 
 Nonetheless, the above solution still has an issue: every man’s hand has a different size, and the system does not know the correct position of the hand. Therefore, another solution is to use a wide-angle camera and set it away from the forehead. With this solution, the camera can have a much broader view. However, since we only have a normal-angle camera, we could not try out this solution and confirm its suitability.
+
+\subsection{ Design}
+  TODO: Trình bày các thiết kế hiện có và các chức năng phụ
 
 \subsection{Word decoder}
 
