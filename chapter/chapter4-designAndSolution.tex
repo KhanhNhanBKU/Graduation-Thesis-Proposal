@@ -70,7 +70,7 @@ Nonetheless, the above solution still has an issue: every man’s hand has a dif
 \subsection{Word decoder}
 
 TODO:   Previous approach 
-      [] How to map word ?
+      [...] How to map word ?
 TODO:   New approach
       [] Punish function
       [] Using beam search
@@ -79,6 +79,35 @@ TODO:   New approach
       [] Expected result
       [] Difficult and proposed solution
 
+  \subsection{ Previous approach}
+    TODO: With previous approach, trình bày hướng đi
+    cũ của module này, khi còn sử dụng module action
+    detection, lúc này, một word sẽ được trình bày dưới
+    dạng 4 module cơ bản (pattern, location, direction, action),
+    khi đó, nhiệm vụ của chúng ta là tìm trong cơ sở dữ liệu, từ nào
+    tương ứng với các kết quả thu được từ 4 module trên, khi đó
+    ta sẽ thu được từ vựng.
+    TODO: Insert image represent the way to map word with 4 module
+                              [p,l,d,a]
+                        Map   [p1,l1,d1,a1]
+              [p,l,d,a] ----> [p2,l2,d2,a2] ---> word
+                              [p3,l3,d3,a3]
+              Input             database
+
+    Sau khi map được từ vựng, chúng ta sẽ xuất từ vựng đó lên màn hình
+
+    \subsection{ New approach with CTC beam search decode }
+      \subsubsection{ Introduction to handstate }
+      \subsubsection{ Punish function to get matrix which is input of beam search }
+        TODO: Why we need punish -> Do trước khi vào module beam search, ta cần một matrix biểu diễn sự tương quan giữa các output nhận được từ các component và các dữ liệu trong database
+        TODO: how to perform -> Trình bày cách đánh giá như thế nào, cách trừ điểm và các phương châm đánh giá
+        TODO: Sau khi punish dùng hàm softmax để chuyển các giá trị về dạng xác suất
+      \subsubsection{ Using beam search and CTC decode to map word }
+        TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
+        TODO: Image beamsearch (get from ppt)
+        TODO: Example
+        TODO: Áp dụng CTC để handle một số trường hợp
+        TODO: Các khó khăn gặp phải và hướng giải quết
 
 \subsection{Text to speech}
 
