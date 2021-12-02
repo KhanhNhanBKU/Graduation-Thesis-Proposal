@@ -87,7 +87,7 @@ TODO:   New approach
       [...] Thêm các hình ảnh
 
 
-    TODO: With previous approach
+    % TODO: With previous approach
 
     Như chúng tôi đã trình bày ở phần 1, do có những khó khăn 
     về mặt kĩ thuật trong việc triển khai module
@@ -96,15 +96,22 @@ TODO:   New approach
     , nếu như với mô hình cũ, một word sẽ được trình bày dưới dạng
     4 thành phần cơ bản (pattern, location, direction, action),
     khi đó, nhiệm vụ của chúng ta là tìm trong cơ sở dữ liệu, từ nào
-    tương ứng với các kết quả thu được từ 4 module trên, khi đó
+    tương ứng với các kết quả thu được từ 4 module trên (\ref{fig:Chap4-MapWord}), khi đó
     ta sẽ thu được từ vựng.
 
-    TODO: Insert image represent the way to map word with 4 module
-                              [p,l,d,a]
-                        Map   [p1,l1,d1,a1]
-              [p,l,d,a] ----> [p2,l2,d2,a2] ---> word
-                              [p3,l3,d3,a3]
-              Input             database
+    % TODO: Insert image represent the way to map word with 4 module
+    %                           [p,l,d,a]
+    %                     Map   [p1,l1,d1,a1]
+    %           [p,l,d,a] ----> [p2,l2,d2,a2] ---> word
+    %                           [p3,l3,d3,a3]
+    %           Input             database
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{img/Chap4/MapWord.png}
+      \caption{Map one to one data from four component with word in database and get result}
+      \label{fig:Chap4-MapWord}
+    \end{figure}
 
     Hình trên cho chúng ta thấy cách map một từ vựng sẽ như thế nào.
     Bằng việc so trùng các ký tự, ta sẽ tim được từ vựng phù hợp.
@@ -120,32 +127,32 @@ TODO:   New approach
       một từ không còn được cấu thành từ 4 thành phần cơ bản như ở mô hình cũ nữa,
       mà sẽ được cấu thành từ nhiều thành phần khác nhau, mỗi thành phần tương ứng
       sẽ chứa trong nó là một bộ 3 : pattern, direction, location. Tương ứng với mỗi
-      bộ 3 này, chúng tôi sẽ gọi nó là một hand_state và như thế, ta có thể hiểu một từ vựng
-      sẽ được cấu thành từ nhiều hand_state khác nhau. Ý tưởng của vấn đề xuất phát
+      bộ 3 này, chúng tôi sẽ gọi nó là một hand state và như thế, ta có thể hiểu một từ vựng
+      sẽ được cấu thành từ nhiều hand state khác nhau. Ý tưởng của vấn đề xuất phát
       từ các nghiên cứu của xử lý ngôn ngữ tự nhiên, khi một từ sẽ được cấu thành từ
-      nhiều ký tự, thì trong trường hợp này, một từ sẽ được ghép từ nhiều hand_state.
-      Sau đó, khi qua các bước xử lý mà chúng tôi sẽ trình bày ở bước sau, ta sẽ thu được từ vựng mong muốn
-      FIXME:Insert image from ppt about hand_state
+      nhiều ký tự, thì trong trường hợp này, một từ sẽ được ghép từ nhiều hand state.
+      Sau đó, khi qua các bước xử lý mà chúng tôi sẽ trình bày bên dưới, ta sẽ thu được từ vựng mong muốn
+      FIXME:Insert image from ppt about hand state
 
     \subsubsection{ Using beam search and CTC decode to map word }
-      Sau khi chúng ta đã nắm được khái niệm về hand_state, chúng ta sẽ đi đến phần quan trọng
-      nhất của mô hình: chuyển đổi các hand_state đã nhận được thành từ vựng.
+      Sau khi chúng ta đã nắm được khái niệm về hand state, chúng ta sẽ đi đến phần quan trọng
+      nhất của mô hình: chuyển đổi các hand state đã nhận được thành từ vựng.
       
-      # Insert image about : mô hình như thế nào (lấy từ ppt)
+      FIXME: Insert image about : mô hình như thế nào (lấy từ ppt)
 
       Fig ... là mô hình mà nhóm tác giả đề xuất cho phần này. Input đầu vào
-      sẽ là một hàng đợi các hand_state được lấy từ 3 component trước đó. Ở đây nhóm tác giả
+      sẽ là một hàng đợi các hand state được lấy từ 3 component trước đó. Ở đây nhóm tác giả
       quy ước chiều dài của hàng đợi là 5, tuy nhiên cần có sự tính toán và thử nghiệm để tìm
       được độ dài hàng đợi phù hợp.
       Mô hình này gồm ... bước:
-        + Vectorization: Đây là bước chuyển đổi từ một hàng đợi gồm nhiều hand_state thành
+        + Vectorization: Đây là bước chuyển đổi từ một hàng đợi gồm nhiều hand state thành
         một ma trận làm input đầu vào cho beam search
         + Beam search : Ở bước này, chúng ta sẽ thực hiện giải thuật beam search để chọn ra
-        từ cơ sở dữ liệu các hand_state nào là phù hợp với input đưa vào. Bên cạnh đó, ở bước
-        này, nhóm tác giả đề xuất sử dụng mô hình CTC decde để có thể loại bỏ những hand_state bị sai
-        hoặc những hand_state bị trùng lặp trước đó, tăng tính hiệu quả cho mô hình.
+        từ cơ sở dữ liệu các hand state nào là phù hợp với input đưa vào. Bên cạnh đó, ở bước
+        này, nhóm tác giả đề xuất sử dụng mô hình CTC decde để có thể loại bỏ những hand state bị sai
+        hoặc những hand state bị trùng lặp trước đó, tăng tính hiệu quả cho mô hình.
         + Map to dictionary: Và cuối cùng, sau khi qua 2 bước trên, từ hàng đợi ban đầu, ta sẽ
-        thu được các hand_state có khả năng nhất. Việc cần làm của chúng ta là map các hand_state
+        thu được các hand state có khả năng nhất. Việc cần làm của chúng ta là map các hand state
         này vào cơ sở dữ liệu và tìm ra từ vựng phù hợp.
       
     \subsubsection{ Vectorization }
@@ -153,23 +160,23 @@ TODO:   New approach
       TODO: how to perform -> Trình bày cách đánh giá như thế nào, cách trừ điểm và các phương châm đánh giá
       TODO: Sau khi punish dùng hàm softmax để chuyển các giá trị về dạng xác suất
 
-      Khi đến bước này, những gì chúng ta nhận được sẽ là: một hàng đợi của các hand_state.
+      Khi đến bước này, những gì chúng ta nhận được sẽ là: một hàng đợi của các hand state.
       Do trước khi vào module beam search, ta cần một matrix biểu diễn sự tương quan giữa các output nhận được từ các component và các dữ liệu trong database
-      # Insert image about hand_state queue
-      Từ hàng đợi này, ta sẽ lấy lần luọt từng hand_state, so sánh nó với cơ sở dữ liệu về hand_state có sẵn 
+      FIXME: Insert image about hand state queue
+      Từ hàng đợi này, ta sẽ lấy lần luọt từng hand state, so sánh nó với cơ sở dữ liệu về hand state có sẵn 
       và đánh giá điểm số cho nó dựa trên các nguyên tắc sau:
-        + Các hand_state được lấy ra từ hàng đợi nếu có điểm tương đồng càng lớn với một hand_state
+        + Các hand state được lấy ra từ hàng đợi nếu có điểm tương đồng càng lớn với một hand state
         trong cơ sở dữ liệu thì sẽ được đánh giá điểm số càng cao. Ví dụ trong cơ sở dữ liệu chúng ta
-        có một hand_state như sau : [p_1, l_1, d_1] và hand_state ta nhận được từ input là [p_1, l_1, d_1] thì hand_state này sẽ
-        được đánh giá điểm số cao hơn hand_state [p_1, l_1, d_2]. Và cứ như thế, ta sẽ lần lượt cho điểm các hand_state lấy ra từ hàng đợi
-        + Khi đánh giá các hand_state, đối với trường hợp so trùng 2 pattern. Do các pattern này được nhận diện từ module
+        có một hand state như sau : [p 1, l 1, d 1] và hand state ta nhận được từ input là [p 1, l 1, d 1] thì hand state này sẽ
+        được đánh giá điểm số cao hơn hand state [p 1, l 1, d 2]. Và cứ như thế, ta sẽ lần lượt cho điểm các hand state lấy ra từ hàng đợi
+        + Khi đánh giá các hand state, đối với trường hợp so trùng 2 pattern. Do các pattern này được nhận diện từ module
         hand pattern regconition (vision approach), do đó, sẽ có khả năng bị nhận diện bị sai, hoặc bị nhầm. Vì lẽ đó, để có thể
         đánh giá một cách chính xác và công bằng nhất có thể thì ở đây, đối với những pattern hay bị nhận diện sai, ta sẽ trừ điểm thấp và ngược lại
         , với những pattern đơn giản mà hệ thống lại nhận diện sai thì sẽ bị trừ điểm nhiều hơn
       
       Sau khi hoàn thành bước đánh giá và cho điểm như trên, ta sẽ dùng một hàm để normalize
-      lại dữ liệu (ở đây nhóm tác giả sử dụng softmax function) và trả về cho chúng ta một bộ xác suất của các hand_state trong hàng đợi. Ta sẽ sử dụng bộ xác suất này
-      làm input đầu vào cho bước beam_search.
+      lại dữ liệu (ở đây nhóm tác giả sử dụng softmax function) và trả về cho chúng ta một bộ xác suất của các hand state trong hàng đợi. Ta sẽ sử dụng bộ xác suất này
+      làm input đầu vào cho bước beam search.
     \subsubsection{ Using beamsearch with CTC decode }
       TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
       TODO: Image beamsearch (get from ppt)
@@ -177,21 +184,21 @@ TODO:   New approach
       TODO: Áp dụng CTC để handle một số trường hợp
       TODO: Các khó khăn gặp phải và hướng giải quyết
       
-      Sau khi qua bước vectorizaion, các hand_state trong hàng đợi của chúng ta
+      Sau khi qua bước vectorizaion, các hand state trong hàng đợi của chúng ta
       đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
-      các hand_state và N là độ dài của hàng đợi.
+      các hand state và N là độ dài của hàng đợi.
       
-      Bằng việc sử dụng beam search, từ sẽ thu được k hand_state có khả năng nhất
+      Bằng việc sử dụng beam search, từ sẽ thu được k hand state có khả năng nhất
       từ cơ sở dữ liệu. Từ hình ảnh bên dưới, ta có thể hình dung được những gì
       đã diễn ra sau trong quá trình thực hiện beam search
       FIXME: Insert image from ppt about matrix with beam search
 
       Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
-      ta sẽ thu được một dãy các hand_state có độ dài tương ứng với độ dài của hàng đợi
-      , các hand_state này có thể bao gồm những hand_state bị trùng nhau, hoặc cũng có thể
-      là những hand_state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand_state
-      bị trùng này. Đối với những hand_state bị nhận sai từ những module trước thì ở bước Vectorization,
-      ta sẽ đặt một threshold để loại bỏ những hand_state này và xem như hand_state đó là một ký tự rỗng ("_")
+      ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
+      , các hand state này có thể bao gồm những hand state bị trùng nhau, hoặc cũng có thể
+      là những hand state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand state
+      bị trùng này. Đối với những hand state bị nhận sai từ những module trước thì ở bước Vectorization,
+      ta sẽ đặt một threshold để loại bỏ những hand state này và xem như hand state đó là một ký tự rỗng (" ")
       và cuối cùng, sau khi áp dụng CTC decode vào, ta sẽ thu được kết quả mong muốn
 
       FIXME: Insert image about the result (get from ppt)
@@ -200,9 +207,9 @@ TODO:   New approach
       
     \subsubsection{ Map to dictionary }
       TODO: Cách map như thế nào
-      Sau khi nhận được một tập các hand_state có khả năng nhất, việc còn lại là
+      Sau khi nhận được một tập các hand state có khả năng nhất, việc còn lại là
       chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
-      nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand_state thu được
+      nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
       từ bước ... .
       Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
 
