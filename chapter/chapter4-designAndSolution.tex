@@ -7,6 +7,7 @@ Overall, the whole system includes three parts of hardware modules, naming camer
 Our sign language translating AI system includes six main modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (Figure 4). Firstly, the system continuously captures the hand’s motion, processes it with the hand landmark model, and then puts it into those modules. Each of them has a unique role, and after combining the first four modules’ results (hand pattern, direction, location, and action detection), the word decoder module will take the output data and bring out the corresponding result. Then, the result will show up on the main screen (Figure 16); meanwhile, the phone will speak out that word. In the below sections, we will discuss each module’s role and how it works.
 
 TODO: Replace with new structure
+TODO: Trình bày cả 2 mô hình, giới thiệu luôn action detection và nói là do không khả thi nên đề xuất mô hình mới, khi đó sẽ có sự thay đổi như thế nào 
 
 \begin{figure}[H]
   \centering
@@ -31,7 +32,7 @@ This module uses the output of the hand landmark model, which is a matrix size o
 \end{figure}
 
 \subsection{Direction determination}
-
+FIXME: Thêm các hình ảnh về cách xác định hướng, lấy từ ppt
 The directions of the hand include four directions, i.e., right, left, up, down, front, and back. Each hand’s pattern combined with different directions leads to a different meaning. For example, the pattern that points at someone means the word “you”; on the other hand, when we point it to ourselves, it means the word I (see Figure \ref{fig:Chap4-WordYouInSignLanguage} and Figure \ref{fig:Chap4-WordIInSignLanguage}).
 
 \begin{figure}[H]
@@ -53,6 +54,8 @@ To determine the hand’s direction, we use the hand landmark model provided in 
 For instance, a hand is known to be pointing toward the left direction. The value of the distance, when projected on the axis Ox, will be the biggest one among the three projected values. Then, calculate the vector drawn from the wrist to the tip of the index finger; we will know the direction of the hand itself.
 
 \subsection{Location detection}
+FIXME: Giới thiệu previous approach về sử dụng độ zoom, các khó khăn
+FIXME: Thêm các hình ảnh về cảm biến sóng âm, các thông số, tại sao lại sử dụng, sử dụng như thế nào
 
 Locations of hand vary, is the hand put at forehead, mouth or the chest level, and so on. Every hand pattern that goes with every location will result in different words. Nevertheless, it is hard for the AI to know the hand’s location with only one camera, and its view is from above (see Figure \ref{fig:Chap4-ViewFromCamera}). However, we came up with some solutions to this issue.
 
@@ -67,9 +70,148 @@ Firstly, we will take pictures of the hand and calculate the size of the hand in
 
 Nonetheless, the above solution still has an issue: every man’s hand has a different size, and the system does not know the correct position of the hand. Therefore, another solution is to use a wide-angle camera and set it away from the forehead. With this solution, the camera can have a much broader view. However, since we only have a normal-angle camera, we could not try out this solution and confirm its suitability.
 
-\subsection{Word decoder}
+\subsection{ Design}
+  TODO: Trình bày các thiết kế hiện có và các chức năng phụ
 
-TODO: Finish Word decoder
+\subsection{Word decoder}
+TODO:   Previous approach 
+      [x] How to map word ?
+TODO:   New approach
+      [x] Punish function
+      [x] Using beam search
+      [x] CTC decode
+      [x] Flow
+      [x] Expected result
+      [...] Difficult and proposed solution
+      [...] Dịch sang tiếng anh
+      [...] Thêm các hình ảnh
+
+
+    % TODO: With previous approach
+
+    Như chúng tôi đã trình bày ở phần 1, do có những khó khăn 
+    về mặt kĩ thuật trong việc triển khai module
+    action detection, chúng tôi đã đề xuất một mô hình mới.
+    . Và với mô hình này, module word decode cũng sẽ bị thay đổi
+    , nếu như với mô hình cũ, một word sẽ được trình bày dưới dạng
+    4 thành phần cơ bản (pattern, location, direction, action),
+    khi đó, nhiệm vụ của chúng ta là tìm trong cơ sở dữ liệu, từ nào
+    tương ứng với các kết quả thu được từ 4 module trên (\ref{fig:Chap4-MapWord}), khi đó
+    ta sẽ thu được từ vựng.
+
+    % TODO: Insert image represent the way to map word with 4 module
+    %                           [p,l,d,a]
+    %                     Map   [p1,l1,d1,a1]
+    %           [p,l,d,a] ----> [p2,l2,d2,a2] ---> word
+    %                           [p3,l3,d3,a3]
+    %           Input             database
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{img/Chap4/MapWord.png}
+      \caption{Map one to one data from four component with word in database and get result}
+      \label{fig:Chap4-MapWord}
+    \end{figure}
+
+    Hình trên cho chúng ta thấy cách map một từ vựng sẽ như thế nào.
+    Bằng việc so trùng các ký tự, ta sẽ tim được từ vựng phù hợp.
+    Nếu không tìm thấy, chúng ta sẽ loại bỏ nó và lấy một bộ khác
+    để giải mã.
+    Sau khi map được từ vựng, chúng ta sẽ xuất từ vựng đó lên màn hình
+    \subsubsection{ Introduction to handstate }
+      TODO: Dịch sang tiếng anh
+      Lúc này, khi module action detection đã bị lược bỏ. Câu hỏi được đặt ra là,
+      làm cách nào để chúng ta có thể không dùng module action detection nhưng vẫn có thể
+      nhận diện được từ vựng
+      Do đó, nhóm tác giả đề xuất một mô hình khác cho từ vựng, lúc này
+      một từ không còn được cấu thành từ 4 thành phần cơ bản như ở mô hình cũ nữa,
+      mà sẽ được cấu thành từ nhiều thành phần khác nhau, mỗi thành phần tương ứng
+      sẽ chứa trong nó là một bộ 3 : pattern, direction, location. Tương ứng với mỗi
+      bộ 3 này, chúng tôi sẽ gọi nó là một hand state và như thế, ta có thể hiểu một từ vựng
+      sẽ được cấu thành từ nhiều hand state khác nhau. Ý tưởng của vấn đề xuất phát
+      từ các nghiên cứu của xử lý ngôn ngữ tự nhiên, khi một từ sẽ được cấu thành từ
+      nhiều ký tự, thì trong trường hợp này, một từ sẽ được ghép từ nhiều hand state.
+      Sau đó, khi qua các bước xử lý mà chúng tôi sẽ trình bày bên dưới, ta sẽ thu được từ vựng mong muốn
+      FIXME:Insert image from ppt about hand state
+
+    \subsubsection{ Using beam search and CTC decode to map word }
+      Sau khi chúng ta đã nắm được khái niệm về hand state, chúng ta sẽ đi đến phần quan trọng
+      nhất của mô hình: chuyển đổi các hand state đã nhận được thành từ vựng.
+      
+      FIXME: Insert image about : mô hình như thế nào (lấy từ ppt)
+
+      Fig ... là mô hình mà nhóm tác giả đề xuất cho phần này. Input đầu vào
+      sẽ là một hàng đợi các hand state được lấy từ 3 component trước đó. Ở đây nhóm tác giả
+      quy ước chiều dài của hàng đợi là 5, tuy nhiên cần có sự tính toán và thử nghiệm để tìm
+      được độ dài hàng đợi phù hợp.
+      Mô hình này gồm ... bước:
+        + Vectorization: Đây là bước chuyển đổi từ một hàng đợi gồm nhiều hand state thành
+        một ma trận làm input đầu vào cho beam search
+        + Beam search : Ở bước này, chúng ta sẽ thực hiện giải thuật beam search để chọn ra
+        từ cơ sở dữ liệu các hand state nào là phù hợp với input đưa vào. Bên cạnh đó, ở bước
+        này, nhóm tác giả đề xuất sử dụng mô hình CTC decde để có thể loại bỏ những hand state bị sai
+        hoặc những hand state bị trùng lặp trước đó, tăng tính hiệu quả cho mô hình.
+        + Map to dictionary: Và cuối cùng, sau khi qua 2 bước trên, từ hàng đợi ban đầu, ta sẽ
+        thu được các hand state có khả năng nhất. Việc cần làm của chúng ta là map các hand state
+        này vào cơ sở dữ liệu và tìm ra từ vựng phù hợp.
+      
+    \subsubsection{ Vectorization }
+      TODO: Why we need punish
+      TODO: how to perform -> Trình bày cách đánh giá như thế nào, cách trừ điểm và các phương châm đánh giá
+      TODO: Sau khi punish dùng hàm softmax để chuyển các giá trị về dạng xác suất
+
+      Khi đến bước này, những gì chúng ta nhận được sẽ là: một hàng đợi của các hand state.
+      Do trước khi vào module beam search, ta cần một matrix biểu diễn sự tương quan giữa các output nhận được từ các component và các dữ liệu trong database
+      FIXME: Insert image about hand state queue
+      Từ hàng đợi này, ta sẽ lấy lần luọt từng hand state, so sánh nó với cơ sở dữ liệu về hand state có sẵn 
+      và đánh giá điểm số cho nó dựa trên các nguyên tắc sau:
+        + Các hand state được lấy ra từ hàng đợi nếu có điểm tương đồng càng lớn với một hand state
+        trong cơ sở dữ liệu thì sẽ được đánh giá điểm số càng cao. Ví dụ trong cơ sở dữ liệu chúng ta
+        có một hand state như sau : [p 1, l 1, d 1] và hand state ta nhận được từ input là [p 1, l 1, d 1] thì hand state này sẽ
+        được đánh giá điểm số cao hơn hand state [p 1, l 1, d 2]. Và cứ như thế, ta sẽ lần lượt cho điểm các hand state lấy ra từ hàng đợi
+        + Khi đánh giá các hand state, đối với trường hợp so trùng 2 pattern. Do các pattern này được nhận diện từ module
+        hand pattern regconition (vision approach), do đó, sẽ có khả năng bị nhận diện bị sai, hoặc bị nhầm. Vì lẽ đó, để có thể
+        đánh giá một cách chính xác và công bằng nhất có thể thì ở đây, đối với những pattern hay bị nhận diện sai, ta sẽ trừ điểm thấp và ngược lại
+        , với những pattern đơn giản mà hệ thống lại nhận diện sai thì sẽ bị trừ điểm nhiều hơn
+      
+      Sau khi hoàn thành bước đánh giá và cho điểm như trên, ta sẽ dùng một hàm để normalize
+      lại dữ liệu (ở đây nhóm tác giả sử dụng softmax function) và trả về cho chúng ta một bộ xác suất của các hand state trong hàng đợi. Ta sẽ sử dụng bộ xác suất này
+      làm input đầu vào cho bước beam search.
+    \subsubsection{ Using beamsearch with CTC decode }
+      TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
+      TODO: Image beamsearch (get from ppt)
+      TODO: Example
+      TODO: Áp dụng CTC để handle một số trường hợp
+      TODO: Các khó khăn gặp phải và hướng giải quyết
+      
+      Sau khi qua bước vectorizaion, các hand state trong hàng đợi của chúng ta
+      đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
+      các hand state và N là độ dài của hàng đợi.
+      
+      Bằng việc sử dụng beam search, từ sẽ thu được k hand state có khả năng nhất
+      từ cơ sở dữ liệu. Từ hình ảnh bên dưới, ta có thể hình dung được những gì
+      đã diễn ra sau trong quá trình thực hiện beam search
+      FIXME: Insert image from ppt about matrix with beam search
+
+      Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
+      ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
+      , các hand state này có thể bao gồm những hand state bị trùng nhau, hoặc cũng có thể
+      là những hand state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand state
+      bị trùng này. Đối với những hand state bị nhận sai từ những module trước thì ở bước Vectorization,
+      ta sẽ đặt một threshold để loại bỏ những hand state này và xem như hand state đó là một ký tự rỗng (" ")
+      và cuối cùng, sau khi áp dụng CTC decode vào, ta sẽ thu được kết quả mong muốn
+
+      FIXME: Insert image about the result (get from ppt)
+
+      
+      
+    \subsubsection{ Map to dictionary }
+      TODO: Cách map như thế nào
+      Sau khi nhận được một tập các hand state có khả năng nhất, việc còn lại là
+      chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
+      nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
+      từ bước ... .
+      Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
 
 \subsection{Text to speech}
 
