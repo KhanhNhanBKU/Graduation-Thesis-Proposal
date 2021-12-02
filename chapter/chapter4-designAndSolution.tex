@@ -75,14 +75,16 @@ Nonetheless, the above solution still has an issue: every man’s hand has a dif
 
 \subsection{Word decoder}
 TODO:   Previous approach 
-      [...] How to map word ?
+      [x] How to map word ?
 TODO:   New approach
-      [] Punish function
-      [] Using beam search
-      [] CTC decode
-      [] Flow
-      [] Expected result
-      [] Difficult and proposed solution
+      [x] Punish function
+      [x] Using beam search
+      [x] CTC decode
+      [x] Flow
+      [x] Expected result
+      [...] Difficult and proposed solution
+      [...] Dịch sang tiếng anh
+      [...] Thêm các hình ảnh
 
 
     TODO: With previous approach
@@ -169,17 +171,40 @@ TODO:   New approach
       lại dữ liệu (ở đây nhóm tác giả sử dụng softmax function) và trả về cho chúng ta một bộ xác suất của các hand_state trong hàng đợi. Ta sẽ sử dụng bộ xác suất này
       làm input đầu vào cho bước beam_search.
     \subsubsection{ Using beamsearch with CTC decode }
-
       TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
       TODO: Image beamsearch (get from ppt)
       TODO: Example
       TODO: Áp dụng CTC để handle một số trường hợp
+      TODO: Các khó khăn gặp phải và hướng giải quyết
+      
+      Sau khi qua bước vectorizaion, các hand_state trong hàng đợi của chúng ta
+      đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
+      các hand_state và N là độ dài của hàng đợi.
+      
+      Bằng việc sử dụng beam search, từ sẽ thu được k hand_state có khả năng nhất
+      từ cơ sở dữ liệu. Từ hình ảnh bên dưới, ta có thể hình dung được những gì
+      đã diễn ra sau trong quá trình thực hiện beam search
+      FIXME: Insert image from ppt about matrix with beam search
+
+      Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
+      ta sẽ thu được một dãy các hand_state có độ dài tương ứng với độ dài của hàng đợi
+      , các hand_state này có thể bao gồm những hand_state bị trùng nhau, hoặc cũng có thể
+      là những hand_state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand_state
+      bị trùng này. Đối với những hand_state bị nhận sai từ những module trước thì ở bước Vectorization,
+      ta sẽ đặt một threshold để loại bỏ những hand_state này và xem như hand_state đó là một ký tự rỗng ("_")
+      và cuối cùng, sau khi áp dụng CTC decode vào, ta sẽ thu được kết quả mong muốn
+
+      FIXME: Insert image about the result (get from ppt)
+
       
       
     \subsubsection{ Map to dictionary }
       TODO: Cách map như thế nào
-      TODO: Các khó khăn gặp phải và hướng giải quyết
-
+      Sau khi nhận được một tập các hand_state có khả năng nhất, việc còn lại là
+      chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
+      nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand_state thu được
+      từ bước ... .
+      Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
 
 \subsection{Text to speech}
 
