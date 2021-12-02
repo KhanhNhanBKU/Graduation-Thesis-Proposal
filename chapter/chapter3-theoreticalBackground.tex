@@ -119,7 +119,7 @@
         % FIXME: Insert image about max pooling and average pooling
 
       \subsubsection{ Activation Layers }
-        Neural networks in general and CNNs in particular rely on a non-linear “trigger” function 
+        Neural networks in general and CNNs in particular rely on a non-linear "trigger" function 
         to signal distinct identification of likely features on each hidden layer. CNNs may use a 
         variety of specific functions (figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear
         units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
@@ -304,14 +304,14 @@
       \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/Chap3/BeamSearchTree}
-        \caption{ NN output and tree of beams with alphabet = {“a”, “b”} and BW = 2 }
+        \caption{ NN output and tree of beams with alphabet = {"a", "b"} and BW = 2 }
         \label{fig:Chap3-BSTree}
       \end{figure}
 
       As we can see, in figure \ref{fig:Chap3-BSTree}, both output matrix to be decoded and the tree of beams are shown. 
       Beam search algorithm extended as possible and keep exactly BW candidates . Finally,
       we finished the last iteration and the final step of the algorithm is to return the beam 
-      with the highest score, which is “a” in this example.
+      with the highest score, which is "a" in this example.
       
       \subsubsection{ Calculating the score }
       As we just discuss above, in this part, we will talk about how to scoring the beam.
