@@ -119,7 +119,6 @@ TODO:   New approach
     để giải mã.
     Sau khi map được từ vựng, chúng ta sẽ xuất từ vựng đó lên màn hình
     \subsubsection{ Introduction to handstate }
-      TODO: Dịch sang tiếng anh
       Lúc này, khi module action detection đã bị lược bỏ. Câu hỏi được đặt ra là,
       làm cách nào để chúng ta có thể không dùng module action detection nhưng vẫn có thể
       nhận diện được từ vựng
@@ -127,18 +126,33 @@ TODO:   New approach
       một từ không còn được cấu thành từ 4 thành phần cơ bản như ở mô hình cũ nữa,
       mà sẽ được cấu thành từ nhiều thành phần khác nhau, mỗi thành phần tương ứng
       sẽ chứa trong nó là một bộ 3 : pattern, direction, location. Tương ứng với mỗi
-      bộ 3 này, chúng tôi sẽ gọi nó là một hand state và như thế, ta có thể hiểu một từ vựng
+      bộ 3 này, để cho thuận tiện chúng tôi sẽ gọi nó là một hand state và như thế, ta có thể hiểu một từ vựng
       sẽ được cấu thành từ nhiều hand state khác nhau. Ý tưởng của vấn đề xuất phát
       từ các nghiên cứu của xử lý ngôn ngữ tự nhiên, khi một từ sẽ được cấu thành từ
       nhiều ký tự, thì trong trường hợp này, một từ sẽ được ghép từ nhiều hand state.
       Sau đó, khi qua các bước xử lý mà chúng tôi sẽ trình bày bên dưới, ta sẽ thu được từ vựng mong muốn
-      FIXME:Insert image from ppt about hand state
+      % FIXME:Insert image from ppt about hand state
+      
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/HandState.png}
+        \caption{ Hand State which construct from pattern, location and direction}
+        \label{fig:Chap4-HandState}
+      \end{figure}
+      
 
     \subsubsection{ Using beam search and CTC decode to map word }
       Sau khi chúng ta đã nắm được khái niệm về hand state, chúng ta sẽ đi đến phần quan trọng
       nhất của mô hình: chuyển đổi các hand state đã nhận được thành từ vựng.
       
-      FIXME: Insert image about : mô hình như thế nào (lấy từ ppt)
+      % FIXME: Insert image about : mô hình như thế nào (lấy từ ppt)
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/Architechture.png}
+        \caption{Architechture}
+        \label{fig:Chap4-Architechture}
+      \end{figure}
 
       Fig ... là mô hình mà nhóm tác giả đề xuất cho phần này. Input đầu vào
       sẽ là một hàng đợi các hand state được lấy từ 3 component trước đó. Ở đây nhóm tác giả
@@ -162,7 +176,14 @@ TODO:   New approach
 
       Khi đến bước này, những gì chúng ta nhận được sẽ là: một hàng đợi của các hand state.
       Do trước khi vào module beam search, ta cần một matrix biểu diễn sự tương quan giữa các output nhận được từ các component và các dữ liệu trong database
-      FIXME: Insert image about hand state queue
+      % FIXME: Insert image about hand state queue
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/HandStateQueue.png}
+        \caption{A queue of hand state which get from three component in section ... }
+        \label{fig:Chap4-HandStateQueue}
+      \end{figure}
+
       Từ hàng đợi này, ta sẽ lấy lần luọt từng hand state, so sánh nó với cơ sở dữ liệu về hand state có sẵn 
       và đánh giá điểm số cho nó dựa trên các nguyên tắc sau:
         + Các hand state được lấy ra từ hàng đợi nếu có điểm tương đồng càng lớn với một hand state
@@ -173,7 +194,16 @@ TODO:   New approach
         hand pattern regconition (vision approach), do đó, sẽ có khả năng bị nhận diện bị sai, hoặc bị nhầm. Vì lẽ đó, để có thể
         đánh giá một cách chính xác và công bằng nhất có thể thì ở đây, đối với những pattern hay bị nhận diện sai, ta sẽ trừ điểm thấp và ngược lại
         , với những pattern đơn giản mà hệ thống lại nhận diện sai thì sẽ bị trừ điểm nhiều hơn
-      
+        
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/Vectorization.png}
+        \caption{ Vectorization }
+        \label{fig:Chap4-Vectorization }
+      \end{figure}
+
+
+
       Sau khi hoàn thành bước đánh giá và cho điểm như trên, ta sẽ dùng một hàm để normalize
       lại dữ liệu (ở đây nhóm tác giả sử dụng softmax function) và trả về cho chúng ta một bộ xác suất của các hand state trong hàng đợi. Ta sẽ sử dụng bộ xác suất này
       làm input đầu vào cho bước beam search.
@@ -193,6 +223,13 @@ TODO:   New approach
       đã diễn ra sau trong quá trình thực hiện beam search
       FIXME: Insert image from ppt about matrix with beam search
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/BeamSearch.png}
+        \caption{ Beam Search }
+        \label{fig:Chap4-BeamSearch }
+      \end{figure}
+
       Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
       ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
       , các hand state này có thể bao gồm những hand state bị trùng nhau, hoặc cũng có thể
@@ -207,6 +244,14 @@ TODO:   New approach
       
     \subsubsection{ Map to dictionary }
       TODO: Cách map như thế nào
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/Chap4/Result.png}
+        \caption{ Beam Search }
+        \label{fig:Chap4-Result }
+      \end{figure}
+
       Sau khi nhận được một tập các hand state có khả năng nhất, việc còn lại là
       chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
       nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
