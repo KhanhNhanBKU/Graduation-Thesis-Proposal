@@ -50,23 +50,35 @@ The directions of the hand include four directions, i.e., right, left, up, down,
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/Chap4/WordYouInSignLanguage.png}
+	\includegraphics[width=0.6\textwidth]{img/Chap4/WordYouInSignLanguage.png}
 	\caption{Word "You" (bạn) in sign language}
 	\label{fig:Chap4-WordYouInSignLanguage}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/Chap4/WordIInSignLanguage.png}
+	\includegraphics[width=0.6\textwidth]{img/Chap4/WordIInSignLanguage.png}
 	\caption{Word "I" (tôi) in sign language}
 	\label{fig:Chap4-WordIInSignLanguage}
 \end{figure}
 
-To determine the hand's direction, we use the hand landmark model provided in MediaPipe (see section \ref{sec:MediaPipe}). The inception here is that we calculate the distance between the tip of the index finger and the wrist (called TK), then project it to the axis Ox, Oy, Oz, respectively. After that, we take each of those coordinates and compare them with the others. Finally, the one with the immense value will tell which axis the hand is on; besides, with the direction from the wrist to the tip of the index finger projected on that corresponding axis, we will know which direction the hand is.
+To determine the hand's direction, we use the hand landmark model provided in MediaPipe (see section \ref{sec:MediaPipe}). The inception here is that we calculate the distance between the tip of the index finger and the wrist, which can be called \textbf{vector(0, 8)}, then project it to the axis Ox, Oy, Oz, respectively. After that, we take each of those coordinates and compare them with the others. Finally, the one with the immense value will tell which axis the hand is on; besides, with the direction from the wrist to the tip of the index finger projected on that corresponding axis, we will know which direction the hand is.
 
-FIXME: Thêm các hình ảnh về cách xác định hướng, lấy từ ppt
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap4/DirectionSteps.png}
+	\caption{Steps to detect the direction of the hand}
+	\label{fig:Chap4-DirectionSteps}
+\end{figure}
 
 For instance, a hand is known to be pointing toward the left direction. The value of the distance, when projected on the axis Ox, will be the biggest one among the three projected values. Then, calculate the vector drawn from the wrist to the tip of the index finger; we will know the direction of the hand itself.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/Chap4/vector0-8-forwardLeft.png}
+	\caption{Vector(0, 8) represent the hand pointing toward the left}
+	\label{fig:Chap4-vector0-8-forwardLeft}
+\end{figure}
 
 \subsection{Location detection}
 FIXME: Giới thiệu previous approach về sử dụng độ zoom, các khó khăn
