@@ -1,57 +1,48 @@
-
 \chapter{Related Work}
+  Nowadays, Many scholars from all around the world have submitted research 
+  projects relating to the topic of turning sign language into text, 
+  using a variety of methodologies and perspectives.
+  % TODO: Change paper
+  In which, two main approaches can be mentioned as follows:
+  \begin{itemize}
+    \item Glove based approaches:
+    With this approach, it requires deaf and mute people to wearing a sensor glove. When user
+    has any different action or gesture, these sensor will be recorded. After that, data from
+    sensor will analyze by analyzer component and return the output for user.
+    \item Vision based approaches:
+    With this approach, image processing algorithms will be applied to be able to determine
+    hand position, gestures and movements of the hand. The user will not have to wear necessary
+    equipment like glove based approaches, which is convenient for user. However, with using
+    library or algorithms of image processing, we need to deal with worst quality output, which is
+    greatly affected by this algorithms.
+  \end{itemize}
 
-Nowadays, research works related to the problem of converting sign language into text 
-have been proposed by many researchers from all over the world, from many different 
-approaches and perspectives.
+  Early work, with vision based approach, they used several types of
+  image processing to build a feature vectors base on a single RGB image of hand.
+  In this paper "Real-time sign language recognition using a consumer depth camera",
+  with using multi-layered random forest (MLRF), not only it allows they recognize hand signs
+  correctly, but also minimize training time and effort. Or in this paper "Sign Language Translation in Urdu/Hindi Through
+  Microsoft Kinect", sign language can be recognize by an auxiliary equipment: Microsoft Kinect, which captures
+  the signs of the deaf person, after that, through the computer system, they can detect what does deaf people say.
 
-“Hand talk-a sign language recognition based on
-accelerometer and semi data” this paper introduces American
-Sign Language conventions. It is part of the “deaf culture” and
-includes its own system of puns, inside jokes, etc. It is very
-difficult to understand understanding someone speaking
-Japanese by English speaker. The sign language of Sweden is
-very difficult to understand by the speaker of ASL. ASL
-consists of approximately 6000 gestures of common words
-with spelling using finger used to communicate obscure words
-or proper nouns.
+  Beside vision based approach, glove based approach has many relevant research. This paper “The Language of Glove: Wireless gesture
+  decoder with low-power and stretchable hybrid electronics” introduces the way to convert American
+  Sign Language (ASL) alphabet into text and display it on a computer 
+  or smartphone. With sensor glove, they can detect which hand gesture is
+  performed and sent the result to smartphone via bluetooth. The sign language
+  interprets into some text and displays on the digital display screen.
+  Both this approach is useful in the real world for the deaf and dumb 
+  who are unable to converse with normal people.
 
-“Hand gesture recognition and voice conversion system for
-dumb people” proposed lower the communication gap
-between the mute community and additionally the standard
-world. The projected methodology interprets language into
-speech. The system overcomes the necessary time difficulties
-of dumb people and improves their manner. Compared with
-existing system the projected arrangement is simple as well as
-compact and is possible to carry to any places. This system
-converts the language in associate text into voice that's well
-explicable by blind and ancient people. The language
-interprets into some text kind displayed on the digital display
-screen, to facilitate the deaf people likewise. In world
-applications, this system is helpful for deaf and dumb of us
-those cannot communicate with ancient person.
+  % TODO: Fix grammar for this
+  With both approaches above, there is has some problems, that is, they can only recognize 
+  a very small number of words, like an alphabet, number or some word with easily hand shape and no motion .
+  However, in sign language, it not easy, there will be many words 
+  that use the same hand shape but will differ in many characteristics, such as position 
+  and direction. To our knowledge, there is currently no model that can handle the 
+  conversion of sign language flexibly and conveniently for the deaf-mute, helping them 
+  to communicate effectively and naturally. Therefore, by applying appropriate 
+  technologies, the authors carry out this graduation thesis with the goal of breaking down 
+  the barriers between deaf-mute people and normal people, helping them to become self-sufficient. 
+  more confident in daily communication.
 
-In which, two main approaches can be mentioned as follows:
-\begin{itemize}
-  \item Glove based approaches:
-  With this approach, it requires deaf and mute people to wearing a sensor glove. When user
-  has any different action or gesture, these sensor will be recorded. After that, data from
-  sensor will analyze by analyzer component and return the output for user.
-  \item Vision based approaches:
-  With this approach, image processing algorithms will be applied to be able to determine
-  hand position, gestures and movements of the hand. The user will not have to wear necessary
-  equipment like glove based approaches, which is convenient for user. However, with using
-  library or algorithms of image processing, we need to deal with worst quality output, which is
-  greatly affected by this algorithms.
-\end{itemize}
-
-With both approaches above, there is has some problems, that is, they can only recognize 
-a very small number of words. These words are mostly words with different hand shapes 
-that can be classified like that. However, in sign language, there will be many words 
-that use the same hand shape but will differ in many characteristics, such as position 
-and orientation. To our knowledge, there is currently no model that can handle the 
-conversion of sign language flexibly and conveniently for the deaf-mute, helping them 
-to communicate effectively. natural to the common man. Therefore, by applying appropriate 
-technologies, the authors carry out this graduation thesis with the goal of breaking down 
-the barriers between deaf-mute people and normal people, helping them to become self-sufficient. 
-more confident in daily communication.
