@@ -89,22 +89,9 @@ TODO:   New approach
 
     % TODO: With previous approach
 
-    Như chúng tôi đã trình bày ở phần 1, do có những khó khăn 
-    về mặt kĩ thuật trong việc triển khai module
-    action detection, chúng tôi đã đề xuất một mô hình mới.
-    . Và với mô hình này, module word decode cũng sẽ bị thay đổi
-    , nếu như với mô hình cũ, một word sẽ được trình bày dưới dạng
-    4 thành phần cơ bản (pattern, location, direction, action),
-    khi đó, nhiệm vụ của chúng ta là tìm trong cơ sở dữ liệu, từ nào
-    tương ứng với các kết quả thu được từ 4 module trên (\ref{fig:Chap4-MapWord}), khi đó
-    ta sẽ thu được từ vựng.
+    As discussed above, there are considerable technical difficulties in implementing the action detection module. We did some research and proposed a new model to resolve these problems. As a result, this change affects the word decoder module, which needs some adjustments.
 
-    % TODO: Insert image represent the way to map word with 4 module
-    %                           [p,l,d,a]
-    %                     Map   [p1,l1,d1,a1]
-    %           [p,l,d,a] ----> [p2,l2,d2,a2] ---> word
-    %                           [p3,l3,d3,a3]
-    %           Input             database
+    The previous model decodes a word into four factors: pattern, location, direction, and action. After getting the outputs from the four modules, it will search the database to find the corresponding word. Figure \ref{fig:Chap4-MapWord} illustrates how an input containing four factors is mapped to the correct word in the database. Applying a basic searching algorithm, we have the system find the most appropriate word. If it can not find any, it will replace or deprecate some parts of the input and try again to find another word. After decoding and finding the suitable word, the application will display that word on the screen.
 
     \begin{figure}[H]
       \centering
@@ -113,28 +100,16 @@ TODO:   New approach
       \label{fig:Chap4-MapWord}
     \end{figure}
 
-    Hình trên cho chúng ta thấy cách map một từ vựng sẽ như thế nào.
-    Bằng việc so trùng các ký tự, ta sẽ tim được từ vựng phù hợp.
-    Nếu không tìm thấy, chúng ta sẽ loại bỏ nó và lấy một bộ khác
-    để giải mã.
-    Sau khi map được từ vựng, chúng ta sẽ xuất từ vựng đó lên màn hình
     \subsubsection{ Introduction to handstate }
-      TODO: Dịch sang tiếng anh
-      Lúc này, khi module action detection đã bị lược bỏ. Câu hỏi được đặt ra là,
-      làm cách nào để chúng ta có thể không dùng module action detection nhưng vẫn có thể
-      nhận diện được từ vựng
-      Do đó, nhóm tác giả đề xuất một mô hình khác cho từ vựng, lúc này
-      một từ không còn được cấu thành từ 4 thành phần cơ bản như ở mô hình cũ nữa,
-      mà sẽ được cấu thành từ nhiều thành phần khác nhau, mỗi thành phần tương ứng
-      sẽ chứa trong nó là một bộ 3 : pattern, direction, location. Tương ứng với mỗi
-      bộ 3 này, chúng tôi sẽ gọi nó là một hand state và như thế, ta có thể hiểu một từ vựng
-      sẽ được cấu thành từ nhiều hand state khác nhau. Ý tưởng của vấn đề xuất phát
-      từ các nghiên cứu của xử lý ngôn ngữ tự nhiên, khi một từ sẽ được cấu thành từ
-      nhiều ký tự, thì trong trường hợp này, một từ sẽ được ghép từ nhiều hand state.
-      Sau đó, khi qua các bước xử lý mà chúng tôi sẽ trình bày bên dưới, ta sẽ thu được từ vựng mong muốn
+
+      Right after the deprecation of the action detection module, the question that comes up is how we can find the correct word without that module. Therefore, we propose a different model for a word that is not decoded into four factors like the previous model. It only contains three elements left: pattern, direction, and location. Consequently, each set of those three elements is called a hand state, and a word is decoded into many different hand states.
+
+      This concept of hand state comes from the research of natural language processing, in which a word is composed of many characters. Accordingly, a word is concatenated from many hand states in this thesis. Then, we will get the desired word when going through the processing steps that we will discuss later in this proposal.
+
       FIXME:Insert image from ppt about hand state
 
-    \subsubsection{ Using beam search and CTC decode to map word }
+    \subsubsection{ Using beam search and CTC decode to map word}
+
       Sau khi chúng ta đã nắm được khái niệm về hand state, chúng ta sẽ đi đến phần quan trọng
       nhất của mô hình: chuyển đổi các hand state đã nhận được thành từ vựng.
       
