@@ -74,27 +74,27 @@ Nonetheless, the above solution still has an issue: every man's hand has a diffe
 TODO: Trình bày các thiết kế hiện có và các chức năng phụ
 
 \subsection{Word decoder}
-TODO:   Previous approach 
+% TODO:   Previous approach 
 
-[x] How to map word ?
+% [x] How to map word ?
 
-TODO:   New approach
+% TODO:   New approach
 
-[x] Punish function
+% [x] Punish function
 
-[x] Using beam search
+% [x] Using beam search
 
-[x] CTC decode
+% [x] CTC decode
 
-[x] Flow
+% [x] Flow
 
-[x] Expected result
+% [x] Expected result
 
-[...] Difficult and proposed solution
+% [...] Difficult and proposed solution
 
-[...] Dịch sang tiếng anh
+% [...] Dịch sang tiếng anh
 
-[...] Thêm các hình ảnh
+% [...] Thêm các hình ảnh
 
 
 % TODO: With previous approach
@@ -112,13 +112,13 @@ The previous model decodes a word into four factors: pattern, location, directio
 
 \subsubsection{ Introduction to handstate }
 
-Right after the deprecation of the action detection module, the question that comes up is how we can find the correct word without that module. Therefore, we propose a different model for a word that is not decoded into four factors like the previous model. It only contains three elements left: pattern, direction, and location. Consequently, each set of those three elements is called a hand state, and a word is decoded into many different hand states.
+Right after the deprecation of the action detection module, the question that comes up is how we can find the correct word without that module. Therefore, we propose a different model for a word that is not decoded into four factors like the previous model. It only contains three elements left: pattern, direction, and location. Consequently, each set of those three elements is called a hand state (\ref{fig:Chap4-HandState}), and a word is decoded into many different hand states.
 
 This concept of hand state comes from the research of natural language processing, in which a word is composed of many characters. Accordingly, a word is concatenated from many hand states in this thesis. Then, we will get the desired word when going through the processing steps that we will discuss later in this proposal.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{img/Chap4/HandState.png}
+  \includegraphics[width=0.6\textwidth]{img/Chap4/HandState.png}
   \caption{ Hand State which construct from pattern, location and direction}
   \label{fig:Chap4-HandState}
 \end{figure}
@@ -134,18 +134,18 @@ After we have grasped the concept of hand state, we will come to the essential p
   \label{fig:Chap4-Architechture}
 \end{figure}
 
-Figure X is the model proposed by the authors for this section. The input will be a queue of hand states taken from the previous three components. Here, in our conventions, the queue length is set to 5, but it is not the final number, as we need more calculations and experimentation to find the right queue length. This model consists of three steps:
+Figure \ref{fig:Chap4-Architechture} is the model proposed by the authors for this section. The input will be a queue of hand states taken from the previous three components. Here, in our conventions, the queue length is set to 5, but it is not the final number, as we need more calculations and experimentation to find the right queue length. This model consists of three steps:
 
 \begin{enumerate}
-  \item \textbf{Vectorization:} This step converts a queue of many hand states into a matrix as input for beam search.
+  \item \textbf{Vectorization:} This step converts a queue of many hand states \ref{fig:Chap4-HandStateQueue} into a matrix as input for beam search.
   \item \textbf{Beam search:} In this step, we will perform a beam search algorithm to choose which hand states are suitable for the input from the database. Besides, we propose using the CTC decode model to eliminate the wrong hand states or previous duplicated hand states, increasing the model's efficiency.
   \item \textbf{Map to the dictionary:} And finally, after going through the above two steps, from the initial queue, we will get the most likely hand states. Our job is to map these hand states to the database and find the correct word.
 \end{enumerate}
       
 \subsubsection{ Vectorization }
-TODO: Why we need punish
-TODO: how to perform -> Trình bày cách đánh giá như thế nào, cách trừ điểm và các phương châm đánh giá
-TODO: Sau khi punish dùng hàm softmax để chuyển các giá trị về dạng xác suất
+% TODO: Why we need punish
+% TODO: how to perform -> Trình bày cách đánh giá như thế nào, cách trừ điểm và các phương châm đánh giá
+% TODO: Sau khi punish dùng hàm softmax để chuyển các giá trị về dạng xác suất
 
 When we get to this step, we get a queue of hand states. Because before entering the beam search module, we need a matrix representing the correlation between the outputs received from the components and the data in the database.
 
@@ -156,7 +156,7 @@ When we get to this step, we get a queue of hand states. Because before entering
   \label{fig:Chap4-HandStateQueue}
 \end{figure}
 
-From this queue, we will cycle through each hand state, compare it with the available hand state database, and evaluate the score for it based on the following principles:
+From this queue, we will cycle through each hand state, compare it with the available hand state database, and evaluate the score for it based on the following principles \ref{fig:Chap4-Vectorization}:
 
 \begin{enumerate}
   \item The score will be increased if the hand state matches the word in the database.
@@ -169,8 +169,20 @@ From this queue, we will cycle through each hand state, compare it with the avai
   \caption{ Vectorization }
   \label{fig:Chap4-Vectorization }
 \end{figure}
-
-In the first principle, The more similarities the hand state retrieved from the queue has compared to that in the database, the higher it is scored. For example, in the database, we have a hand state as follows: TODO: Change to Math [p 1, l 1, d 1], and the hand state we get from the input is [p 1, l 1, d 1] then this hand state will be rated higher than the hand state [p 1, l 1, d 2]. And so on, we will, in turn, score the hand states taken from the queue.
+% TODO: Change to Math
+In the first principle, The more similarities the hand state retrieved from the queue has compared to that in the database, the higher it is scored. For example, in the database, we have a hand state as follows: 
+$\begin{bmatrix}
+  pattern \_ A & location \_ A & direction \_ A
+\end{bmatrix}$
+, and the hand state we get from the input is 
+$\begin{bmatrix}
+  pattern \_ A & location \_ A & direction \_ A
+\end{bmatrix}$
+then this hand state will be rated higher than the hand state 
+$\begin{bmatrix}
+  pattern \_ A & location \_ A & direction \_ B
+\end{bmatrix}$
+. And so on, we will, in turn, score the hand states taken from the queue.
 
 On the second point, the minus point is evaluated based on its matching pattern with the hand states in the database. When the system recognizes patterns from the hand pattern recognition module (using the vision approach), it is likely to be wrong detected or mistaken. To resolve this problem and maximize the accuracy of the result, we put out a rule. With those patterns that are usually hard to detect, the minus point will be lower than simple ones. In short, the more complex the pattern to be recognized, the smaller the minus point is going to be.
 
@@ -179,20 +191,25 @@ On the second point, the minus point is evaluated based on its matching pattern 
 After completing the above evaluation and scoring step, we will use a function to normalize the data (here, the authors use the softmax function) and return us a set of probabilities of the hand states in the row. Wait. We will use this set of probabilities as input for the beam search step.
 
 \subsubsection{ Using beamsearch with CTC decode }
-TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
-TODO: Image beamsearch (get from ppt)
-TODO: Example
-TODO: Áp dụng CTC để handle một số trường hợp
-TODO: Các khó khăn gặp phải và hướng giải quyết
+% TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
+% TODO: Image beamsearch (get from ppt)
+% TODO: Example
+% TODO: Áp dụng CTC để handle một số trường hợp
+% TODO: Các khó khăn gặp phải và hướng giải quyết
+
+After passing the vectorization step, the hand states in our queue has been converted to a MxN matrix, where M is the length of the hand state's database and N is the length of queue.
+
+By using beam search (\ref{fig:Chap4-BeamSearch}), we will get the most likely k hand state from the database. From the image below, we can imagine what happened later during beam search.
+
+% Sau khi qua bước vectorizaion, các hand state trong hàng đợi của chúng ta
+% đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
+% các hand state và N là độ dài của hàng đợi.
       
-Sau khi qua bước vectorizaion, các hand state trong hàng đợi của chúng ta
-đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
-các hand state và N là độ dài của hàng đợi.
-      
-Bằng việc sử dụng beam search, từ sẽ thu được k hand state có khả năng nhất
-từ cơ sở dữ liệu. Từ hình ảnh bên dưới, ta có thể hình dung được những gì
-đã diễn ra sau trong quá trình thực hiện beam search
-FIXME: Insert image from ppt about matrix with beam search
+% Bằng việc sử dụng beam search, từ sẽ thu được k hand state có khả năng nhất
+% từ cơ sở dữ liệu. Từ hình ảnh bên dưới, ta có thể hình dung được những gì
+% đã diễn ra sau trong quá trình thực hiện beam search
+
+% FIXME: Insert image from ppt about matrix with beam search
 
 \begin{figure}[H]
   \centering
@@ -201,33 +218,38 @@ FIXME: Insert image from ppt about matrix with beam search
   \label{fig:Chap4-BeamSearch }
 \end{figure}
 
-Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
-ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
-, các hand state này có thể bao gồm những hand state bị trùng nhau, hoặc cũng có thể
-là những hand state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand state
-bị trùng này. Đối với những hand state bị nhận sai từ những module trước thì ở bước Vectorization,
-ta sẽ đặt một threshold để loại bỏ những hand state này và xem như hand state đó là một ký tự rỗng (" ")
-và cuối cùng, sau khi áp dụng CTC decode vào, ta sẽ thu được kết quả mong muốn
+However, as we can see that, after performing the beam search step, we will get a sequence of hand states whose length corresponds to the length of the input queue, these hand states can include duplicate hand states, or they can be wrong hand states. Therefore, we need to apply CTC algorithm to remove the hand states from infection. For the wrong hand states, in Vectorization step, we will set a threshold to discard these hand states and see it as a blank character. And after all step, after beam search CTC decode, we will get the desired result.
 
-FIXME: Insert image about the result (get from ppt)
+% Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
+% ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
+% , các hand state này có thể bao gồm những hand state bị trùng nhau, hoặc cũng có thể
+% là những hand state bị sai. Do đó, ta cần áp dụng thêm CTC decode để loại bỏ các hand state
+% bị trùng này. Đối với những hand state bị nhận sai từ những module trước thì ở bước Vectorization,
+% ta sẽ đặt một threshold để loại bỏ những hand state này và xem như hand state đó là một ký tự rỗng (" ")
+% và cuối cùng, sau khi áp dụng CTC decode vào, ta sẽ thu được kết quả mong muốn
+
+% FIXME: Insert image about the result (get from ppt)
 
       
       
     \subsubsection{ Map to dictionary }
-      TODO: Cách map như thế nào
+      % TODO: Cách map như thế nào
 
       \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/Chap4/Result.png}
-        \caption{ Beam Search }
-        \label{fig:Chap4-Result }
+        \caption{ Map to dictionary and get word }
+        \label{fig:Chap4-Result}
       \end{figure}
 
-      Sau khi nhận được một tập các hand state có khả năng nhất, việc còn lại là
-      chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
-      nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
-      từ bước ... .
-      Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
+      % Sau khi nhận được một tập các hand state có khả năng nhất, việc còn lại là
+      % chúng ta sẽ map vào cơ sở dữ liệu, như cách mà chúng ta đã làm trong mục ..., 
+      % nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
+      % từ bước ... .
+      % Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
+      After getting a set of most likely hand states, all that remains is for us to map to the database, as we did in section above, but instaed of map with 4-component set, in here, we will map with input retrieved from this previous step (\ref{fig:Chap4-Result}). And finally, we will get the vocabulary without using the action detect module.
+
+
 
 \subsection{Text to speech}
 
