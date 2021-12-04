@@ -1,21 +1,35 @@
 \chapter{Design and Solution}
 
 \section{System Structure}
-Overall, the system includes three parts of hardware modules: a camera module, the user's smartphone, and the server.
 
-Our sign language translating AI system includes six main modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (Figure TK). Firstly, the system continuously captures the hand's motion, processes it with the hand landmark model, and then puts it into those modules. Each of them has a unique role, and after combining the first four modules' results (hand pattern, direction, location, and action detection), the word decoder module will take the output data and bring out the corresponding outcome. Then, the result will show up on the main screen (Figure TK); meanwhile, the phone will speak out that word. In the below sections, we will discuss each module's role and how it works.
+Overall, the system includes three parts of hardware modules: a camera module, the user's smartphone, and the server. Among those modules, the crucial one that handles the most complicated work is the server, which we will focus on in this thesis.
 
-TODO: Replace with new structure
-TODO: Trình bày cả 2 mô hình, giới thiệu luôn action detection và nói là do không khả thi nên đề xuất mô hình mới, khi đó sẽ có sự thay đổi như thế nào 
+Our sign language translating artificial intelligence system includes six main modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (Figure \ref{fig:Chap4-OverviewOfTheSystemModules-Old}). Firstly, the system continuously captures the hand's motion, processes it with the hand landmark model, and then puts it into those modules. Each of them has a unique role, and after combining the first four modules' results (hand pattern, direction, location, and action detection), the word decoder module will take the output data and bring out the corresponding outcome. Then, the result will show up on the main screen; meanwhile, the phone will speak out that word.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/Chap4/OverviewOfTheSystemModules.png}
-	\caption{Overview of the system modules}
-	\label{fig:Chap4-OverviewOfTheSystemModules}
+	\includegraphics[width=0.9\textwidth]{img/Chap4/OverviewOfTheSystemModules-Old.png}
+	\caption{Overview of the old system structure}
+	\label{fig:Chap4-OverviewOfTheSystemModules-Old}
 \end{figure}
 
-\section{Detail Implementation}
+Those six main modules mentioned above are the ones we planned up at the beginning of this thesis. However, during the implementing period, we found it hard to build the action detection module, despite going through most of the modules. It is problematic due to its demands on the smartphone and server.
+
+There are words in sign language that contain many continuously moving patterns. There are a few solutions to detect which action the hands are doing; the first way is sending the whole video the camera captured to the server to process. This way, however, requires a strong connection between the camera module, smartphone, and the server and puts stress on the physical devices (the camera and smartphone); as a result, those devices will get hot quickly and can be damaged somehow. Another way is to increase the frame rate to get the action, but this one can also stress those devices; Moreover, we must have an algorithm continuously processing and detecting the movements, which, we admit, is hard to achieve.
+
+Therefore, we had to deprecate that module and change our method to get the correct Vietnamese word to resolve that problem. Instead of using a combination of the four modules, including the action detection module, it now only has three left: pattern, direction, and location. Furthermore, in the word decoder module, we apply a heuristic search algorithm known as beam search, which uses the result of the three modules to look up the word in the database and return it to us. We will discuss each module's role and how it works in section \ref{sec:DetailImplementation}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Chap4/OverviewOfTheSystemModules-New.png}
+	\caption{Overview of the new system structure}
+	\label{fig:Chap4-OverviewOfTheSystemModules-New}
+\end{figure}
+
+\section{Application design}
+TODO: Thêm hình ảnh design cũ
+
+\section{Detail Implementation}\label{sec:DetailImplementation}
 
 \subsection{Hand pattern recognition}
 
@@ -69,9 +83,6 @@ Firstly, we will take pictures of the hand and calculate the size of the hand in
 \end{figure}
 
 Nonetheless, the above solution still has an issue: every man's hand has a different size, and the system does not know the correct position of the hand. Therefore, another solution is to use a wide-angle camera and set it away from the forehead. With this solution, the camera can have a much broader view. However, since we only have a normal-angle camera, we could not try out this solution and confirm its suitability.
-
-\subsection{Design}
-TODO: Trình bày các thiết kế hiện có và các chức năng phụ
 
 \subsection{Word decoder}
 % TODO:   Previous approach 
