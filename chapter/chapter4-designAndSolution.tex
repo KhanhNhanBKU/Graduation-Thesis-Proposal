@@ -167,7 +167,7 @@ From this queue, we will cycle through each hand state, compare it with the avai
   \centering
   \includegraphics[width=\textwidth]{img/Chap4/Vectorization.png}
   \caption{ Vectorization }
-  \label{fig:Chap4-Vectorization }
+  \label{fig:Chap4-Vectorization}
 \end{figure}
 % TODO: Change to Math
 In the first principle, The more similarities the hand state retrieved from the queue has compared to that in the database, the higher it is scored. For example, in the database, we have a hand state as follows: 
@@ -215,7 +215,7 @@ By using beam search (\ref{fig:Chap4-BeamSearch}), we will get the most likely k
   \centering
   \includegraphics[width=\textwidth]{img/Chap4/BeamSearch.png}
   \caption{ Beam Search }
-  \label{fig:Chap4-BeamSearch }
+  \label{fig:Chap4-BeamSearch}
 \end{figure}
 
 However, as we can see that, after performing the beam search step, we will get a sequence of hand states whose length corresponds to the length of the input queue, these hand states can include duplicate hand states, or they can be wrong hand states. Therefore, we need to apply CTC algorithm to remove the hand states from infection. For the wrong hand states, in Vectorization step, we will set a threshold to discard these hand states and see it as a blank character. And after all step, after beam search CTC decode, we will get the desired result.
@@ -247,7 +247,7 @@ However, as we can see that, after performing the beam search step, we will get 
       % nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
       % từ bước ... .
       % Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
-      After getting a set of most likely hand states, all that remains is for us to map to the database, as we did in section above, but instaed of map with 4-component set, in here, we will map with input retrieved from this previous step (\ref{fig:Chap4-Result}). And finally, we will get the vocabulary without using the action detect module.
+      After getting a set of most likely hand states, all that remains is for us to map to the database, as we did in section above, but instaed of map with 4-component set, in here, we will map with input retrieved from this previous step. And finally, we will get the word (\ref{fig:Chap4-Result}) without using the action detect module.
 
 
 
