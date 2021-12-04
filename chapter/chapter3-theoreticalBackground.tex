@@ -219,11 +219,11 @@
       \end{figure}
       
       \section{ Beam search and Connectionist Temporal Classification }
-    CheckList:
-      [x] BeamSearch
-      [x] CTC recap
-      [x] Combination
-      [x] Pseudo code
+    % CheckList:
+    %   [x] BeamSearch
+    %   [x] CTC recap
+    %   [x] Combination
+    %   [x] Pseudo code
       \subsection{ Connectionist Temporal Classification }
       Connectionist Temporal Classification (CTC) is a type of Neural Network output helpful
       in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies.
@@ -339,24 +339,24 @@
         \item Extend by some other character ('aa' + 'b' = 'aab')
       \end{itemize}
 
-      FIXME: Viết lại các công thức bên dưới
+      % FIXME: Viết lại các công thức bên dưới
       And when we collapse the extended paths, two result we will get and some case we needed to handle:
         \begin{itemize}
-          \item The unchanged (copied) beam ('a' -> 'a'):
+          \item The unchanged (copied) beam ('a' $ \rightarrow $ 'a'):
           \begin{itemize}
             \item To copy a beam, we can extend corresponding paths by a blank and get
-            paths ending with a blank: Pb (n, t) += Ptot(b, t-1)*mat(blank, t)
+            paths ending with a blank: $ P_b (n, t) += P_{tot}(b, t-1)*mat(blank, t) $
             \item Beside, with non-blank ending paths case, if we extend it by the last
-            character (the beam is not empty): Pnb(b,t) += Pnb(b,t-1)*mat(b[-1],t)
+            character (the beam is not empty): $ P_{nb}(b,t) += P_{nb}(b,t-1)*mat(b[-1],t) $
             with -1 indexes the last character in the beam
           \end{itemize}
-          \item An extended beam ('a' -> 'aa' or 'ab'):
+          \item An extended beam ('a' $\rightarrow$ 'aa' or 'ab'):
             \begin{itemize}
               \item To extend a beam. With the last character is different from the character we need
               to extend, then there is no need for separating blanks ('-') in the paths:
-                Pnb(b+c,t) += Ptot(b,t-1)*mat(c,t)
+                $ P_{nb}(b+c,t) += P_{tot}(b,t-1)*mat(c,t) $
               \item Or the last character of beam is repeated, we must ensure that the paths
-              end with a blank: Pnb(b+c,t) += Pb(b,t-1)*mat(c,t)
+              end with a blank: $ P_{nb}(b+c,t) += P_b(b,t-1)*mat(c,t) $
               \item We don't need t care about Pb(b+c,t) because we added a non-blank character
             \end{itemize}
         \end{itemize}
