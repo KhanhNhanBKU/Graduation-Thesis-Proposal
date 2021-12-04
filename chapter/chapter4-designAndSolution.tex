@@ -45,7 +45,6 @@ This module uses the output of the hand landmark model, which is a matrix size o
 \end{figure}
 
 \subsection{Direction determination}
-FIXME: Thêm các hình ảnh về cách xác định hướng, lấy từ ppt
 
 The directions of the hand include four directions, i.e., right, left, up, down, front, and back. Each hand's pattern combined with different directions leads to a different meaning. For example, the pattern that points at someone means the word "you"; on the other hand, when we point at ourselves, it means the word I (see Figure \ref{fig:Chap4-WordYouInSignLanguage} and Figure \ref{fig:Chap4-WordIInSignLanguage}).
 
@@ -63,7 +62,9 @@ The directions of the hand include four directions, i.e., right, left, up, down,
 	\label{fig:Chap4-WordIInSignLanguage}
 \end{figure}
 
-To determine the hand's direction, we use the hand landmark model provided in MediaPipe (see section 2 TK). The inception here is that we calculate the distance between the tip of the index finger and the wrist (called TK), then project it to the axis Ox, Oy, Oz, respectively. After that, we take each of those coordinates and compare them with the others. Finally, the one with the immense value will tell which axis the hand is on; besides, with the direction from the wrist to the tip of the index finger projected on that corresponding axis, we will know which direction the hand is.
+To determine the hand's direction, we use the hand landmark model provided in MediaPipe (see section \ref{sec:MediaPipe}). The inception here is that we calculate the distance between the tip of the index finger and the wrist (called TK), then project it to the axis Ox, Oy, Oz, respectively. After that, we take each of those coordinates and compare them with the others. Finally, the one with the immense value will tell which axis the hand is on; besides, with the direction from the wrist to the tip of the index finger projected on that corresponding axis, we will know which direction the hand is.
+
+FIXME: Thêm các hình ảnh về cách xác định hướng, lấy từ ppt
 
 For instance, a hand is known to be pointing toward the left direction. The value of the distance, when projected on the axis Ox, will be the biggest one among the three projected values. Then, calculate the vector drawn from the wrist to the tip of the index finger; we will know the direction of the hand itself.
 
