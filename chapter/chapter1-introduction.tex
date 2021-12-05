@@ -2,17 +2,13 @@
 	
 \section{Problem statement}
 
-TODO: Recheck problem statement
-
-TLDR: It is hard for the deaf and mute to communicate with normal people. And there is not many ways for them to express their thought.
-
 "Each deaf person is a separate world, and they feel more self-deprecating and alone when they do not interact and share with others. They still have the desire to contribute to society", said Mr. Do Hoang Thai Anh, Vice Chairman of the Hanoi Deaf Association.
 
 Language is a universal key that not only connects people but also builds up our society. Any disability that affects the ability to communicate is a significant disadvantage, especially for people with disabilities. They cannot integrate, have fun, learn, and communicate like ordinary people because they cannot express their thoughts, ideas, and desires to develop society as we do. That burden usually makes them fall into poverty, live a dependent life, and be exploited, apart from society. Hence, it is challenging for them to have beautiful lives.
 
 In 2020, Vietnam had more than 2.5 million people who are deaf and mute, yet, only a tiny portion of them took part in education, had the chance to be understood, and integrated with society.
 
-According to UNICEF, "Households with members with disabilities are often poorer, children with disabilities are at risk of having less education than their peers, and employment opportunities for people with disabilities are also lower than those without disabilities. Even though people with disabilities are beneficiaries of the policy, and poverty is not a burden to accessing health facilities, very few people with disabilities (2.3\%) have access to functional rehabilitation services when being sick or injured. Besides, there still exist inequalities in living standards and social participation for people with disabilities [6]. Many organizations are founded to support, help, and create better living conditions for people with disabilities to develop. However, this work still has many difficulties and inadequacies as there is no formal school or class. Moreover, there is no specific profession for this group of people, and the number of translators who know sign language is insufficient, while they take an essential role in helping the people with disabilities connect with society.
+According to UNICEF, Households with members with disabilities are often poorer, children with disabilities are at risk of having less education than their peers, and employment opportunities for people with disabilities are also lower than those without disabilities. Even though people with disabilities are beneficiaries of the policy, and poverty is not a burden to accessing health facilities, very few people with disabilities (2.3\%) have access to functional rehabilitation services when being sick or injured. Besides, there still exist inequalities in living standards and social participation for people with disabilities [6]. Many organizations are founded to support, help, and create better living conditions for people with disabilities to develop. However, this work still has many difficulties and inadequacies as there is no formal school or class. Moreover, there is no specific profession for this group of people, and the number of translators who know sign language is insufficient, while they take an essential role in helping the people with disabilities connect with society.
 
 A quote from Cavett Robert, "Life is a grindstone, and whether it grinds you down or polishes you up is for you and you alone to decide." However, it is challenging for these people to go to school and have an excellent education. They have their desires and dreams, but our resources and efforts are not enough to make them a polished grindstone. Furthermore, sign language shares the same property as any other spoken language; each different region and territory has a different way of expressing sign language. These unseen differences make communication, self-expression, and information exchange even more complex and challenging for humanity.
 
@@ -20,51 +16,33 @@ In short, we must admit that understanding and breaking the language barrier is 
 
 \section{Goals of this thesis}
 
-% TODO: Write Goals
+% Đề tài này hướng đến mục tiêu là nghiên cứu, hiểu và hiện thực một số giải pháp để có thể chuyển đổi từ ngôn ngữ ký hiệu sang tiếng Việt. Trong đó, hệ thống phải có khả năng thực hiện việc nhận video từ camera được gắn trên nón, thực hiện các giải thuật và xuất ra chữ trên màn hình điện thoại.
+% 
+% Từ mục tiêu tổng quát trên, tác giả sẽ lần lượt giải quyết các vấn đề sau để đưa ra một giải pháp thiết kế và hiện thực một kiến trúc hệ thống giải quyết được bài toán của đề tài:
 
-% TLDR: It is crucial to find out a way that help we connect more easily, the deaf and mute can convey their thoughts much comfortably.
+This thesis aims to research, understand, and implement solutions to convert from sign language to Vietnamese. In particular, the system must receive a queue of images from the camera mounted on the hat, use the implemented algorithms to process and display text on the phone screen.
 
-% Mục tiêu của đề tài là nghiên cứu, hiểu và hiện thực một số phương pháp học sâu để phát hiện hướng nhìn của con người qua hình ảnh.
-  Đề tài này hướng đến mục tiêu là nghiên cứu, hiểu và hiện thực một số giải pháp để có thể chuyển đổi từ ngôn ngữ ký hiệu sang tiếng Việt. Trong đó, hệ thống phải có khả năng thực hiện việc nhận video từ camera được gắn trên nón, thực hiện các giải thuật và xuất ra chữ trên màn hình điện thoại.
-
-  Từ mục tiêu tổng quát trên, tác giả sẽ lần lượt giải quyết các vấn đề sau để đưa ra một giải pháp thiết kế và hiện thực một kiến trúc hệ thống giải quyết được bài toán của đề tài:
-  
-% Một số vấn đề đặt ra: 
-% \begin{itemize}
-% 	\item Làm thế nào để giải quyết bài toán trên?
-% 	\item Cách tiếp cận như thế nào?
-% 	\item Những công nghệ nào đã và hiện đang được sử dụng?
-% 	\item Hướng cải tiến?...
-% \end{itemize}
-
-% Như vậy để thực hiện theo đúng mục tiêu của đề tài cần xác định một số công việc phải giải quyết như sau:
-% \begin{itemize}
-% 	\item Tìm kiếm và thu thập dữ liệu phù hợp với nội dung đề tài.
-% 	\item Tìm hiểu các phương pháp tiếp cận đã được hiện thực
-% 	\item Lựa chọn mô hình phù hợp
-% 	\item Lên kế hoạch hiện thực, phát triển hệ thống nhận diện huấn luyện và kiểm thử.
-% \end{itemize}
-
+We can solve the above problem by breaking it down into smaller ones listed below. With each issue, we will give our solution and architect a system that can solve the whole problem of this thesis.
+ 
 \begin{itemize}
-  \item Tìm kiếm và thu thập dữ liệu về ngôn ngữ ký hiệu, tiến hành đánh giá, phân loại và chuẩn hóa dữ liệu
-	\item Tìm hiểu các phương pháp tiếp cận đã được hiện thực
-  \item Thiết kế kiến trúc tổng quan cho mô hình
-  \item Lên kế hoạch thực hiện, phát triển hệ thống chuyển đổi ngôn ngữ ký hiệu
-  \item Xây dựng phần mềm để tương tác với người dùng
+	\item Search and collect data on sign language, conduct evaluation, classification, and normalization of data.
+	\item Find out the approaches that have been implemented.
+	\item Design architecture of the model
+	\item Plan to implement, develop a sign language conversion system
+	\item Build an application that users can utilize
 \end{itemize}
 
 
 \section{Scopes of this thesis}
 
-TODO: Write Scopes
-
 % TLDR: In this case study, we will build a system including an app and camera module to translate at least 100 words from sign language into Vietnamese.
-  In this case study, we will build a system including an app and camera module to translate sign languate into Vietnamese.
-  Because of the limited time, the scope of the study is also limited as follows:
-  \begin{itemize}
-    \item Chỉ cho phép ngôn ngữ ký hiệu của Việt Nam được nhận diện
-    \item Hệ thống chỉ có khả năng nhận diện những từ đã được huấn luyện
-  \end{itemize}
+
+In this case study, we will build a system including an app and camera module to translate sign language into Vietnamese. Because of the limited time, the scope of the study is also limited as follows:
+
+\begin{itemize}
+	\item The system can only translate Vietnamese words
+	\item The system can only recognize the words that it has been trained with
+\end{itemize}
 
 \section{Structure of this thesis proposal}
 
