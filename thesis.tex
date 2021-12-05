@@ -32,6 +32,12 @@
 
 \usepackage{sty/bkthesis}
 
+% \usepackage[
+% backend=biber,
+% style=alphabetic,
+% ]{biblatex}
+% \addbibresource{refs.bib}
+
 % To numbering figure continuously
 \usepackage{chngcntr}
 \counterwithout{figure}{chapter}
@@ -39,7 +45,6 @@
 
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.2}
-
 
 \graphicspath{ {image/} }
 \setcounter{secnumdepth}{2}
@@ -137,8 +142,10 @@ Overall, our system currently can translate some words. However, the more time i
 \input{chapter/chapter6-proposedThesisChapters.tex}
 \input{chapter/chapter7-summary.tex}
 
+\newpage
 %-	Danh mục TL tham khảo
 %-	Phụ lục (nếu có)
 \bibliographystyle{unsrt}
-\bibliography{ref}
+\bibliography{refs}
+
 \end{document}
