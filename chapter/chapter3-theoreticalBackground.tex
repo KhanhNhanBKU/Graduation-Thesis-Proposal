@@ -1,7 +1,7 @@
 \chapter{Theoretical Background}
 
 \section{ Convolution Neural Network - CNN }
-Convolution Neural Networks are a special class of Neural Networks. They are made up 
+Convolution Neural Networks are a special class of Neural Networks \cite{masood2018real}. They are made up 
 of neurons that have learnable weights and biases. Each neuron receives some inputs, 
 performs a dot product and optionally follows it with a non-linearity. CNN mainly consist
 of Convolution Layers, Pooling Layers, Activation Layers and Fully Connected Layers.
@@ -151,7 +151,7 @@ classification.
 \section{ Media Pipe}\label{sec:MediaPipe}
 % FIXME: Lấy từ eureka bỏ vào
 \subsection{Introduction to Media Pipe Hands}
-MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system for hands and fingers. It uses machine learning to infer 21 3D hand landmarks from a single frame. This solution delivers real-time performance on a cell phone and even scales to many hands, whereas current state-of-the-art systems rely primarily on powerful desktop environments for inference.
+MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system for hands and fingers \cite{zhang2020mediapipe}. It uses machine learning to infer 21 3D hand landmarks from a single frame. This solution delivers real-time performance on a cell phone and even scales to many hands, whereas current state-of-the-art systems rely primarily on powerful desktop environments for inference.
 
 \begin{figure}[H]
 	\centering
@@ -164,7 +164,7 @@ MediaPipe Hands makes use of a machine learning pipeline that consists of severa
 
 However, providing the hand landmark model with a correctly cropped hand image minimizes the requirement for data augmentation drastically (such as rotations, translations, and scaling) and instead allows the network to focus on coordinate prediction accuracy. Furthermore, in this ML pipeline, crops can be created based on the hand landmarks recognized in the previous frame, and palm detection is only used to localize the hand when the landmark model can no longer detect its presence.
 \subsection{ Palm detection model }
-The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
+The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh \cite{MediaPipeFaceMesh}, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
         
 According to their statement, the methods they use to address the above challenges vary in many strategies. First, instead of training a hand detector, they train a palm detector because estimating bounding boxes of inflexible objects like palms and fists is much easier than recognizing hands with articulated fingers. Furthermore, the non-maximum suppression method performs effectively even in two-hand self-occlusion situations such as handshakes because palms are small objects. Furthermore, palms can be simulated using square bounding boxes (anchors in ML language) that ignore other aspect ratios, reducing 3-5 anchors. Second, even for tiny objects, an encoder-decoder feature extractor is used for more extensive picture context awareness (similar to the Retina Net approach). Finally, the significant scale variance limits focus loss during training to support many anchors.
 
