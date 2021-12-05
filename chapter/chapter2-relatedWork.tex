@@ -18,24 +18,38 @@
   \end{itemize}
 
   Early work, with vision based approach, they used several types of
-  image processing to build a feature vectors base on a single RGB image of hand.
+  image processing algorithm to build a feature vectors base on a single RGB image of hand.
   In this paper "Real-time sign language recognition using a consumer depth camera",
   with using multi-layered random forest (MLRF), not only it allows they recognize hand signs
   correctly, but also minimize training time and effort. Or in this paper "Sign Language Translation in Urdu/Hindi Through
-  Microsoft Kinect", sign language can be recognize by an auxiliary equipment: Microsoft Kinect, which captures
+  Microsoft Kinect", sign language can be recognize by an auxiliary equipment: Microsoft Kinect (see figure \ref{fig:Chap2-MS-Kinect}), which captures
   the signs of the deaf person, after that, through the computer system, they can detect what does deaf people say.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Chap2/MS-Kinect.png}
+    \caption{Using Microsoft Kinect in translating sign language}
+    \label{fig:Chap2-MS-Kinect}
+  \end{figure}
 
   Beside vision based approach, glove based approach has many relevant research. This paper “The Language of Glove: Wireless gesture
   decoder with low-power and stretchable hybrid electronics” introduces the way to convert American
   Sign Language (ASL) alphabet into text and display it on a computer 
-  or smartphone. With sensor glove, they can detect which hand gesture is
+  or smartphone (see figure \ref{fig:Chap2-Glove-Base}). With sensor glove, they can detect which hand gesture is
   performed and sent the result to smartphone via bluetooth. The sign language
   interprets into some text and displays on the digital display screen.
   Both this approach is useful in the real world for the deaf and dumb 
   who are unable to converse with normal people.
 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Chap2/Glove-Based.png}
+    \caption{Glove based approach in translating sign language}
+    \label{fig:Chap2-Glove-Base}
+  \end{figure}
+
   % TODO: Fix grammar for this
-  With both approaches above, there is has some problems, that is, they can only recognize 
+  With both approaches above, it has some problems, that is, they can only recognize 
   a very small number of words, like an alphabet, number or some word with easily hand shape and no motion .
   However, in sign language, it not easy, there will be many words 
   that use the same hand shape but will differ in many characteristics, such as position 
