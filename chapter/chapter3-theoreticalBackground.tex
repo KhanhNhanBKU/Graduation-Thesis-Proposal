@@ -181,7 +181,7 @@ Following palm detection over the entire image, our next hand landmark model use
 
 
 \section{ Distance Matrix }
-A distance matrix is a table that shows the distance between pairs of objects.
+A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects.
 For example, in the figure \ref{fig:Chap3-DM}., we can see the distance of A and B is 16, B and C is 37
 and so on. In the diagonal of table is the distance of object from itself, so the value
 as we can see is 0. Distance matrices are sometimes called dissimilarity matrices.
@@ -225,7 +225,7 @@ In result, we have the distance matrix represented like figure \ref{fig:Chap3-DM
 %   [x] Combination
 %   [x] Pseudo code
 \subsection{ Connectionist Temporal Classification }
-Connectionist Temporal Classification (CTC) is a type of Neural Network output helpful
+Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful
 in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies.
 Using CTC ensures that one does not need an aligned dataset, which makes the training process
 more straightforward.
@@ -246,7 +246,7 @@ solution.
 \begin{itemize}
 	\item It takes a lot of time, annotating dataset at the character level is a boring task.
 	\item What if the character takes up more than one time-step ?. We could get "tooo" because
-	      the "o" is a wide character as shown in Fig..... We have to remove all duplicate character
+	      the "o" is a wide character as shown in figure \ref{fig:Chap3-Annottion-image-CTC}. We have to remove all duplicate character
 	      like "t" and "o".
 \end{itemize}
 
@@ -268,11 +268,11 @@ CTC can solves both problem for us:
 \subsection{ Beam Search with CTC decoder }
 CTC has more than Decoding phase, it can have the Encoding, Loss calculation, but in
 this graduation thesis scope, we don't need it anymore. So, in here, we only
-mention to CTC decoder but in the way of it combines with Beam Search. Because CTC
+mention to CTC decoder but in the way of it combines with Beam Search \cite{scheidl2018word}. Because CTC
 in decoding context, it can combine with another algorithm like best-path decoding, etc...
 
 \subsubsection{ Beam search }
-In computer science, beam search is a heuristic search algorithm that
+In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that
 explores a graph by expanding the most promising node in a limited set.
 Beam search is an optimization of best-first search the reduces its memory
 requirements. Best-first search is a graph search which orders all

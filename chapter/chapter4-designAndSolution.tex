@@ -258,7 +258,7 @@ On the second point, the minus point is evaluated based on its matching pattern 
 
 % + Khi đánh giá các hand state, đối với trường hợp so trùng 2 pattern. Do các pattern này được nhận diện từ module hand pattern regconition (vision approach), do đó, sẽ có khả năng bị nhận diện bị sai, hoặc bị nhầm. Vì lẽ đó, để có thể đánh giá một cách chính xác và công bằng nhất có thể thì ở đây, đối với những pattern hay bị nhận diện sai, ta sẽ trừ điểm thấp và ngược lại, với những pattern đơn giản mà hệ thống lại nhận diện sai thì sẽ bị trừ điểm nhiều hơn.
       
-After completing the above evaluation and scoring step, we will use a function to normalize the data (here, the authors use the softmax function) and return us a set of probabilities of the hand states in the row. Wait. We will use this set of probabilities as input for the beam search step.
+After completing the above evaluation and scoring step, we will use a function to normalize the data (here, the authors use the softmax function \cite{SoftMax}) and return us a set of probabilities of the hand states in the row. Wait. We will use this set of probabilities as input for the beam search step.
 
 \subsubsection{ Using beamsearch with CTC decode }
 % TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
