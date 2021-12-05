@@ -1,7 +1,5 @@
 \chapter{Upcoming plan}
 
-TL;DR: Discuss shortly about the result, what we did not achieve and overview of the upcoming plan.
-
 \section{The camera module}
 
 After having discussed mainly the solutions and implementations of the soft modules in the system, we must move on to the main one that is considered to be the eyes of this thesis, which is the camera module. This section will discuss what parts are in a camera module and represent some images of a real one we built.
@@ -15,36 +13,36 @@ Secondly, we need a converter adapter to help us sideload the program into the c
 Furthermore, there must be a box to store all the above parts. With the help of current 3D printing technology, we design that package on Tinkercad, an online 3D modeling program that runs on the web browser. After getting all the necessary components, we tried to put them all together and get the result below.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.45\textwidth]{img/Chap5/Prototype_View_inside.png}
-  \caption{The components inside the camera module prototype}
+	\centering
+	\includegraphics[width=0.45\textwidth]{img/Chap5/Prototype_View_inside.png}
+	\caption{The components inside the camera module prototype}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
+	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/Chap5/Prototype_View_above.png}
-  \end{subfigure}
-  \hfill
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_above.png}
+	\end{subfigure}
+	\hfill
 	\begin{subfigure}[b]{0.46\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/Chap5/Prototype_View_under.png}
-  \end{subfigure}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_under.png}
+	\end{subfigure}
 	\caption{Views of the camera module prototype from the above and under}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
+	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_1.png}
-  \end{subfigure}
-  \hfill
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_1.png}
+	\end{subfigure}
+	\hfill
 	\begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_2.png}
-  \end{subfigure}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_2.png}
+	\end{subfigure}
 	\caption{Views of the camera module prototype from the sides}
 \end{figure}
 
@@ -57,27 +55,27 @@ The application must satisfy user experience, and user interface demands. And du
 Before going through the design of this application, we must state that they do not cover all the screens needed for the application yet. And they are not the final design that we have. However, we have some conventions when designing this prototype, such as the corner is rounded and the colors are pale, not too bright, to make the users feel calm somehow and comfortable when using the application.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{img/Chap5/Landing_page.png}
-  \caption{The landing page of the application}
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/Chap5/Landing_page.png}
+	\caption{The landing page of the application}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[height=0.8\textheight]{img/Chap5/Main_screen.png}
-  \caption{The main screen of the application}
+	\centering
+	\includegraphics[height=0.8\textheight]{img/Chap5/Main_screen.png}
+	\caption{The main screen of the application}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
-  \caption{The main screen of the application}
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
+	\caption{The main screen of the application}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{img/Chap5/Profile_screen.png}
-  \caption{The main screen of the application}
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap5/Profile_screen.png}
+	\caption{The main screen of the application}
 \end{figure}
 
 \section{New features and plan for thesis}
@@ -85,6 +83,36 @@ Before going through the design of this application, we must state that they do 
 To expand the group of people using this application, we will implement additional features into the main application to help ordinary people learn and know more about sign language. Those features are a sign language dictionary and a learning system that help people learn sign language more efficiently.
 
 \begin{itemize}
-  \item \textbf{Sign language dictionary:} like any other dictionary, but dictionary has another element, which is containing the videos to illustrate the sign of the words.
-  \item \textbf{Learning system:} apply the spaced repetition technique, which help people learn much faster and more efficient.
+	\item \textbf{Sign language dictionary:} like any other dictionary, but dictionary has another element, which is containing the videos to illustrate the sign of the words.
+	\item \textbf{Learning system:} apply the spaced repetition technique, which help people learn much faster and more efficient.
 \end{itemize}
+
+Additionally, to finish this thesis, we break the whole process into three milestones; each will inherit the previous outcome and test them multiple times to ensure they actually work. The table \ref{tab:Chap5-upcomingPlan} below contains those milestones and tasks needed to complete each milestone.
+
+\begin{table}[H]
+	\begin{tabular}{ |p{4cm}|p{8cm}|l| }
+		\hline
+		Milestone                                                   & Main tasks                                                                  & Estimated days \\ \hline
+		\multirow{10}{4cm}{Translator module and basic application} & Collect data to train model                                                 & 4 days         \\ \cline{2-3} 
+		                                                            & Build pattern recognition module                                            & 7 days         \\ \cline{2-3} 
+		                                                            & Train pattern model, test and fix if needed                                 & 5 days or more \\ \cline{2-3} 
+		                                                            & Build direction determination module                                        & 7 days         \\ \cline{2-3} 
+		                                                            & Test and fix if needed                                                      & Not estimated  \\ \cline{2-3} 
+		                                                            & Build location detection module                                             & 7 days         \\ \cline{2-3} 
+		                                                            & Build word decoder module                                                   & 14 days        \\ \cline{2-3} 
+		                                                            & Test and fix word decoder                                                   & Not estimated  \\ \cline{2-3} 
+		                                                            & Build basic app and camera module, test their connection                    & 7 days         \\ \cline{2-3} 
+		                                                            & Build server, connect it with the application, fix anything if needed       & 12 days        \\ \hline
+		\multirow{6}{4cm}{Sign language dictionary feature}         & Collect at least 1000 words in sign language                                & 3 days         \\ \cline{2-3} 
+		                                                            & Build basic UI for sign language dictionary                                 & 7 days         \\ \cline{2-3} 
+		                                                            & Implement a search engine                                                   & 3 days         \\ \cline{2-3} 
+		                                                            & Add dictionary data to the server                                           & 1 days         \\ \cline{2-3} 
+		                                                            & Build word screen, containing definition and instruction video              & 3 days         \\ \cline{2-3} 
+		                                                            & Test feature and fix if needed                                              & Not estimated  \\ \hline
+		\multirow{3}{4cm}{Learning system}                          & Build basic UI for learning system                                          & 7 days         \\ \cline{2-3} 
+		                                                            & Add learner class                                                           & 3 days         \\ \cline{2-3} 
+		                                                            & Implement algorithm that represent the spaced repetition learning technique & 6 days         \\ \hline
+	\end{tabular}
+	\caption{Three milestones and tasks to complete the thesis}
+  \label{tab:Chap5-upcomingPlan}
+\end{table}
