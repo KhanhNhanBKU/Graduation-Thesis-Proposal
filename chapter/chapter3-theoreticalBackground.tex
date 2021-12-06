@@ -1,15 +1,8 @@
 \chapter{Theoretical Background}
 
 \section{Convolution Neural Network - CNN}
-Convolution Neural Networks are a special class of Neural Networks \cite{masood2018real}. They are made up
-of neurons that have learnable weights and biases. Each neuron receives some inputs,
-performs a dot product and optionally follows it with a non-linearity. CNN mainly consist
-of Convolution Layers, Pooling Layers, Activation Layers and Fully Connected Layers.
-ConvNet architectures make the explicit assumption that the inputs are images,
-which allows us to encode certain properties into the architecture. These then
-make the forward function more efficient to implement and vastly reduce the amount
-of parameters in the network. Some of the main uses of CNN can be mentioned as: image
-classification, object detection, semantic segmentation, face recognition, etc.
+
+Convolution Neural Networks are a particular class of Neural Networks \cite{masood2018real}. They are made up of neurons that have learnable weights and biases. Each neuron receives some inputs, performs a dot product, and optionally follows it with a non-linearity. CNN mainly consists of Convolution Layers, Pooling Layers, Activation Layers, and Fully Connected Layers. ConvNet architectures make the explicit assumption that the inputs are images, which allows us to encode specific properties into the architecture. These then make the forward function more efficient to implement and vastly reduce the number of parameters in the network. Some of the primary uses of CNN can be mentioned as image classification, object detection, semantic segmentation, face recognition, ...
 
 %Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 \begin{figure}[H]
@@ -18,21 +11,13 @@ classification, object detection, semantic segmentation, face recognition, etc.
 	\caption{Convolution Neural Network}
 	\label{fig:Chap3-OverviewTheCNN}
 \end{figure}
-The figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of convolution neural network, which is taking an image
-as input and then extracting features from it through various layers and then finally predicting the
-class of the object in the given image.
+
+The figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of a convolution neural network, which is taking an image as input and then extracting features from it through various layers and then finally predicting the class of the object in the given image.
 
 \subsection{Architecture}
-Convolution Neural Networks have a different architecture than regular Neural Networks, we can see
-this different in figure \ref{fig:Chap3-DiffArchCNN_NNN} below.
-Regular Neural Networks transform an input by putting it through a series of hidden layers.
-Every layer is made up of a set of neurons, where each layer is fully connected to all neurons
-in the layer before. Finally, there is a last fully-connected layer (the output layer) that
-represent the predictions.
-With CNN architecture. First of all, the layers are organized in
-3 dimensions: width, height and depth. Further, the neurons in one layer do not connect to all
-the neurons in the next layer but only to a small region of it. Lastly, the final output will
-be reduced to a single vector of probability scores, organized along the depth dimension.
+
+Convolution Neural Networks have a different architecture than regular Neural Networks, and we can see this difference in figure \ref{fig:Chap3-DiffArchCNN_NNN} below. Regular Neural Networks transform an input through a series of hidden layers. Every layer comprises a set of neurons, where each layer is fully connected to all neurons in the previous layers. Finally, a last fully-connected output layer represents the predictions with CNN architecture. First of all, the layers are organized into three dimensions: width, height, and depth. Further, the neurons in one layer do not connect to all the neurons in the next layer but only to a small region. Lastly, the system will reduce the final output to a single vector of probability scores, organized along the depth dimension.
+
 %FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
 \begin{figure}[H]
 	\centering
@@ -40,7 +25,7 @@ be reduced to a single vector of probability scores, organized along the depth d
 	\caption{Different between Normal Neural Network and Convolution Neural Network}
 	\label{fig:Chap3-DiffArchCNN_NNN}
 \end{figure}
-As we can see in figure \ref{fig:Chap3-CNN_Arch}. CNN can be divided into two parts:
+
 %FIXME: Insert image of CNN arc: https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
 \begin{figure}[H]
 	\centering
@@ -49,20 +34,12 @@ As we can see in figure \ref{fig:Chap3-CNN_Arch}. CNN can be divided into two pa
 	\label{fig:Chap3-CNN_Arch}
 \end{figure}
 
+As we can see in figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two parts:
 \begin{enumerate}
-	\item The hidden layers/ Feature extraction part
-	      \begin{itemize}
-		      \item In this part, the network will perform a series of convolutions and
-		            pooling operations during which the features are detected. If you had a
-		            picture of a zebra, this is the part where the network would recognise
-		            its stripes, two ears, and four legs.
-	      \end{itemize}
-	\item The Classification part
-	      \begin{itemize}
-		      \item Here, the fully connected layers will serve as a classifier on top of
-		            these extracted features. They will assign a probability for the object
-		            on the image being what the algorithm predicts it is.
-	      \end{itemize}
+	\item The hidden layers/ Feature extraction part\\
+	In this part, the network will perform a series of convolutions and pooling operations during which the features are detected. If you had a picture of a zebra, this is the part where the network would recognize its stripes, two ears, and four legs.
+	\item The Classification part\\
+	The fully connected layers will serve as a classifier on top of their extracted features. They will assign a probability for the object on the image being what the algorithm predicts it is.
 \end{enumerate}
 
 \subsection{Feature extraction part}
@@ -136,7 +113,7 @@ The last layers of a CNN are fully connected layers. Neurons in a
 fully connected layer have full connections to all the activations in the previous
 layer. This part is in principle the same as a regular Neural Network.
 
-Figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the fully connected layer.
+figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the fully connected layer.
 Because these fully connected layer can only accept one dimensional data. So, we need convert our 3D
 data to 1D data. After pass through some FC, we will get the result is the data
 classification.
@@ -196,7 +173,7 @@ as we can see is 0. Distance matrices are sometimes called dissimilarity matrice
 % FIXME: Insert picture of distance matrix
 
 \subsection{Create Distance Matrix}
-A distance matrix is computed from a raw data table. In the example below (Figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out
+A distance matrix is computed from a raw data table. In the example below (figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out
 that distance between A and B.
 
 % FIXME: Chèn công thức vào đây
@@ -362,7 +339,7 @@ And when we collapse the extended paths, two result we will get and some case we
 \end{itemize}
 
 \subsubsection{Putting it all together}
-Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version
+figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version
 previously displayed. However, it includes the code to score the beams: copied beams
 (lines 7-10) and extended beams(line 15-19). Finally, when we are looking for the best scoring
 beams, the programs ranks them according to Ptot (line 4) and then take the BW best ones.
