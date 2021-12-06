@@ -139,10 +139,8 @@ Following palm detection over the entire image, our next hand landmark model use
 
 
 \section{Distance Matrix}
-A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects.
-For example, in the figure \ref{fig:Chap3-DM}., we can see the distance of A and B is 16, B and C is 37
-and so on. In the diagonal of table is the distance of object from itself, so the value
-as we can see is 0. Distance matrices are sometimes called dissimilarity matrices.
+
+A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. In the diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
 
 \begin{figure}[H]
 	\centering
@@ -154,8 +152,8 @@ as we can see is 0. Distance matrices are sometimes called dissimilarity matrice
 % FIXME: Insert picture of distance matrix
 
 \subsection{Create Distance Matrix}
-A distance matrix is computed from a raw data table. In the example below (figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out
-that distance between A and B.
+
+A distance matrix is computed from a raw data table. In the example below (figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out the distance between A and B.
 
 % FIXME: Chèn công thức vào đây
 \begin{figure}[H]
@@ -165,9 +163,8 @@ that distance between A and B.
 	\label{fig:Chap3-DM_Formula}
 \end{figure}
 
-We can use same formula with more than two variables, and this is known as
-the Euclidean distance.
-In result, we have the distance matrix represented like figure \ref{fig:Chap3-DM-Raw}
+We can use the same formula with more than two variables, known as the Euclidean distance. As a result, we have the distance matrix represented like figure \ref{fig:Chap3-DM-Raw}.
+
 % FIXME: chèn bảng kết quả vào
 \begin{figure}[H]
 	\centering
@@ -183,10 +180,10 @@ In result, we have the distance matrix represented like figure \ref{fig:Chap3-DM
 %   [x] Combination
 %   [x] Pseudo code
 \subsection{Connectionist Temporal Classification}
-Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful
-in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies.
-Using CTC ensures that one does not need an aligned dataset, which makes the training process
+
+Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies. Using CTC ensures that one does not need an aligned dataset, which makes the training process
 more straightforward.
+
 % FIXME: Insert about CTC in speech recognition
 \begin{figure}[H]
 	\centering
@@ -196,16 +193,12 @@ more straightforward.
 \end{figure}
 
 \subsection{Why we want to use CTC}
-In context of handwritten recognition, we could create a data-set with
-images of text-lines, and then specify for each horizontal position of the image
-the corresponding character as shown in figure \ref{fig:Chap3-Annottion-image-CTC} Then, we could train a model to output
-a character-score for each horizontal position. However, there are two problems with this
-solution.
+
+In the context of handwritten recognition, we could create a dataset with images of text-lines, and then specify for each horizontal position of the image the corresponding character as shown in figure \ref{fig:Chap3-Annottion-image-CTC} Then, we could train a model to output a character-score for each horizontal position. However, there are two problems with this solution.
+
 \begin{itemize}
-	\item It takes a lot of time, annotating dataset at the character level is a boring task.
-	\item What if the character takes up more than one time-step ?. We could get "tooo" because
-	      the "o" is a wide character as shown in figure \ref{fig:Chap3-Annottion-image-CTC}. We have to remove all duplicate character
-	      like "t" and "o".
+	\item It takes much time, and annotating the dataset at the character level is tiresome.
+	\item What if the character takes up more than one time-step ?. We could get "tooo" because the "o" is a wide-character as shown in figure \ref{fig:Chap3-Annottion-image-CTC}. We must remove all duplicate characters like "t" and "o".
 \end{itemize}
 
 % FIXME: Insert image ...
@@ -215,28 +208,19 @@ solution.
 	\caption{ Annotation for each horizontal position of the image }
 	\label{fig:Chap3-Annottion-image-CTC}
 \end{figure}
-CTC can solve both problem for us:
+
+CTC can solve both problems for us:
 \begin{itemize}
-	\item We can ignore both the position and width of the character in the image
-	      and only requires the text that occurs in the image.
-	\item Using decode techniques, we can directly get the result of the network and
-	      no further post-processing of the recognized text is needed.
+	\item We can ignore both the position and width of the character in the image and only requires the text that occurs in the picture.
+	\item Using decode techniques, we can directly get the result of the network, and no further post-processing of the recognized text is needed.
 \end{itemize}
 
 \subsection{Beam Search with CTC decoder}
-CTC has more than Decoding phase, it can have the Encoding, Loss calculation, but in
-this graduation thesis scope, we don't need it anymore. So, in here, we only
-mention to CTC decoder but in the way of it combines with Beam Search \cite{scheidl2018word}. Because CTC
-in decoding context, it can combine with another algorithm like best-path decoding, etc...
+CTC has more than the Decoding phase, it can have the Encoding, Loss calculation, but we don't need it in this graduation thesis scope anymore. So, here, we only mention to CTC decoder, but in the way, it combines with Beam Search \cite{scheidl2018word}. Because CTC in decoding context can connect with another algorithm like best-path decoding, ...
 
 \subsubsection{Beam search}
-In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that
-explores a graph by expanding the most promising node in a limited set.
-Beam search is an optimization of best-first search the reduces its memory
-requirements. Best-first search is a graph search which orders all
-partial solutions (states) according to some heuristic. But in beam search,
-only a predetermined number of the best partial solutions are kept as candidates.
-Pseudocode for basic version of beam-search is shown is figure \ref{fig:Chap3-Basic-Version-BeamSearch}
+
+In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set. Beam search is an optimization of best-first search the reduces its memory requirements. Best-first search is a graph search that orders all partial solutions (states) according to some heuristic. But in beam search, only a predetermined number of the best partial solutions are kept as candidates. Pseudocode for the basic version of beam-search is shown in figure \ref{fig:Chap3-Basic-Version-BeamSearch}
 
 \begin{figure}[H]
 	\centering
@@ -247,15 +231,7 @@ Pseudocode for basic version of beam-search is shown is figure \ref{fig:Chap3-Ba
 
 % FIXME: Insert image about pseudo-code for beam-search
 
-Beam search algorithm will be implemented through the following steps, with two
-parameters will be included: output matrix and beam width (BW) which specifies the number
-of beams to keep. First, the list of beam and corresponding score is
-initialized (line 1 and 2). After that, from 3-15, the algorithm will loop over all time-steps
-of the matrix output. At this point, only the best scoring beams (equal BW) from the previous
-time-step are kept (line 4). Each of beam, we calculate the score and get result (line 8), we will cover
-this step in more detail later. Further, each beam is extended by all possible characters from
-the alphabet (line 10) and again, a score is calculated (line 11). After the last time-step,
-the best beams are returned as a result (line 16).
+The beam search algorithm will be implemented through the following steps, with two parameters will be included: output matrix and beam width (BW), which specifies the number of beams to keep. First, the beam list and corresponding score are initialized (lines 1 and 2). After that, from 3-15, the algorithm will loop over all time-steps of the matrix output. At this point, only the best scoring beams (equal BW) from the previous time-step are kept (line 4). For each beam, we calculate the score and get a result (line 8); we will cover this step in more detail later. Further, each beam is extended by all possible characters from the alphabet (line 10), and again, a score is calculated (line 11). After the last time-step, the best beams are returned (line 16).
 
 % FIXME: Insert image about beam search
 
@@ -266,15 +242,12 @@ the best beams are returned as a result (line 16).
 	\label{fig:Chap3-BSTree}
 \end{figure}
 
-As we can see, in figure \ref{fig:Chap3-BSTree}, both output matrix to be decoded and the tree of beams are shown.
-Beam search algorithm extended as possible and keep exactly BW candidates. Finally,
-we finished the last iteration and the final step of the algorithm is to return the beam
-with the highest score, which is "a" in this example.
+As we can see, in figure \ref{fig:Chap3-BSTree}, both output matrix to be decoded, and the tree of beams is shown. Beam search algorithm extended as possible and keep exactly BW candidates. Finally, we finished the last iteration, and the final step of the algorithm is to return the beam with the highest score, which is "a" in this example.
 
 \subsubsection{Calculating the score}
-As we just discuss above, in this part, we will talk about how to score the beam.
-We will split the beam-score into the score of paths ending with a blank(e.g. 'aa-')
-and paths ending with non-blank (e.g. 'aaa').
+
+As discussed above, in this part, we will talk about how to score the beam. We will split the beam-score into the score of paths ending with a blank(e.g. 'aa-') and paths ending with non-blank (e.g. 'aaa').
+
 \begin{itemize}
 	\item We denote the probability of all paths ending with a blank and corresponding to a beam b at time-step t
 	      by Pb(b,t) and by Pnb(b,t) for the non-blank case.
@@ -320,10 +293,8 @@ And when we collapse the extended paths, two result we will get and some case we
 \end{itemize}
 
 \subsubsection{Putting it all together}
-figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version
-previously displayed. However, it includes the code to score the beams: copied beams
-(lines 7-10) and extended beams(line 15-19). Finally, when we are looking for the best scoring
-beams, the programs ranks them according to Ptot (line 4) and then take the BW best ones.
+
+Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version previously displayed. However, it includes the code to score the beams: copied beams (lines 7-10) and extended beams(lines 15-19). Finally, when looking for the best scoring beams, the programs rank them according to Ptot (line 4) and then take the BW best ones.
 
 \begin{figure}[H]
 	\centering
