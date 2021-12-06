@@ -4,6 +4,8 @@ __latexindent_temp.tex
 
 **/.DS_Store
 
+.vscode/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
