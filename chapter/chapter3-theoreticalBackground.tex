@@ -44,11 +44,8 @@ As we can see in figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two pa
 
 \subsection{Feature extraction part}
 \subsubsection{Convolutional Layer}
-Convolution Layer is the core building block of a Convolutional Network that does most
-the computational heavy lifting. A convolution is executed by sliding the filter over
-the input. At every location, a matrix multiplication is performed and sums the result onto
-the feature map. This process of extracting features from image happens throughout the CNN's convolutional
-layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
+
+The convolution layer is the core building block of a Convolutional Network that does most of the computational heavy lifting. A convolution is executed by sliding the filter over the input. At every location, matrix multiplication is performed and sums the result onto the feature map. This extracting features from images happen throughout the CNN's convolutional layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
 
 % FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 \begin{figure}[H]
@@ -57,16 +54,11 @@ layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
 	\caption{Convolution Neural Network Layer}
 	\label{fig:Chap3-CNN_Layer}
 \end{figure}
-When the feature map is made, we can pass each value in
-the feature map through a non-linearity function, such as ReLU, sigmoid, etc. Before it
-becomes the input of the next convolution layer.
 
-Because the size of the feature map is always smaller than the input, we have
-to do something to prevent our feature map from shrinking. This is where we use
-padding (\ref{fig:Chap3-CNN_Padding}). A layer of zero-value pixels is added to surround the input with zeros,
-so that our feature map will not shrink. In addition to keeping the spatial
-size constant after performing convolution, padding also improves performance
-and makes sure the kernel and stride size will fit in the input.
+When the feature map is made, we can pass each value in the feature map through a non-linearity function, such as ReLU, sigmoid before it becomes the input of the next convolution layer.
+
+Due to the size of the feature map being always smaller than the input, we have to do something to prevent our feature map from shrinking. This is where we use padding (\ref{fig:Chap3-CNN_Padding}). A layer of zero-value pixels is added to surround the input with zeros so that our feature map will not shrink. In addition to keeping the spatial size constant after performing convolution, padding also improves performance and ensures the Kernel and stride size will fit in the input.
+
 % FIXME: => Need picture
 \begin{figure}[H]
 	\centering
@@ -75,16 +67,10 @@ and makes sure the kernel and stride size will fit in the input.
 	\label{fig:Chap3-CNN_Padding}
 \end{figure}
 \subsubsection{Pooling Layers}
-After a convolution layer, it is common to add a pooling layer in between CNN layers.
-The function of pooling is to continuously reduce the dimensionality to reduce the number
-of parameters and computation in the network. This shortens the training time and controls
-overfitting.
 
-There are mainly two types of Pooling Layers in a CNN: Max Pooling and Average
-Pooling. The functionality of these two types of layers are demonstrated in figure \ref{fig:Chap3-CNN_Pooling} .
-Max Pooling restores the maximum value from the segment of the picture covered
-by the Kernel. Whereas, Average Pooling restores the average of the multitude of
-values from the bit of the picture covered by the Kernel.
+After a convolution layer, it is common to add a pooling layer in between CNN layers. The function of Pooling is to continuously reduce the dimensionality to reduce the number of parameters and computation in the network. This action shortens the training time and controls overfitting.
+
+There are mainly two types of Pooling Layers in a CNN: Max Pooling and Average Pooling. The functionality of these two types of layers is demonstrated in figure \ref{fig:Chap3-CNN_Pooling}. Max Pooling restores the maximum value from the picture segment covered by the Kernel. Average Pooling converts the average values from the bit of the picture surrounded by the Kernel.
 
 \begin{figure}[H]
 	\centering
@@ -96,10 +82,9 @@ values from the bit of the picture covered by the Kernel.
 % FIXME: Insert image about max pooling and average pooling
 
 \subsubsection{Activation Layers}
-Neural networks in general and CNNs in particular rely on a non-linear "trigger" function
-to signal distinct identification of likely features on each hidden layer. CNNs may use a
-variety of specific functions (figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear
-units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
+
+In general, Neural networks and CNNs rely on a non-linear "trigger" function to signal distinct identification of likely features on each hidden layer. CNN may use a variety of specific functions (figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Chap3/ActiveFunction}
@@ -109,14 +94,10 @@ units (ReLUs) and continuous trigger (non-linear) functions—to efficiently imp
 % FIXME: Insert picture of some function like ReLU, tanh ....
 \subsection{Classification part}
 \subsubsection{Fully connected layers}
-The last layers of a CNN are fully connected layers. Neurons in a
-fully connected layer have full connections to all the activations in the previous
-layer. This part is in principle the same as a regular Neural Network.
 
-figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the fully connected layer.
-Because these fully connected layer can only accept one dimensional data. So, we need convert our 3D
-data to 1D data. After pass through some FC, we will get the result is the data
-classification.
+The last layers of a CNN are fully connected. Neurons in a fully connected layer have complete connections to all the activations in the previous layer. This part is, in principle, the same as a regular Neural Network.
+
+Figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the fully connected layer. Because these fully connected layers can only accept one-dimensional data, we need to convert our 3D data to 1D data. After passing through some FC, we will get the data classification result.
 
 \begin{figure}[H]
 	\centering
