@@ -250,9 +250,9 @@ As discussed above, in this part, we will talk about how to score the beam. We w
 
 \begin{itemize}
 	\item We denote the probability of all paths ending with a blank and corresponding to a beam b at time-step t
-	      by Pb(b,t) and by Pnb(b,t) for the non-blank case.
-	\item The probability Ptot(b,t) of a beam b at time-step t is simply the sum of Pb and Pnb, for example:
-	      Ptot(b,t) = Pb(b,t) + Pnb(b,t)
+	      by $ P_{b}(b,t) $ and by $ P_{nb}(b,t) $ for the non-blank case.
+	\item The probability $P_{tot}(b,t)$ of a beam b at time-step t is simply the sum of $P_b$ and $P_{nb}$, for example:
+	      $P_{tot}(b,t) = P_b(b,t) + P_{nb}(b,t)$
 \end{itemize}
 
 \begin{figure}[H]
@@ -288,7 +288,7 @@ And when we collapse the extended paths, two result we will get and some case we
 		            $ P_{nb}(b+c,t) += P_{tot}(b,t-1)*mat(c,t) $
 		      \item Or the last character of beam is repeated, we must ensure that the paths
 		            end with a blank: $ P_{nb}(b+c,t) += P_b(b,t-1)*mat(c,t) $
-		      \item We don't need t care about Pb(b+c,t) because we added a non-blank character
+		      \item We don't need t care about $P_b(b+c,t)$ because we added a non-blank character
 	      \end{itemize}
 \end{itemize}
 
