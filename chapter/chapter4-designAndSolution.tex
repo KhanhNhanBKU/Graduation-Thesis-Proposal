@@ -140,8 +140,22 @@ Another solution to detect the hand's location is using an ultrasonic sensor. In
 
 In the thesis, the one we use for this module is the ultrasonic sensor HY-SRF05 (figure \ref{fig:Chap4-UltrasonicSensorHYSRF05}), which is relatively cheap and meets our demand in measuring the distance between the camera and the hand. According to the retailer, the wide-angle this sensor can scan is up to 15 degrees. Moreover, its scanning range is between 2 cm and 450 cm, with the relative error fluctuating around 0.3 cm. Besides, the most accurate measurement distance is under 100 cm, which is more than enough when it comes to measuring from the forehead to the user's waist.
 
+However, the sensor method has not yet achieved the desired effect. The reason is that the sensor can only detect one hand at a time, but what if sign language using 2 hands at the same time, using only the sensor will not bring feasible results.
 
-Consequently, after getting the result from the ultrasonic sensor of this location module, we put it within a hand state. And we will discuss how that hand state will help us translate sign language into Vietnamese in the following section.
+From there, we offer another solution for measuring this distance as follows. Replace that method of distance by sensor with a distance measurement method based on object size. It is almost similar to the zooming method, but this method is better in that it will not depend on the size of the hand, so it is perfectly suitable for determining the distance for the problem we are trying to solve.
+
+This method is as follows. We will use the following formula:
+\begin{center}
+  $ distance\_predict = A*distance\_input + B*distance\_input + C $ 
+\end{center}
+
+In which, $distance\_input$ will be the distance between two points (5,17) on the hand model taken from the MediaPipe model and $distance\_predict$ will be the distance from the camera to the hand. \\
+
+The trio of coefficients A, B, C will be determined by interpolating the above polynomial with a pre-prepared data set. After having the above three coefficients, combined with calculating the distance between 2 points 5 and 17, we will easily deduce the distance of the hand.
+
+
+
+Consequently, after getting the result from this location module, we put it within a hand state. And we will discuss how that hand state will help us translate sign language into Vietnamese in the following section.
 
 % TODO
   % New approach : Sử dựng phương pháp khác để có thể đo khoảng cách
@@ -346,3 +360,278 @@ In addition, sometimes, people do not always read the result from the phone's sc
 Instead of using that approach, we use a well-known speech service from Google called Text-to-speech \cite{GG:Text-to-Speech}. According to Google, Text-to-Speech converts text input into natural human speech audio data. And this service supports many languages, including the one that we need, Vietnamese. With the provided API from that speech service, our application can speak up the result without an extensive sound database in the user's phone.
 
 In fact, this API is a freemium service. Text-to-Speech costs are determined by the number of characters transmitted to the service each month to be synthesized into audio. Google states on their website that,  "The first 1 million characters for WaveNet voices are free each month. For Standard (non-WaveNet) voices, the first 4 million characters are free each month. After the free tier has been reached, Text-to-Speech is priced per 1 million text characters processed." This thesis only needs the standard (non-WaveNet) plan, which provides us 4 million characters free each month and only costs USD 4.00 per following 1 million characters. In the upcoming phases of building up the application, the number that we will use is negligible compared to 4 million free characters. Therefore, we decided to apply this Text-to-speech module using Google service in this thesis.
+
+
+
+
+
+\subsection{The camera module}
+
+After having discussed mainly the solutions and implementations of the soft modules in the system, we must move on to the main one that is considered to be the eyes of this thesis, which is the camera module. This section will discuss what parts are in a camera module and represent some images of a real one we built.
+
+We can easily find the camera modules' parts from any retailer selling electrical components, robots, and Arduino kits. Additionally, in the current era of e-commerce, it is easier for us to find and compare those components that we need online. The parts required to build a camera module are listed below.
+
+First, we need a camera part, and ESP32-CAM is the perfect one for this role. It is inexpensive and easy to use, making it ideal for our thesis that requires complex functions like image tracking and recognition. Furthermore, it integrates Wi-Fi, traditional Bluetooth, which help us in sending the images to the user's smartphone for the next steps in translating sign language.
+
+Secondly, we need a converter adapter to help us sideload the program into the camera module. Besides, the third part that we need is the ultrasonic sensor mentioned in the TK section. It plays a role in location detection, which will tell the system the distance between hands and the camera module. Last but not least, this camera module needs a battery to power the whole module, and we reckon that the volume of about 100 mAh is fine.
+
+Furthermore, there must be a box to store all the above parts. With the help of current 3D printing technology, we design that package on Tinkercad, an online 3D modeling program that runs on the web browser. After getting all the necessary components, we tried to put them all together and get the result below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\textwidth]{img/Chap5/Prototype_View_inside.png}
+	\caption{The components inside the camera module prototype}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_above.png}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.46\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_under.png}
+	\end{subfigure}
+	\caption{Views of the camera module prototype from the above and under}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_1.png}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Chap5/Prototype_View_side_2.png}
+	\end{subfigure}
+	\caption{Views of the camera module prototype from the sides}
+\end{figure}
+
+Nevertheless, due to the smallest number that a 3D printer can print, the box's cover is a bit hard to put in. And the hanger that helped hang the box on the hat is not as flexible as we thought, so it needs a redesign.
+
+\subsection{App design}
+
+The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including two more features besides the main one. Those features are a sign language dictionary and a learning system. We will talk more about those features in the later sections.
+
+Before going through the design of this application, we must state that they do not cover all the screens needed for the application yet. And they are not the final design that we have. However, we have some conventions when designing this prototype, such as the corner is rounded and the colors are pale, not too bright, to make the users feel calm somehow and comfortable when using the application.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/Chap5/Landing_page.png}
+	\caption{The landing page of the application}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.8\textheight]{img/Chap5/Main_screen.png}
+	\caption{The main screen of the application}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
+	\caption{The main screen of the application}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap5/Profile_screen.png}
+	\caption{The main screen of the application}
+\end{figure}
+
+
+% Vẽ use-case
+% [ ] Use-case 
+%   + Xem kết quả từ được trả về sau khi dự đoán
+%   + Đăng nhập/ Đăng xuất
+%   + Đăng ký
+%   + Xem profile
+%   + Xem từ điển
+
+
+% [ ] Use-case description     
+
+\subsection{Use case}
+The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap4/use-case diagram.drawio.png}
+	\caption{Use case diagram}
+  \label{fig:Chap4-usecase}
+\end{figure}
+
+\subsection{Use case description}
+
+
+
+
+\subsubsection{View result after predict}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 1 \\ 
+    \hline
+    Use case name & View result after predict \\ 
+    \hline
+        Description & The user receives information about the hand gesture he has just made\\
+        \hline
+        Actor & User\\
+        \hline
+        Post-condition(s) & Detects successful sign language and returns results to the user \\
+        \hline
+        \multirow{4}*{Normal flow}  & 1. User visit main page \\
+        						        & 2. The user performs the operation describing the sign language\\
+        					            & 3. Application that records actions and makes predictions\\
+        					            & 4. The application displays the results after the prediction\\
+        \hline
+        \multirow{3}*{Exception flow}   & Exception1: \\
+                                            & 4a. The application cannot predict the sign language\\
+                                            & 5a. The application shows no more information and ends\\
+        \hline
+  \end{tabular}
+  \caption{Use case view result after predict}
+\end{table}
+
+
+
+% Chỉnh sửa lại phần này, thêm alternative flow về việc chỉnh sửa profile
+\subsubsection{View profile}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 2 \\ 
+    \hline
+    Use case name & View profile \\ 
+    \hline
+        Description & Users can view personal information and perform some operations to edit the number of learned words, the number of new words learned in the day.\\
+        \hline
+        Actor & User\\
+        \hline
+        Post-condition(s) & Returns the user's information \\
+        \hline
+        \multirow{3}*{Normal flow}  & 1. User visit profile page \\
+        						        & 2. The application accesses the system to get user information\\
+        					            & 3. Application that displays user information\\
+
+        \hline
+        Alternative flow & Không \\ 
+        \hline
+        Exception flow   & Không \\
+        \hline
+  \end{tabular}
+  \caption{Use case view result after predict}
+\end{table}
+
+
+\subsubsection{Sign in}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 3 \\ 
+    \hline
+    Use case name & Sign in \\ 
+    \hline
+        Description & Allow users to log in to the account to use the application's services\\
+        \hline
+        Actor & Người dùng\\
+        \hline
+        Pre-condition(s) & Have an internet connection \\
+        \hline
+        Post-condition(s) & Logged in successfully\\
+        \hline
+        \multirow{4}*{Normal flow}  & 1. The application displays the login information filling interface \\
+        						        & 2. User enters account name and password in 2 boxes Email, Password\\
+        					            & 3. User presses "Login" button\\
+                              & 4. The application shows “Logged in successfully” \\ 
+
+        \hline
+        \multirow{12}* {Alternative flow}  & A. User entered wrong login email \\
+                                          & 4.1 The application shows “Error ! There is no user record
+                                          corresponding to this identifier. The user may have been
+                                          deleted.” \\ 
+                                          & 4.2 Application goes back to step 2 \\ 
+                                          & B. User enters username that is not email
+                                          4.1 The application shows “Error ! The email address is badly
+                                          formatted.” \\ 
+                                          & 4.2 Application goes back to step 2 \\ 
+                                          & C.User entered wrong password\\
+                                          & 4.1 The application shows “Error ! The password is invalid.” \\ 
+                                          & 4.2 Application goes back to step 2\\
+        \hline
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        \hline
+  \end{tabular}
+  \caption{Use case sign in}
+\end{table}
+
+
+\subsubsection{Sign out}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 4 \\ 
+    \hline
+    Use case name & Sign out \\ 
+    \hline
+        Description & Sign out\\
+        \hline
+        Actor & User\\
+        \hline
+        \multirow{2}*{Pre-condition(s)} & The device contains an application with an internet connection \\
+                                        & Previously logged in \\ 
+        \hline
+        Post-condition(s) & Sign out successfully\\
+        \hline
+        \multirow{2}*{Normal flow}  & 1. The user presses the "Log Out" button \\
+        						        & 2. The application returns to the login screen.\\
+        \hline
+        Alternative flow  & No \\
+        \hline
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        \hline
+  \end{tabular}
+  \caption{Use case sign out}
+\end{table}
+
+
+
+\subsubsection{Sign up}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 5 \\ 
+    \hline
+    Use case name & Sign up \\ 
+    \hline
+        Description & Create a personal account to be able to log into the system\\
+        \hline
+        Actor & User\\
+        \hline
+        Pre-condition(s) & Device containing the application with an internet connection \\
+        \hline
+        Post-condition(s) & Successful account registration\\
+        \hline
+        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
+        						        & 2. The application displays the account registration view\\
+                            & 3. The user enters the required system information \\
+                            & 4. User presses “Register” button \\
+                            & 5. The system returns to the login screen \\
+        \hline
+        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
+                                          & User presses “Login here” button and the application jumps to step 5 \\
+        \hline
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        \hline
+  \end{tabular}
+  \caption{Use case sign up}
+\end{table}

@@ -138,20 +138,20 @@ Additionally, to finish this thesis, we break the whole process into three miles
     \hline
     Use case name & View result after predict \\ 
     \hline
-        Description & Người dùng nhận được thông tin về thủ ngữ mình vừa thực hiện\\
+        Description & The user receives information about the hand gesture he has just made\\
         \hline
-        Actor & Người dùng\\
+        Actor & User\\
         \hline
-        Post-condition(s) & Nhận diện thủ ngữ thành công và trả về kết quả cho người dùng \\
+        Post-condition(s) & Detects successful sign language and returns results to the user \\
         \hline
         \multirow{4}*{Normal flow}  & 1. User visit main page \\
-        						        & 2. Người dùng thực hiện thao tác mô tả thủ ngữ\\
-        					            & 3. Ứng dụng ghi nhận thao tác và thực hiện dự đoán\\
-        					            & 4. Ứng dụng hiển thị kết quả sau khi dự đoán\\
+        						        & 2. The user performs the operation describing the sign language\\
+        					            & 3. Application that records actions and makes predictions\\
+        					            & 4. The application displays the results after the prediction\\
         \hline
-        \multirow{3}*{Exception flow}   & Exception1: ở bước 4\\
-                                            & 4a. Ứng dụng không thể thể dự đoán được thủ ngữ\\
-                                            & 5a. Ứng dụng không hiển thị thêm thông tin gì và kết thúc\\
+        \multirow{3}*{Exception flow}   & Exception1: \\
+                                            & 4a. The application cannot predict the sign language\\
+                                            & 5a. The application shows no more information and ends\\
         \hline
   \end{tabular}
   \caption{Use case view result after predict}
@@ -168,15 +168,15 @@ Additionally, to finish this thesis, we break the whole process into three miles
     \hline
     Use case name & View profile \\ 
     \hline
-        Description & Người dùng có thể xem thông tin cá nhân và thực hiện một số thao tác để chỉnh sửa số lượng từ vựng đã học, số từ mới học trong ngày\\
+        Description & Users can view personal information and perform some operations to edit the number of learned words, the number of new words learned in the day.\\
         \hline
-        Actor & Người dùng\\
+        Actor & User\\
         \hline
-        Post-condition(s) & Trả về thông tin của người dùng \\
+        Post-condition(s) & Returns the user's information \\
         \hline
         \multirow{3}*{Normal flow}  & 1. User visit profile page \\
-        						        & 2. Ứng dụng truy cập đến hệ thống để lấy thông tin người dùng\\
-        					            & 3. Ứng dụng hiển thị thông tin ngừoi dùng\\
+        						        & 2. The application accesses the system to get user information\\
+        					            & 3. Application that displays user information\\
 
         \hline
         Alternative flow & Không \\ 
@@ -196,35 +196,34 @@ Additionally, to finish this thesis, we break the whole process into three miles
     \hline
     Use case name & Sign in \\ 
     \hline
-        Description & Cho phép người dùng đăng nhập vào tài khoản để sử dụng các dịch vụ của ứng dụng\\
+        Description & Allow users to log in to the account to use the application's services\\
         \hline
         Actor & Người dùng\\
         \hline
-        Pre-condition(s) & Có kết nối internet \\
+        Pre-condition(s) & Have an internet connection \\
         \hline
-        Post-condition(s) & Đăng nhập thành công\\
+        Post-condition(s) & Logged in successfully\\
         \hline
-        \multirow{4}*{Normal flow}  & 1. Ứng dụng hiển thị giao diện điền thông tin đăng nhập \\
-        						        & 2. Người dùng nhập tên tài khoản và mật khẩu vào 2 ô
-                            Email, Password\\
-        					            & 3. Người dùng ấn nút “Login”\\
-                              & 4. Ứng dụng hiển thị “Logged in successfully” \\ 
+        \multirow{4}*{Normal flow}  & 1. The application displays the login information filling interface \\
+        						        & 2. User enters account name and password in 2 boxes Email, Password\\
+        					            & 3. User presses "Login" button\\
+                              & 4. The application shows “Logged in successfully” \\ 
 
         \hline
-        \multirow{12}* {Alternative flow}  & A. Người dùng nhập sai email đăng nhập \\
-                                          & 4.1 Ứng dụng hiển thị “Error ! There is no user record
+        \multirow{12}* {Alternative flow}  & A. User entered wrong login email \\
+                                          & 4.1 The application shows “Error ! There is no user record
                                           corresponding to this identifier. The user may have been
                                           deleted.” \\ 
-                                          & 4.2 Ứng dụng quay lại bước 2 \\ 
-                                          & B. Người dùng nhập tên đăng nhập không phải dạng email
-                                          4.1 Ứng dụng hiển thị “Error ! The email address is badly
+                                          & 4.2 Application goes back to step 2 \\ 
+                                          & B. User enters username that is not email
+                                          4.1 The application shows “Error ! The email address is badly
                                           formatted.” \\ 
-                                          & 4.2 Ứng dụng quay lại bước 2 \\ 
-                                          & C. Người dùng nhập sai mật khẩu \\
-                                          & 4.1 Ứng dụng hiển thị “Error ! The password is invalid.” \\ 
-                                          & 4.2 Ứng dụng quay lại bước 2 \\
+                                          & 4.2 Application goes back to step 2 \\ 
+                                          & C.User entered wrong password\\
+                                          & 4.1 The application shows “Error ! The password is invalid.” \\ 
+                                          & 4.2 Application goes back to step 2\\
         \hline
-        Exception flow   & Nếu không có kết nối internet, ứng dụng hiển thị thông báo "No internet connection! Please try again." \\
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
         \hline
   \end{tabular}
   \caption{Use case sign in}
@@ -240,21 +239,21 @@ Additionally, to finish this thesis, we break the whole process into three miles
     \hline
     Use case name & Sign out \\ 
     \hline
-        Description & Đăng xuất ra khỏi ứng dụng\\
+        Description & Sign out\\
         \hline
-        Actor & Người dùng\\
+        Actor & User\\
         \hline
-        \multirow{2}*{Pre-condition(s)} & Thiết bị chứa ứng dụng có kết nối internet \\
-                                        & Đã đăng nhập tài khoản trước đó \\ 
+        \multirow{2}*{Pre-condition(s)} & The device contains an application with an internet connection \\
+                                        & Previously logged in \\ 
         \hline
-        Post-condition(s) & Đăng xuất thành công\\
+        Post-condition(s) & Sign out successfully\\
         \hline
-        \multirow{2}*{Normal flow}  & 1. Người dùng ấn vào nút “Đăng xuất” \\
-        						        & 2. Ứng dụng trở về màn hình đăng nhập\\
+        \multirow{2}*{Normal flow}  & 1. The user presses the "Log Out" button \\
+        						        & 2. The application returns to the login screen.\\
         \hline
-        Alternative flow  & Không \\
+        Alternative flow  & No \\
         \hline
-        Exception flow   & Nếu không có kết nối internet, ứng dụng hiển thị thông báo "No internet connection! Please try again." \\
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
         \hline
   \end{tabular}
   \caption{Use case sign out}
@@ -271,25 +270,24 @@ Additionally, to finish this thesis, we break the whole process into three miles
     \hline
     Use case name & Sign up \\ 
     \hline
-        Description & Tạo một tài khoản cá nhân để có thể đăng nhập vào hệ thống\\
+        Description & Create a personal account to be able to log into the system\\
         \hline
-        Actor & Người dùng\\
+        Actor & User\\
         \hline
-        Pre-condition(s) & Thiết bị chứa ứng dụng có kết nối internet \\
+        Pre-condition(s) & Device containing the application with an internet connection \\
         \hline
-        Post-condition(s) & Đăng ký tài khoản thành công\\
+        Post-condition(s) & Successful account registration\\
         \hline
-        \multirow{5}*{Normal flow}  & 1. Người dùng ấn vào nút “Create account” \\
-        						        & 2. Ứng dụng hiển thị giao diện đăng ký tài khoản\\
-                            & 3. Người dùng nhập những thông tin hệ thống yêu cầu \\
-                            & 4. Người dùng nhấn nút “Register” \\
-                            & 5. Hệ thống quay trở lại màn hình đăng nhập \\
+        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
+        						        & 2. The application displays the account registration view\\
+                            & 3. The user enters the required system information \\
+                            & 4. User presses “Register” button \\
+                            & 5. The system returns to the login screen \\
         \hline
-        \multirow{4}*{Alternative flow}   & A. Người dùng dừng tạo tài khoản và muốn quay trở lại màn hình đăng nhập \\
-                                          & Người dùng nhấn nút “Login here” và ứng dụng nhảy đến
-                                          bước 5 \\
+        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
+                                          & User presses “Login here” button and the application jumps to step 5 \\
         \hline
-        Exception flow   & Nếu không có kết nối internet, ứng dụng hiển thị thông báo "No internet connection! Please try again." \\
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
         \hline
   \end{tabular}
   \caption{Use case sign up}
