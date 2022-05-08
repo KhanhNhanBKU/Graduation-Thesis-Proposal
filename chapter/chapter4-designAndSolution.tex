@@ -431,16 +431,16 @@ Before going through the design of this application, we must state that they do 
 	\caption{The main screen of the application}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
-	\caption{The main screen of the application}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
+% 	\caption{The main screen of the application}
+% \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Chap5/Profile_screen.png}
-	\caption{The main screen of the application}
+	\caption{The profile screen}
 \end{figure}
 
 
@@ -455,12 +455,14 @@ Before going through the design of this application, we must state that they do 
 
 % [ ] Use-case description     
 
+\newpage
 \subsection{Use case}
-The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
+
+On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of the project.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/Chap4/use-case diagram.drawio.png}
+	\includegraphics[width=\textwidth]{img/Chap4/use-case.drawio.png}
 	\caption{Use case diagram}
   \label{fig:Chap4-usecase}
 \end{figure}
@@ -521,14 +523,45 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
         					            & 3. Application that displays user information\\
 
         \hline
-        Alternative flow & Không \\ 
+        Alternative flow & Null \\ 
         \hline
-        Exception flow   & Không \\
+        Exception flow   & Null \\
         \hline
   \end{tabular}
-  \caption{Use case view result after predict}
+  \caption{Use case view profile}
 \end{table}
 
+\subsubsection{Sign up}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 5 \\ 
+    \hline
+    Use case name & Sign up \\ 
+    \hline
+        Description & Create a personal account to be able to log into the system\\
+        \hline
+        Actor & User\\
+        \hline
+        Pre-condition(s) & Device containing the application with an internet connection \\
+        \hline
+        Post-condition(s) & Successful account registration\\
+        \hline
+        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
+        						        & 2. The application displays the account registration view\\
+                            & 3. The user enters the required system information \\
+                            & 4. User presses “Register” button \\
+                            & 5. The system returns to the login screen \\
+        \hline
+        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
+                                          & User presses “Login here” button and the application jumps to step 5 \\
+        \hline
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        \hline
+  \end{tabular}
+  \caption{Use case sign up}
+\end{table}
 
 \subsubsection{Sign in}
 \begin{table}[H]
@@ -600,38 +633,4 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
         \hline
   \end{tabular}
   \caption{Use case sign out}
-\end{table}
-
-
-
-\subsubsection{Sign up}
-\begin{table}[H]
-  \centering
-  \begin{tabular}{ |l| p{11cm}|}
-    \hline
-    Use case ID & 5 \\ 
-    \hline
-    Use case name & Sign up \\ 
-    \hline
-        Description & Create a personal account to be able to log into the system\\
-        \hline
-        Actor & User\\
-        \hline
-        Pre-condition(s) & Device containing the application with an internet connection \\
-        \hline
-        Post-condition(s) & Successful account registration\\
-        \hline
-        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
-        						        & 2. The application displays the account registration view\\
-                            & 3. The user enters the required system information \\
-                            & 4. User presses “Register” button \\
-                            & 5. The system returns to the login screen \\
-        \hline
-        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
-                                          & User presses “Login here” button and the application jumps to step 5 \\
-        \hline
-        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
-        \hline
-  \end{tabular}
-  \caption{Use case sign up}
 \end{table}
