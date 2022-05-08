@@ -321,9 +321,9 @@ Overall the product application is developed with the technologies including jav
 Traditional mobile app development necessitates knowledge of two distinct platforms (and programming languages): Android and iOS. However, using React Native\cite{ReactNative}, developers can create hybrid apps that operate on both platforms. The advantages of applying React Native in the app development process contain the following points.
 
 \begin{itemize}
-	\item \textbf{Cross-Platform}: One of the significant advantages of React Native is that we can write the same code for both the Android and iOS ecosystems simultaneously, with just minor changes for each platform.
-	\item \textbf{One programming language}: There is no need to be familiar with the languages used for platform-specific application development because React Native employs JavaScript, which is currently one of the most popular programming languages\cite{10MostPopularProgrammingLang}. To be more specific, in this project, we use an advanced version of JavaScript, which is known as TypeScript, and we will discuss it in the later section.
-	\item \textbf{Performance}: Because both platforms use the same code, React Native allows for the rapid creation of mobile applications. It also has a hot reloading functionality that ensures that modest changes to the program are shown to the developer right away.
+	\item \textbf{Cross-Platform:} One of the significant advantages of React Native is that we can write the same code for both the Android and iOS ecosystems simultaneously, with just minor changes for each platform.
+	\item \textbf{One programming language:} There is no need to be familiar with the languages used for platform-specific application development because React Native employs JavaScript, which is currently one of the most popular programming languages\cite{10MostPopularProgrammingLang}. To be more specific, in this project, we use an advanced version of JavaScript, which is known as TypeScript\cite{TypeScript}, and we will discuss it in the later section.
+	\item \textbf{Performance:} Because both platforms use the same code, React Native allows for the rapid creation of mobile applications. It also has a hot reloading functionality that ensures that modest changes to the program are shown to the developer right away.
 \end{itemize}
 
 Therefore, using this React Native framework benefits us in developing the same app for iOS devices from Apple Inc. According to the plan that we came up with before, when the product app works acceptably on Android devices, we will expand it and make it work on those iOS devices without massive effort when translating an app from one operating system to another.
@@ -349,14 +349,29 @@ To know about TypeScript, first, we need to know JavaScript. JavaScript is a sol
 On the other hand, TypeScript is a modern JavaScript programming language. It is a statically built language for writing concise JavaScript code. It can be used with Node.js or any browser that supports ECMAScript 3 or above. Static typing, classes, and an interface are all available in TypeScript. Adopting Typescript for a large JavaScript project can result in more robust software easily deployable with a typical JavaScript application.
 
 \begin{itemize}
-	\item \textbf{Static typing}: JavaScript is tightly typed, so it does not know what kind of variable it is dealing with until it is practically created at runtime. JavaScript now has type support thanks to TypeScript.
-	\item \textbf{Supports new ECMAScript}: TypeScript may trans-pile unique ECMAScript criteria to ECMAScript objectives of our choice. As a result, we can use lambda, modules, functions, the spread operator, de-structuring, and classes, which are all features of ES2015 and beyond.
-	\item \textbf{Type inference}: The use of type inference in TypeScript makes typing more manageable and less confusing. Even if we do not use the interface, TypeScript can help us avoid mistakes that could cause runtime issues.
-	\item \textbf{Interoperability}: TypeScript is inextricably linked to JavaScript. As a result, it has high interoperability capabilities; however, it requires some additional work to integrate with TypeScript JS libraries.
-	\item \textbf{Null examination strict}: In JavaScript software programming, errors, like cannot read property 'x' of undefined, are common. We may avoid most of these mistakes because a variable unknown to the TypeScript compiler cannot be used.
+	\item \textbf{Static typing:} JavaScript is tightly typed, so it does not know what kind of variable it is dealing with until it is practically created at runtime. JavaScript now has type support thanks to TypeScript.
+	\item \textbf{Supports new ECMAScript:} TypeScript may trans-pile unique ECMAScript criteria to ECMAScript objectives of our choice. As a result, we can use lambda, modules, functions, the spread operator, de-structuring, and classes, which are all features of ES2015 and beyond.
+	\item \textbf{Type inference:} The use of type inference in TypeScript makes typing more manageable and less confusing. Even if we do not use the interface, TypeScript can help us avoid mistakes that could cause runtime issues.
+	\item \textbf{Interoperability:} TypeScript is inextricably linked to JavaScript. As a result, it has high interoperability capabilities; however, it requires some additional work to integrate with TypeScript JS libraries.
+	\item \textbf{Null examination strict:} In JavaScript software programming, errors, like cannot read property 'x' of undefined, are common. We may avoid most of these mistakes because a variable unknown to the TypeScript compiler cannot be used.
 \end{itemize}
 
-\subsection{Native Base}
+\subsection{NativeBase}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/technology/nativebase-logo.png}
+	\caption{NativeBase Logo}
+	\label{fig:NativeBaseLogo}
+\end{figure}
+
+NativeBase\cite{NativeBase} is a component library for developers that want to create universal design systems. It is based on React Native and lets developers create apps for Android, iOS, and the web.
+
+\begin{itemize}
+	\item \textbf{Highly themeable:} NativeBase's themeability is one of its most essential features. Make the app's theme and component styles as unique as we like, which means we can change the theme effortlessly.
+ \item \textbf{Rich component library:} As GeekyAnts stated, NativeBase has approximately 40 components to let developers create an app quickly and easily. It includes action sheets, menus, spinners, popovers, breadcrumbs, and valuable components.
+ \item \textbf{Out of the box accessibility:} By default, we can use all the provided components without changing them much. Moreover, the things they provide are designed with a high contrast ratio, making it more comfortable for the users when using the app.
+\end{itemize}
 
 \subsection{Firebase}
 Firebase is a web and mobile app development platform that includes easy and powerful APIs without requiring a backend or server. Firebase is based on the cloud platform. Google's server system is also present. Its principal purpose is to make it easier for users to program apps by simplifying database operations. Users can store and synchronize data using the real-time database service. This service is entirely cloud-based. They will consume up the device's memory if it is offline and then automatically sync to the server once it is online.
