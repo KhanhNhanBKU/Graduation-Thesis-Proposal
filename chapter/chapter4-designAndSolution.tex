@@ -415,7 +415,7 @@ Nevertheless, due to the smallest number that a 3D printer can print, the box's 
 
 \subsection{App design}
 
-The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including two more features besides the main one. Those features are a sign language dictionary and a learning system. We will talk more about those features in the later sections.
+The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including one more features besides the main one. That side feature is a sign language dictionary. We illustrate that feature in Table \ref{tab:4-dictionary}.
 
 Before going through the design of this application, we must state that they do not cover all the screens needed for the application yet. And they are not the final design that we have. However, we have some conventions when designing this prototype, such as the corner is rounded and the colors are pale, not too bright, to make the users feel calm somehow and comfortable when using the application.
 
@@ -536,7 +536,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 5 \\ 
+    Use case ID & 3 \\ 
     \hline
     Use case name & Sign up \\ 
     \hline
@@ -544,7 +544,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
         Actor & User\\
         \hline
-        Pre-condition(s) & Device containing the application with an internet connection \\
+        Pre-condition(s) & Device containing the application with internet connection \\
         \hline
         Post-condition(s) & Successful account registration\\
         \hline
@@ -568,7 +568,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 3 \\ 
+    Use case ID & 4 \\ 
     \hline
     Use case name & Sign in \\ 
     \hline
@@ -576,7 +576,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
         Actor & Người dùng\\
         \hline
-        Pre-condition(s) & Have an internet connection \\
+        Pre-condition(s) & Have internet connection \\
         \hline
         Post-condition(s) & Logged in successfully\\
         \hline
@@ -611,7 +611,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 4 \\ 
+    Use case ID & 5 \\ 
     \hline
     Use case name & Sign out \\ 
     \hline
@@ -619,7 +619,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
         Actor & User\\
         \hline
-        \multirow{2}*{Pre-condition(s)} & The device contains an application with an internet connection \\
+        \multirow{2}*{Pre-condition(s)} & The device contains an application with internet connection \\
                                         & Previously logged in \\ 
         \hline
         Post-condition(s) & Sign out successfully\\
@@ -633,4 +633,36 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
   \end{tabular}
   \caption{Use case sign out}
+\end{table}
+
+\subsubsection{Look up word in dictionary}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 6 \\ 
+    \hline
+    Use case name & Look up word in dictionary \\ 
+    \hline
+        Description & User need to look up a word in the sign language dictionary\\
+        \hline
+        Actor & User\\
+        \hline
+        \multirow{2}*{Pre-condition(s)} & For the better result, the device should have internet connection \\
+                                        & Previously logged in \\ 
+        \hline
+        Post-condition(s) & User successfully find out how to sign the word\\
+        \hline
+        \multirow{2}*{Normal flow}  & 1. The user press dictionary in the navbar\\
+        						        & 2. The application directs the user to screen dictionary.\\
+        						        & 3. The user input the word and press it on screen.\\
+        						        & 4. The application show the corresponding information of the word, includes the instruction video.\\
+        \hline
+        Alternative flow  & No \\
+        \hline
+        Exception flow   & If there is no internet connection, the application only shows the local information, and the video is note included. \\
+        \hline
+  \end{tabular}
+  \caption{Use case look up word in dictionary}
+  \label{tab:4-dictionary}
 \end{table}
