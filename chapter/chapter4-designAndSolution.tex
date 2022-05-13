@@ -15,7 +15,7 @@ To preparing data, we collect many word from the website and youtube channel. Th
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Chap4/Label-Word.png}
+	\includegraphics[width=0.9\textwidth]{img/Chap4/Label-Word.jpg}
 	\caption{Google sheet about word labeled}
 	\label{fig:Chap4-Label-Word}
 \end{figure}
@@ -415,7 +415,7 @@ Nevertheless, due to the smallest number that a 3D printer can print, the box's 
 
 \subsection{App design}
 
-The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including two more features besides the main one. Those features are a sign language dictionary and a learning system. We will talk more about those features in the later sections.
+The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including one more features besides the main one. That side feature is a sign language dictionary. We illustrate that feature in Table \ref{tab:4-dictionary}.
 
 Before going through the design of this application, we must state that they do not cover all the screens needed for the application yet. And they are not the final design that we have. However, we have some conventions when designing this prototype, such as the corner is rounded and the colors are pale, not too bright, to make the users feel calm somehow and comfortable when using the application.
 
@@ -431,16 +431,16 @@ Before going through the design of this application, we must state that they do 
 	\caption{The main screen of the application}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
-	\caption{The main screen of the application}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{img/Chap5/Dictionary.png}
+% 	\caption{The main screen of the application}
+% \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Chap5/Profile_screen.png}
-	\caption{The main screen of the application}
+	\caption{The profile screen}
 \end{figure}
 
 
@@ -455,12 +455,14 @@ Before going through the design of this application, we must state that they do 
 
 % [ ] Use-case description     
 
+\newpage
 \subsection{Use case}
-The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
+
+On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of the project.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/Chap4/use-case diagram.drawio.png}
+	\includegraphics[width=\textwidth]{img/Chap4/use-case.drawio.png}
 	\caption{Use case diagram}
   \label{fig:Chap4-usecase}
 \end{figure}
@@ -521,21 +523,52 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
         					            & 3. Application that displays user information\\
 
         \hline
-        Alternative flow & Không \\ 
+        Alternative flow & Null \\ 
         \hline
-        Exception flow   & Không \\
+        Exception flow   & Null \\
         \hline
   \end{tabular}
-  \caption{Use case view result after predict}
+  \caption{Use case view profile}
 \end{table}
 
+\subsubsection{Sign up}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 3 \\ 
+    \hline
+    Use case name & Sign up \\ 
+    \hline
+        Description & Create a personal account to be able to log into the system\\
+        \hline
+        Actor & User\\
+        \hline
+        Pre-condition(s) & Device containing the application with internet connection \\
+        \hline
+        Post-condition(s) & Successful account registration\\
+        \hline
+        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
+        						        & 2. The application displays the account registration view\\
+                            & 3. The user enters the required system information \\
+                            & 4. User presses “Register” button \\
+                            & 5. The system returns to the login screen \\
+        \hline
+        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
+                                          & User presses “Login here” button and the application jumps to step 5 \\
+        \hline
+        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        \hline
+  \end{tabular}
+  \caption{Use case sign up}
+\end{table}
 
 \subsubsection{Sign in}
 \begin{table}[H]
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 3 \\ 
+    Use case ID & 4 \\ 
     \hline
     Use case name & Sign in \\ 
     \hline
@@ -543,7 +576,7 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
         \hline
         Actor & Người dùng\\
         \hline
-        Pre-condition(s) & Have an internet connection \\
+        Pre-condition(s) & Have internet connection \\
         \hline
         Post-condition(s) & Logged in successfully\\
         \hline
@@ -578,7 +611,7 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 4 \\ 
+    Use case ID & 5 \\ 
     \hline
     Use case name & Sign out \\ 
     \hline
@@ -586,7 +619,7 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
         \hline
         Actor & User\\
         \hline
-        \multirow{2}*{Pre-condition(s)} & The device contains an application with an internet connection \\
+        \multirow{2}*{Pre-condition(s)} & The device contains an application with internet connection \\
                                         & Previously logged in \\ 
         \hline
         Post-condition(s) & Sign out successfully\\
@@ -602,36 +635,66 @@ The use case diagram is depicted in Figure \ref{fig:Chap4-usecase}
   \caption{Use case sign out}
 \end{table}
 
-
-
-\subsubsection{Sign up}
+\subsubsection{Look up word in dictionary}
 \begin{table}[H]
   \centering
   \begin{tabular}{ |l| p{11cm}|}
     \hline
-    Use case ID & 5 \\ 
+    Use case ID & 6 \\ 
     \hline
-    Use case name & Sign up \\ 
+    Use case name & Look up word in dictionary \\ 
     \hline
-        Description & Create a personal account to be able to log into the system\\
+        Description & User needs to look up a word in the sign language dictionary\\
         \hline
         Actor & User\\
         \hline
-        Pre-condition(s) & Device containing the application with an internet connection \\
+        \multirow{2}*{Pre-condition(s)} & For the better result, the device should have internet connection \\
         \hline
-        Post-condition(s) & Successful account registration\\
+        Post-condition(s) & User successfully finds out how to sign the word\\
         \hline
-        \multirow{5}*{Normal flow}  & 1. User clicks on “Create account” button \\
-        						        & 2. The application displays the account registration view\\
-                            & 3. The user enters the required system information \\
-                            & 4. User presses “Register” button \\
-                            & 5. The system returns to the login screen \\
+        \multirow{2}*{Normal flow}  & 1. The user presses dictionary in the navbar\\
+        						        & 2. The application directs the user to screen dictionary.\\
+        						        & 3. The user inputs the word and presses it on screen.\\
+        						        & 4. The application show the corresponding information of the word, includes the instruction video.\\
         \hline
-        \multirow{4}*{Alternative flow}   & A. The user stopped creating an account and wants to go back to the login screen \\
-                                          & User presses “Login here” button and the application jumps to step 5 \\
+        Alternative flow  & No \\
         \hline
-        Exception flow   & If there is no internet connection, the application displays the message "No internet connection! Please try again." \\
+        Exception flow   & If there is no internet connection, the application only shows the local information, and the video is note included. \\
         \hline
   \end{tabular}
-  \caption{Use case sign up}
+  \caption{Use case look up word in dictionary}
+  \label{tab:4-dictionary}
+\end{table}
+
+\subsubsection{Mark learned word}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 7 \\ 
+    \hline
+    Use case name & Mark learned word \\ 
+    \hline
+        Description & User wants to mark a word as learned to find it easily in the future\\
+        \hline
+        Actor & User\\
+        \hline
+        \multirow{2}*{Pre-condition(s)} & Previously logged in \\ 
+        \hline
+        Post-condition(s) & User marked it and this will increase the learning bar in the profile page\\
+        \hline
+        \multirow{2}*{Normal flow}  & 1. The user presses dictionary in the navbar\\
+        						        & 2. The application directs the user to screen dictionary.\\
+        						        & 3. The user inputs the word and presses it on screen.\\
+        						        & 4. The application show the corresponding information of the word, includes the instruction video.\\
+        						        & 5. User taps on the bookmark button on the top right \\
+        						        & 6. That bookmark will change from outline state to filled state\\
+        \hline
+        Alternative flow  & No\\
+        \hline
+        Exception flow   & If the user hasn't logged in, the application will notify that "You have to login to perform this"\\
+        \hline
+  \end{tabular}
+  \caption{Mark leaned word}
+  \label{tab:4-mark-learned-word}
 \end{table}

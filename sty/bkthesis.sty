@@ -31,8 +31,11 @@
 \newcommand{\@tname}{NAME OF THE THESIS}
 \newcommand{\ctname}[1]{\renewcommand{\@tname}{#1}}
 
-\newcommand{\@stuname}{Student 1: Nguyen Van A (5...)\\Student 2: Nguyen Van B (...)}
+\newcommand{\@stuname}{Student 1: Nguyen Van A (5...)}
 \newcommand{\cstuname}[1]{\renewcommand{\@stuname}{#1}}
+
+\newcommand{\@stunameOne}{Student 2: Nguyen Van B (5...)}
+\newcommand{\cstunameOne}[1]{\renewcommand{\@stunameOne}{#1}}
 
 \newcommand{\@sCouncil}{SOFTWARE ENGINEERING}
 \newcommand{\csCouncil}[1]{\renewcommand{\@sCouncil}{#1}}
@@ -46,7 +49,7 @@
 \newcommand{\@ttime}{\today}
 \newcommand{\cttime}[1]{\renewcommand{\@ttime}{#1}}
 
-\newcommand{\@rname}{GRADUATION THESIS PROPOSAL} % report name, luận văn, thực tập...
+\newcommand{\@rname}{GRADUATION THESIS} % report name, luận văn, thực tập...
 \newcommand{\crname}[1]{\renewcommand{\@rname}{#1}}
 
 
@@ -74,32 +77,35 @@
 \begin{center}
 	{\large
 	\textbf{
-		VIETNAM NATIONAL UNIVERSITY\\
+		VIET NAM NATIONAL UNIVERSITY HO CHI MINH CITY\\
 		HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY\\
 		\@sdeptname
 		\\
 	}
 	}
-	\textbf{--------------------  *  ---------------------}\\[1.6cm]
+	% \textbf{--------------------  *  ---------------------}\\[1.6cm]
+	\textbf{}\\[1.6cm]
 	\includegraphics[scale=0.4]{img/LogoBK.png}\\[1.4cm]
 			{\fontsize{15}{1}\selectfont \textbf{\@rname} }\\[1.6cm]
-			{\Large \textbf{\parbox[c][3.2cm]{14cm}{\centering \@tname}} }\\
+			{\Large \textbf{\parbox[c][3.2cm]{16cm}{\centering \@tname}} }\\
 			{\fontsize{14}{1}\selectfont \textbf{COUNCIL: \@sCouncil}}\\[2.6cm]
 	\end{center}
 
-{\fontsize{13}{1}\selectfont 
-\hspace{4cm}\parbox[t][4cm]{10cm}{
-	Instructor: \parbox[t]{8cm}{\@sSupervise} \\[3pt]
-	Reviewer: \@sReviewer
+{\fontsize{15}{1}\selectfont
+\hspace{5cm}\parbox[t][4cm]{15cm}{
+	\textbf{SUPERVISOR: \parbox[t]{8cm}{\@sSupervise}} \\[3pt]
+	\textbf{REVIEWER: \@sReviewer}
 
-	\hspace{2.2cm}	---o0o---
+	\hspace{3cm}	\textbf{---o0o---}
 		
-	\parbox[t][1.5cm]{10cm}{\@stuname}
+	% \parbox[t][1.5cm]{10cm}{\textbf{\@stuname}}
+	\textbf{\@stuname} \\
+	\textbf{\@stunameOne}
 }
 }
-% \vspace{1cm}
+% \vspace{0.2cm}
 \begin{center}
- {\fontsize{12}{1}\selectfont Ho Chi Minh City, \@ttime }\\
+ {\fontsize{12}{1}\selectfont HO CHI MINH CITY, \@ttime }\\
 
 \end{center}
 

@@ -303,26 +303,107 @@ Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is simil
 	\label{fig:Chap3-BS_CTC}
 \end{figure}
 
+\newpage
 \section{Technology}
 %FIX-ME: Chém gió thêm ra phần này, sử dụng ngôn ngữ gì bla bla 
 % Ứng dụng được viết bằng react-native. Sử dụng hệ thống authenticate của firebase
-Overall the product application is developed with the technologies including java for android app and system authentication of Firebase.
-\subsection{Firebase}
-% Firebase là một nền tảng để phát triển ứng dụng di động và trang web, bao
-% gồm các API đơn giản và mạnh mẽ mà không cần backend hay server. Firebase
-% hoạt động trên nền tảng đám mây – cloud. Kèm theo đó là hệ thống máy chủ cực
-% kỳ mạnh mẽ của Google. Chức năng chính là giúp người dùng lập trình ứng
-% dụng bằng cách đơn giản hóa các thao tác với cơ sở dữ liệu.
+Overall the product application is developed with the technologies including java for android app and system authentication of Firebase. Moreover, in order to make the application as light as possible, we only use native components and do not use any other UI library.
 
-% Dịch vụ Realtime database cho phép người dùng lưu trữ và đồng bộ dữ liệu
-% theo thời gian thực. Dịch vụ này được lưu trữ trực tiếp trên cloud. Trong trường
-% hợp thiết bị của bạn ngoại tuyến thì chúng sẽ sử dụng tới bộ nhớ của thiết bị và
-% tự động đồng bộ lên server khi thiết bị online.
-Firebase is a web and mobile app development platform that includes easy and powerful APIs without requiring a backend or server. Firebase is based on the cloud platform. Google's server system is also present. Its principal purpose is to make it easier for users to program apps by simplifying database operations. Users can store and synchronize data using the real-time database service. This service is entirely cloud-based. They will consume up the device's memory if it is offline and then automatically sync to the server once it is online.
+% \subsection{React Native}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\textwidth]{img/technology/ReactNative.png}
+% 	\caption{React Native Logo}
+% 	\label{fig:ReactNativeLogo}
+% \end{figure}
+
+% Traditional mobile app development necessitates knowledge of two distinct platforms (and programming languages): Android and iOS. However, using React Native\cite{ReactNative}, developers can create hybrid apps that operate on both platforms. The advantages of applying React Native in the app development process contain the following points.
+
+% \begin{itemize}
+% 	\item \textbf{Cross-Platform:} One of the significant advantages of React Native is that we can write the same code for both the Android and iOS ecosystems simultaneously, with just minor changes for each platform.
+% 	\item \textbf{One programming language:} There is no need to be familiar with the languages used for platform-specific application development because React Native employs JavaScript, which is currently one of the most popular programming languages\cite{10MostPopularProgrammingLang}. To be more specific, in this project, we use an advanced version of JavaScript, which is known as TypeScript\cite{TypeScript}, and we will discuss it in the later section.
+% 	\item \textbf{Performance:} Because both platforms use the same code, React Native allows for the rapid creation of mobile applications. It also has a hot reloading functionality that ensures that modest changes to the program are shown to the developer right away.
+% \end{itemize}
+
+% Therefore, using this React Native framework benefits us in developing the same app for iOS devices from Apple Inc. According to the plan that we came up with before, when the product app works acceptably on Android devices, we will expand it and make it work on those iOS devices without massive effort when translating an app from one operating system to another.
+
+% \subsection{TypeScript}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.2\textwidth]{img/technology/JavaScript.png}
+% 	\caption{JavaScript Logo}
+% 	\label{fig:JavaScriptLogo}
+% \end{figure}
+
+% To know about TypeScript, first, we need to know JavaScript. JavaScript is a solid client-side programming language that is open-source. Its primary purpose is to enhance users' interaction with a web page. In other words, developers may make the website more dynamic and exciting by using this programming language. JavaScript is also widely used in the development of games and mobile apps. Excellent speed, cross-browser interoperability, and simple semantics are some of JavaScript's primary qualities, enabling a seamless development experience.
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\textwidth]{img/technology/TypeScript.png}
+% 	\caption{TypeScript Logo}
+% 	\label{fig:TypeScriptLogo}
+% \end{figure}
+
+% On the other hand, TypeScript is a modern JavaScript programming language. It is a statically built language for writing concise JavaScript code. It can be used with Node.js or any browser that supports ECMAScript 3 or above. Static typing, classes, and an interface are all available in TypeScript. Adopting Typescript for a large JavaScript project can result in more robust software easily deployable with a typical JavaScript application.
+
+% \begin{itemize}
+% 	\item \textbf{Static typing:} JavaScript is tightly typed, so it does not know what kind of variable it is dealing with until it is practically created at runtime. JavaScript now has type support thanks to TypeScript.
+% 	\item \textbf{Supports new ECMAScript:} TypeScript may trans-pile unique ECMAScript criteria to ECMAScript objectives of our choice. As a result, we can use lambda, modules, functions, the spread operator, de-structuring, and classes, which are all features of ES2015 and beyond.
+% 	\item \textbf{Type inference:} The use of type inference in TypeScript makes typing more manageable and less confusing. Even if we do not use the interface, TypeScript can help us avoid mistakes that could cause runtime issues.
+% 	\item \textbf{Interoperability:} TypeScript is inextricably linked to JavaScript. As a result, it has high interoperability capabilities; however, it requires some additional work to integrate with TypeScript JS libraries.
+% 	\item \textbf{Null examination strict:} In JavaScript software programming, errors, like cannot read property 'x' of undefined, are common. We may avoid most of these mistakes because a variable unknown to the TypeScript compiler cannot be used.
+% \end{itemize}
+
+% \subsection{NativeBase}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\textwidth]{img/technology/nativebase-logo.png}
+% 	\caption{NativeBase Logo}
+% 	\label{fig:NativeBaseLogo}
+% \end{figure}
+
+% NativeBase\cite{NativeBase} is a component library for developers that want to create universal design systems. It is based on React Native and lets developers create apps for Android, iOS, and the web.
+
+% \begin{itemize}
+% 	\item \textbf{Highly themeable:} NativeBase's themeability is one of its most essential features. Make the app's theme and component styles as unique as we like, which means we can change the theme effortlessly.
+%  \item \textbf{Rich component library:} As GeekyAnts stated, NativeBase has approximately 40 components to let developers create an app quickly and easily. It includes action sheets, menus, spinners, popovers, breadcrumbs, and valuable components.
+%  \item \textbf{Out of the box accessibility:} By default, we can use all the provided components without changing them much. Moreover, the things they provide are designed with a high contrast ratio, making it more comfortable for the users when using the app.
+% \end{itemize}
+
 \subsection{Java}
-JAVA was developed by James Gosling at Sun Microsystems Inc in the year 1995, later acquired by Oracle Corporation. It is a simple programming language. Java makes writing, compiling, and debugging programming easy. It helps to create reusable code and modular programs.
 
-Java is a class-based, object-oriented programming language and is designed to have as few implementation dependencies as possible. A general-purpose programming language made for developers to write once run anywhere that is compiled Java code can run on all platforms that support Java. Java applications are compiled to byte code that can run on any Java Virtual Machine. The syntax of Java is similar to c/c++
-% Chém về react-native
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/technology/java.png}
+	\caption{Java Logo}
+	\label{fig:JavaLogo}
+\end{figure}
 
+James Gosling developed JAVA at Sun Microsystems Inc in 1995, later acquired by Oracle Corporation. It is a simple programming language. Java makes writing, compiling, and debugging programming easy. It helps to create reusable code and modular programs.
 
+Java is a class-based, object-oriented programming language designed to have as few implementation dependencies as possible. A general-purpose programming language made for developers to write once run anywhere, compiled Java code can run on all platforms that support Java. Java applications are compiled to byte code that can run on any Java Virtual Machine. The syntax of Java is similar to c/c++.Overall the product application is developed with the technologies including react-native for front-end and system authentication of Firebase.
+
+In short, although we stated that we will use TypeScript and React Native as the main technologies in this project. Howe
+\subsection{Firebase}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/technology/firebase.png}
+	\caption{FireBase Logo}
+	\label{fig:FireBaseLogo}
+\end{figure}
+
+Firebase is a web and mobile app development platform that includes easy and powerful APIs without requiring a backend or server. Firebase is based on the cloud platform. Google's server system is also present. Its principal purpose is to make it easier for users to program apps by simplifying database operations. Users can store and synchronize data using the real-time database service. This service is entirely cloud-based. They will consume up the device's memory if it is offline and then automatically sync to the server once it is online.
+
+This feature primarily consists of backend services that assist developers in better building and managing their apps. This feature includes the following services:
+
+\begin{itemize}
+	\item \textbf{Realtime database:} The Firebase Realtime Database is a cloud-based NoSQL database that manages the data at the blazing speed of milliseconds. It can be considered a big JSON file in the simplest term.
+ \item \textbf{Cloud firestore:} The Cloud firestore is a NoSQL document database that allows users to store, sync, and query data worldwide through the application. It keeps data in the form of Documents, which are objects. It uses a key-value pair to store any data type, including texts, binary data, and even JSON trees.
+ \item \textbf{Authentication:} The Firebase Authentication service makes it simple to authenticate users in the app with UI libraries and SDKs. It saves time and effort in developing and maintaining the user authentication service. It even handles processes like account mergers, which can be time-consuming if done manually.
+ \item \textbf{Remote configuration:} The remote configuration service aids in the immediate distribution of updates to users. Changes might range from updating UI components to altering the functionality of applications. These are frequently utilized for distributing limited-time deals and content to a mobile application.
+ \item \textbf{Hosting:} Firebase delivers application hosting that is both fast and secure. It can host static or dynamic webpages as well as microservices. It is capable of hosting an application with just one command.
+\end{itemize}
