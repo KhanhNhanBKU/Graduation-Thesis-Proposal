@@ -644,18 +644,17 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
     \hline
     Use case name & Look up word in dictionary \\ 
     \hline
-        Description & User need to look up a word in the sign language dictionary\\
+        Description & User needs to look up a word in the sign language dictionary\\
         \hline
         Actor & User\\
         \hline
         \multirow{2}*{Pre-condition(s)} & For the better result, the device should have internet connection \\
-                                        & Previously logged in \\ 
         \hline
-        Post-condition(s) & User successfully find out how to sign the word\\
+        Post-condition(s) & User successfully finds out how to sign the word\\
         \hline
-        \multirow{2}*{Normal flow}  & 1. The user press dictionary in the navbar\\
+        \multirow{2}*{Normal flow}  & 1. The user presses dictionary in the navbar\\
         						        & 2. The application directs the user to screen dictionary.\\
-        						        & 3. The user input the word and press it on screen.\\
+        						        & 3. The user inputs the word and presses it on screen.\\
         						        & 4. The application show the corresponding information of the word, includes the instruction video.\\
         \hline
         Alternative flow  & No \\
@@ -665,4 +664,37 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
   \end{tabular}
   \caption{Use case look up word in dictionary}
   \label{tab:4-dictionary}
+\end{table}
+
+\subsubsection{Mark learned word}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |l| p{11cm}|}
+    \hline
+    Use case ID & 7 \\ 
+    \hline
+    Use case name & Mark learned word \\ 
+    \hline
+        Description & User wants to mark a word as learned to find it easily in the future\\
+        \hline
+        Actor & User\\
+        \hline
+        \multirow{2}*{Pre-condition(s)} & Previously logged in \\ 
+        \hline
+        Post-condition(s) & User marked it and this will increase the learning bar in the profile page\\
+        \hline
+        \multirow{2}*{Normal flow}  & 1. The user presses dictionary in the navbar\\
+        						        & 2. The application directs the user to screen dictionary.\\
+        						        & 3. The user inputs the word and presses it on screen.\\
+        						        & 4. The application show the corresponding information of the word, includes the instruction video.\\
+        						        & 5. User taps on the bookmark button on the top right \\
+        						        & 6. That bookmark will change from outline state to filled state\\
+        \hline
+        Alternative flow  & No\\
+        \hline
+        Exception flow   & If the user hasn't logged in, the application will notify that "You have to login to perform this"\\
+        \hline
+  \end{tabular}
+  \caption{Mark leaned word}
+  \label{tab:4-mark-learned-word}
 \end{table}
