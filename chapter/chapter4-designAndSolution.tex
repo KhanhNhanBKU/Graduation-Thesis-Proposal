@@ -108,9 +108,9 @@ For instance, a hand is pointing in the left direction. The value of the distanc
 
 \subsection{Location detection}
 
-Locations of hand vary, is the hand put at forehead, mouth or the chest level, and so on. Every hand pattern that goes with every location will result in different words. Nevertheless, it is hard for the AI to know the hand's coordinates with only one camera, and its view is from above (see figure \ref{fig:Chap4-ViewFromCamera}). However, we came up with some solutions to this issue.
+Locations of hand vary, is the hand put at the forehead, mouth or the chest level, and so on. Every hand pattern that goes with every location will result in different words. Nevertheless, it is hard for the AI to know the hand's coordinates with only one camera, and its view is from above (see figure \ref{fig:Chap4-ViewFromCamera}). However, we came up with some solutions to this issue.
 
-The zooming method is the first approach we use to detect the hand location. In this solution, we will take images of the hand and calculate the size of the hand in every frame in order to know whether that hand is getting larger or smaller. Hence, if that hand is smaller than before, it means the hand is getting far away from the camera, and its location is somewhere at the chest level or the stomach level. Otherwise, the hand's location is nearer to the camera, at the mouth, nose, or forehead level.
+The zooming method is the first approach we use to detect the hand location. In this solution, we will take images of hands and calculate the hands' size in every frame to know whether those hands are getting larger or smaller. Hence, if those hands' sizes are smaller than before, they are getting far from the camera, and their locations are somewhere at the chest level or the stomach level. Otherwise, the hand's location is nearer to the camera, at the mouth, nose, or forehead level.
 
 \begin{figure}[H]
 	\centering
@@ -119,7 +119,7 @@ The zooming method is the first approach we use to detect the hand location. In 
 	\label{fig:Chap4-ViewFromCamera}
 \end{figure}
 
-Nonetheless, the above solution still has an issue: every man's hand has a different size, and the system does not know the correct position of the hand. Therefore, another solution is to use a wide-angle camera and set it away from the forehead. With this solution, the camera can have a much broader view. Yet, since we only have a normal-angle camera, we could not try out this solution and confirm its suitability.
+Nonetheless, the above solution still has an issue: every man's hand has a different size, and the system does not know the correct position of the hand. Therefore, another solution is to use a wide-angle camera and set it away from the forehead. With this solution, the camera can have a much broader view. Nevertheless, since we only have a normal-angle camera, we could not try out this solution and confirm its suitability.
 
 Another solution to detect the hand's location is using an ultrasonic sensor. In short, this sensor is an instrument that measures the distance to an object using ultrasonic sound waves (see figure \ref{fig:Chap4-UltrasonicSensorFunction}). It works by emitting a sound wave with a frequency above the human hearing range. The sensor's transducer functions as a microphone, receiving and transmitting ultrasonic sound. The sensor measures the time between sending and receiving an ultrasonic pulse to determine the distance to a target.
 
@@ -138,24 +138,22 @@ Another solution to detect the hand's location is using an ultrasonic sensor. In
   \label{fig:Chap4-UltrasonicSensorHYSRF05}
 \end{wrapfigure}
 
-In the thesis, the one we use for this module is the ultrasonic sensor HY-SRF05 (figure \ref{fig:Chap4-UltrasonicSensorHYSRF05}), which is relatively cheap and meets our demand in measuring the distance between the camera and the hand. According to the retailer, the wide-angle this sensor can scan is up to 15 degrees. Moreover, its scanning range is between 2 cm and 450 cm, with the relative error fluctuating around 0.3 cm. Besides, the most accurate measurement distance is under 100 cm, which is more than enough when it comes to measuring from the forehead to the user's waist.
+In the thesis, the one we use for this module is the ultrasonic sensor HY-SRF05 (figure \ref{fig:Chap4-UltrasonicSensorHYSRF05}), which is relatively cheap and meets our demand in measuring the distance between the camera and the hand. According to the retailer, the wide-angle this sensor can scan is up to 15 degrees. Moreover, its scanning range is between 2 cm and 450 cm, with the relative error fluctuating around 0.3 cm. Besides, the most accurate measurement distance is under 100 cm, which is more than enough to measure from the forehead to the user's waist.
 
-However, the sensor method has not yet achieved the desired effect. The reason is that the sensor can only detect one hand at a time, but what if sign language using 2 hands at the same time, using only the sensor will not bring feasible results.
+However, the sensor method has not yet achieved the desired effect. The reason is that the sensor can only detect one hand at a time, but what if sign language uses two hands simultaneously? In this case, with only one sensor, we can not bring possible results.
 
-From there, we offer another solution for measuring this distance as follows. Replace that method of distance by sensor with a distance measurement method based on object size. It is almost similar to the zooming method, but this method is better in that it will not depend on the size of the hand, so it is perfectly suitable for determining the distance for the problem we are trying to solve.
+From there, we offer another solution for measuring this distance as follows. Replace that distance method using a location sensor with a distance measurement method based on object size. It is almost similar to the zooming method, but this method is better in that it will not depend on the size of the hand, so it is perfectly suitable for determining the distance for the problem we are trying to solve.
 
 This method is as follows. We will use the following formula:
 \begin{center}
   $ distance\_predict = A*distance\_input + B*distance\_input + C $ 
 \end{center}
 
-In which, $distance\_input$ will be the distance between two points (5,17) on the hand model taken from the MediaPipe model and $distance\_predict$ will be the distance from the camera to the hand. \\
+In which $distance\_input$ will be the distance between two points (5,17) on the hand model taken from the MediaPipe model, and $distance\_predict$ will be the distance from the camera to the hand.
 
-The trio of coefficients A, B, C will be determined by interpolating the above polynomial with a pre-prepared data set. After having the above three coefficients, combined with calculating the distance between 2 points 5 and 17, we will easily deduce the distance of the hand.
+The trio of coefficients A, B, and C will be determined by interpolating the above polynomial with a pre-prepared data set. After having the above three coefficients, combined with calculating the distance between 2 points 5 and 17, we will quickly deduce the hand's distance.
 
-
-
-Consequently, after getting the result from this location module, we put it within a hand state. And we will discuss how that hand state will help us translate sign language into Vietnamese in the following section.
+Accordingly, after getting the result from this location module, we put it within a hand state. Likewise, in the following section, we will discuss how that hand state will help us translate sign language into Vietnamese.
 
 % TODO
   % New approach : Sử dựng phương pháp khác để có thể đo khoảng cách
