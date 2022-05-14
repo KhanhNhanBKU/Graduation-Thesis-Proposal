@@ -6,17 +6,17 @@
 
 
 
-Before designing a system that can translate sign language, we must know what makes a word in sign language and where to collect the data. After a moment of observing the sign language on the website \url{https://tudienngonngukyhieu.com/}, we found an interesting point that some of the words tend to have the same pattern. Moreover, the sign's meaning depends on the direction and location that the sign has. And some of the terms need movements of the hands or fingers to represent the meaning. Hence, we can somehow convert a word from sign language into Vietnamese with those four factors.
+Before designing a system that can translate sign language, we must know what makes a word in sign language and where to collect the data. After a moment of observing the sign language on the website \url{https://tudienngonngukyhieu.com/}, we found an interesting point that some of the words tend to have the same pattern. Moreover, the sign's meaning depends on the direction and location that the sign has. Furthermore, some of the terms need movements of the hands or fingers to represent the meaning. Hence, we can somehow convert a word from sign language into Vietnamese with those four factors.
 
-But first, we need to collect the sign language data for the model training phase in this thesis. Fortunately, the site https://tudienngonngukyhieu.com/ is considered the library with enough words in sign language that we need. Moreover, we learned some of the words from videos on youtube, taught by Mrs. Le Thi Thu Xuong, and channel CDS, a center for the Deaf in central Vietnam. Hence, we can train and test our system on our own.
+Nevertheless, first, we need to collect the sign language data for the model training phase in this thesis. Fortunately, the site https://tudienngonngukyhieu.com/ is considered the library with enough words in sign language that we need. Moreover, we learned some of the words from videos on youtube, taught by Mrs. Le Thi Thu Xuong, and channel CDS, a center for the Deaf in central Vietnam. Hence, we can train and test our system on our own.
 
-To preparing data, we collect many word from the website and youtube channel. Then, we label and seperate it into many element which we will discuss later in section about hand state (\ref{sec:handstate}). We made the google sheet for the data we gathered. In this file, we have prepare many word were labeled (see figure \ref{fig:Chap4-Label-Word}). Beside, we have a sheet for many hand shape (see in figure \ref{fig:Chap4-Sheet-Pattern}) which help us to classifying hand pattern.
+To prepare data, we collect many words from the website and youtube channel. Then, we label and separate it into many elements, which we will discuss later in the section about hand state (\ref{sec:handstate}). We made the google sheet for the data we gathered. In this file, we have prepared many words that were labeled (see figure \ref{fig:Chap4-Label-Word}). Besides, we have a sheet for many handshapes (see in figure \ref{fig:Chap4-Sheet-Pattern}), which help us to classify hand patterns.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Chap4/Label-Word.jpg}
-	\caption{Google sheet about word labeled}
+	\caption{Google sheet about words labeled}
 	\label{fig:Chap4-Label-Word}
 \end{figure}
 
