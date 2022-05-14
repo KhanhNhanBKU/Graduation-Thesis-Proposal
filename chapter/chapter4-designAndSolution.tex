@@ -199,7 +199,7 @@ Accordingly, after getting the result from this location module, we put it withi
 
 % TODO: With previous approach
 
-As discussed above, there are considerable technical difficulties in implementing the action detection module. We did some research and proposed a new model to resolve these problems. As a result, this change affects the word decoder module, which needs some adjustments.
+There are considerable technical difficulties in implementing the action detection module, as discussed above. We did some research and proposed a new model to resolve these problems. As a result, this change affects the word decoder module, which needs some adjustments.
 
 The previous model decodes a word into four factors: pattern, location, direction, and action. After getting the outputs from the four modules, it will search the database to find the corresponding word. figure \ref{fig:Chap4-MapWord} illustrates how an input containing four factors is mapped to the correct word in the database. Applying a basic searching algorithm, we have the system find the most appropriate word. If it can not find any, it will replace or deprecate some parts of the input and try again to find another word. After decoding and finding the suitable word, the application will display that word on the screen.
 
@@ -297,9 +297,9 @@ After completing the above evaluation and scoring step, we will use a function t
 % TODO: Áp dụng CTC để handle một số trường hợp
 % TODO: Các khó khăn gặp phải và hướng giải quyết
 
-After passing the vectorization step, the hand states in our queue has been converted to a MxN matrix, where M is the length of the hand state's database and N is the length of queue.
+After passing the vectorization step, the hand states in our queue have been converted to an MxN matrix, where M is the length of the hand state's database, and N is the length of the queue.
 
-By using beam search (\ref{fig:Chap4-BeamSearch}), we will get the most likely k hand state from the database. From the image below, we can imagine what happened later during beam search.
+By using beam search (\ref{fig:Chap4-BeamSearch}), we will get the most likely k hand state from the database. We can imagine what happened later during the beam search from the image below.
 
 % Sau khi qua bước vectorizaion, các hand state trong hàng đợi của chúng ta
 % đã được chuyển đổi thành một ma trận MxN với M là độ dài của cơ sở dữ liệu về
@@ -318,7 +318,7 @@ By using beam search (\ref{fig:Chap4-BeamSearch}), we will get the most likely k
   \label{fig:Chap4-BeamSearch}
 \end{figure}
 
-However, as we can see that, after performing the beam search step, we will get a sequence of hand states whose length corresponds to the length of the input queue, these hand states can include duplicate hand states, or they can be wrong hand states. Therefore, we need to apply CTC algorithm to remove the hand states from infection. For the wrong hand states, in Vectorization step, we will set a threshold to discard these hand states and see it as a blank character. And after all step, after beam search CTC decode, we will get the desired result.
+However, as we can see, after performing the beam search step, we will get a sequence of hand states whose length corresponds to the length of the input queue, these hand states can include duplicate hand states, or they can be wrong hand states. Therefore, we need to apply the CTC algorithm to remove the hand states from infection. In the Vectorization step, we will set a threshold to discard these hand states and see it as a blank character for the wrong hand states. Moreover, after beam search CTC decode, we will get the desired result.
 
 % Tuy nhiên, có thể thấy được rằng, sau khi thực hiện xong bước beamsearch,
 % ta sẽ thu được một dãy các hand state có độ dài tương ứng với độ dài của hàng đợi
@@ -347,7 +347,7 @@ However, as we can see that, after performing the beam search step, we will get 
       % nhưng thay vì map với bộ 4 thành phần thì ở đây, ta sẽ map với input các hand state thu được
       % từ bước ... .
       % Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
-      After getting a set of most likely hand states, all that remains is for us to map to the database, as we did in section above, but instaed of map with 4-component set, in here, we will map with input retrieved from this previous step. And finally, we will get the word (\ref{fig:Chap4-Result}) without using the action detect module.
+After getting a set of most likely hand states, all that remains is for us to map to the database, as we did in the section above, but instead of the map with a 4-component set, we will map with input retrieved from this previous step. Finally, we will get the word (\ref{fig:Chap4-Result}) without using the action detect module.
 
 
 
