@@ -151,7 +151,18 @@ This method is as follows. We will use the following formula:
 
 In which $distance\_input$ will be the distance between two points (5,17) on the hand model taken from the MediaPipe model, and $distance\_predict$ will be the distance from the camera to the hand.
 
-The trio of coefficients A, B, and C will be determined by interpolating the above polynomial with a pre-prepared data set. After having the above three coefficients, combined with calculating the distance between 2 points 5 and 17, we will quickly deduce the hand's distance.
+The trio of coefficients A, B, and C will be determined by interpolating the above polynomial with a pre-prepared data set. After having the above three coefficients, combined with calculating the distance between 2 points 5 and 17, we will quickly deduce the hand's distance. 
+
+Figure \ref{fig:Chap4-LocationModule} shows the result we get
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Chap4/Location_00.jpg}
+	\caption{Result of location module}
+	\label{fig:Chap4-LocationModule}
+\end{figure}
+
+
 
 Accordingly, after getting the result from this location module, we put it within a hand state. Likewise, in the following section, we will discuss how that hand state will help us translate sign language into Vietnamese.
 
@@ -437,6 +448,12 @@ Before going through the design of this application, we must state that they do 
 	\caption{The profile screen}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Chap4/Dictionary.png}
+	\caption{The dictionary screen}
+\end{figure}
+
 
 % Vẽ use-case
 % [ ] Use-case 
@@ -639,7 +656,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
         Actor & User\\
         \hline
-        \multirow{2}*{Pre-condition(s)} & For the better result, the device should have internet connection \\
+        \multirow{1}*{Pre-condition(s)} & For the better result, the device should have internet connection \\
         \hline
         Post-condition(s) & User successfully finds out how to sign the word\\
         \hline
@@ -670,7 +687,7 @@ On the whole, Figure \ref{fig:Chap4-usecase} illustrates the overall use-case of
         \hline
         Actor & User\\
         \hline
-        \multirow{2}*{Pre-condition(s)} & Previously logged in \\ 
+        \multirow{1}*{Pre-condition(s)} & Previously logged in \\ 
         \hline
         Post-condition(s) & User marked it and this will increase the learning bar in the profile page\\
         \hline
