@@ -4,4 +4,4 @@ generate_file_to_submit:
 
 generate_final_file:
 	@echo "Generating finale file"
-	cp ./thesis.pdf ./HK211_MDT_LVTN_Finish_VoTuanKhanh_1810220_NguyenTriNhan_1810390_nop.pdf
+	cp ./thesis.pdf ./HK211_009_LVTN_Finish_VoTuanKhanh_1810220_NguyenTriNhan_1810390_nop.pdf
