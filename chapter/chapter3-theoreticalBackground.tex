@@ -295,7 +295,7 @@ And when we collapse the extended paths, two results we will get and some cases 
 
 \subsubsection{Putting it all together}
 
-Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is similar to the basic version previously displayed. However, it includes the code to score the beams: copied beams (lines 7-10) and extended beams(lines 15-19). Finally, when looking for the best scoring beams, the programs rank them according to Ptot (line 4) and then take the BW best ones.
+The CTC beam search algorithm is depicted in the figure \ref{fig:Chap3-BS_CTC}. It is similar to the basic version that was previously shown. It does, however, contain the code for scoring the beams: copied beams (lines 7–10) and extended beams (lines 15–19). Finally, in order to find the best scoring beams, the program rates them using the Ptot (line 4) and then selects the best beams (BW).
 
 \begin{figure}[H]
 	\centering
@@ -308,7 +308,7 @@ Figure \ref{fig:Chap3-BS_CTC} depicts the CTC beam search algorithm. It is simil
 \section{Technology}
 %FIX-ME: Chém gió thêm ra phần này, sử dụng ngôn ngữ gì bla bla 
 % Ứng dụng được viết bằng react-native. Sử dụng hệ thống authenticate của firebase
-Overall the product application is developed with the technologies including java for android app and system authentication of Firebase. Moreover, in order to make the application as light as possible, we only use native components and do not use any other UI library.
+Overall, the product app has been developed with technologies such as Java for Android apps and Firebase system authentication. Furthermore, to keep the application as light as possible, we use only native components and no external UI libraries.
 
 % \subsection{React Native}
 
@@ -383,10 +383,9 @@ Overall the product application is developed with the technologies including jav
 	\label{fig:JavaLogo}
 \end{figure}
 
-James Gosling developed JAVA at Sun Microsystems Inc in 1995, later acquired by Oracle Corporation. It is a simple programming language. Java makes writing, compiling, and debugging programming easy. It helps to create reusable code and modular programs.
+James Gosling developed Java at Sun Microsystems, Inc. in 1995, later acquired by Oracle Corporation. It's a straightforward programming language. Java makes programming easy to write, compile, and debug. It aids in the development of reusable code and modular programs.
 
-Java is a class-based, object-oriented programming language designed to have as few implementation dependencies as possible. A general-purpose programming language made for developers to write once run anywhere, compiled Java code can run on all platforms that support Java. Java applications are compiled to byte code that can run on any Java Virtual Machine. The syntax of Java is similar to C/C++.
-
+Java is an object-oriented programming language based on classes that are designed to have as few implementation dependencies as feasible. Furthermore, Java is a general-purpose programming language that allows developers to write code once and run it on any device that supports Java. Java programs are compiled into byte code that may be run on any Java Virtual Machine. Besides, Java has a syntax that is similar to C and C++.
 
 \subsection{Firebase}
 
@@ -397,14 +396,14 @@ Java is a class-based, object-oriented programming language designed to have as 
 	\label{fig:FireBaseLogo}
 \end{figure}
 
-Firebase is a web and mobile app development platform that includes easy and powerful APIs without requiring a backend or server. Firebase is based on the cloud platform. Google's server system is also present. Its principal purpose is to make it easier for users to program apps by simplifying database operations. Users can store and synchronize data using the real-time database service. This service is entirely cloud-based. They will consume up the device's memory if it is offline and then automatically sync to the server once it is online.
+Firebase is a web and mobile app development platform with simple and powerful APIs that don't require a server or backend. Firebase is a cloud-based platform. Also present is Google's server system. Its main goal is to make database operations simpler for users so they can program apps more easily. The real-time database service allows users to store and synchronize data. This is a completely cloud-based service. If the device is offline, it will use up its memory before automatically syncing with the server once it is online.
 
-This feature primarily consists of backend services that assist developers in better building and managing their apps. This feature includes the following services:
+This feature largely comprises of backend services that help developers construct and manage their apps more effectively. The following services are included in this feature:
 
 \begin{itemize}
-	\item \textbf{Realtime database:} The Firebase Realtime Database is a cloud-based NoSQL database that manages the data at the blazing speed of milliseconds. It can be considered a big JSON file in the simplest term.
- \item \textbf{Cloud firestore:} The Cloud firestore is a NoSQL document database that allows users to store, sync, and query data worldwide through the application. It keeps data in the form of Documents, which are objects. It uses a key-value pair to store any data type, including texts, binary data, and even JSON trees.
- \item \textbf{Authentication:} The Firebase Authentication service makes it simple to authenticate users in the app with UI libraries and SDKs. It saves time and effort in developing and maintaining the user authentication service. It even handles processes like account mergers, which can be time-consuming if done manually.
- \item \textbf{Remote configuration:} The remote configuration service aids in the immediate distribution of updates to users. Changes might range from updating UI components to altering the functionality of applications. These are frequently utilized for distributing limited-time deals and content to a mobile application.
- \item \textbf{Hosting:} Firebase delivers application hosting that is both fast and secure. It can host static or dynamic webpages as well as microservices. It is capable of hosting an application with just one command.
+	\item \textbf{Realtime database:} The Firebase Realtime Database is a cloud-based NoSQL database that processes data at millisecond speed. In the simplest sense, it can be thought of as a large JSON file.
+ \item \textbf{Cloud firestore:} The Cloud Firestore is a NoSQL document database that allows users to store, sync, and query data from anywhere in the world using the app. It stores information in the form of documents, which are objects. It stores any data type, including text, binary data, and even JSON trees, using a key-value pair.
+ \item \textbf{Authentication:} Using UI libraries and SDKs, the Firebase Authentication service makes it simple to authenticate users in the app. It reduces the time and effort required to develop and maintain the user authentication service. It even handles processes like account mergers, which can take a long time if done manually.
+ \item \textbf{Remote configuration:} The remote configuration service speeds up the distribution of updates to users. Changes could range from updating UI components to altering application functionality. These are frequently used to deliver limited-time offers and content to a mobile application.
+ \item \textbf{Hosting:} Firebase provides fast and secure application hosting. It can host both static and dynamic websites, as well as microservices. With a single command, it can host an application.
 \end{itemize}
