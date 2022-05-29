@@ -16,7 +16,7 @@ The figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of a convolutio
 
 \subsection{Architecture}
 
-Convolution Neural Networks have a different architecture than regular Neural Networks, and we can see this difference in figure \ref{fig:Chap3-DiffArchCNN_NNN} below. Regular Neural Networks transform an input through a series of hidden layers. Every layer comprises a set of neurons, where each layer is fully connected to all neurons in the previous layers. Finally, a last fully-connected output layer represents the predictions with CNN architecture. First of all, the layers are organized into three dimensions: width, height, and depth. Further, the neurons in one layer do not connect to all the neurons in the next layer but only to a small region. Lastly, the system will reduce the final output to a single vector of probability scores, organized along the depth dimension.
+Convolution Neural Networks have a different architecture with regular Neural Networks, and we can see this difference in figure \ref{fig:Chap3-DiffArchCNN_NNN} below. Regular Neural Networks transform an input through a series of hidden layers. Every layer comprises a set of neurons, where each layer is fully connected to all neurons in the previous layers. Finally, a last fully-connected output layer represents the predictions with CNN architecture. First of all, the layers are organized into three dimensions: width, height, and depth. Further, the neurons in one layer do not connect to all neurons in the next layer but only to a small region. Lastly, the system will reduce the final output to a single vector of probability scores, organized along the depth dimension.
 
 %FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
 \begin{figure}[H]
@@ -37,15 +37,16 @@ Convolution Neural Networks have a different architecture than regular Neural Ne
 As we can see in figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two parts:
 \begin{enumerate}
 	\item The hidden layers/ Feature extraction part\\
-	In this part, the network will perform a series of convolutions and pooling operations during which the features are detected. If you had a picture of a zebra, this is the part where the network would recognize its stripes, two ears, and four legs.
+	In this part, the network will perform a series of convolutions and pooling operations while the features are detected. Imagine you have a picture of a zebra, these are the parts where the
+	network would recognize: its stripes, two ears, and four legs.
 	\item The Classification part\\
-	The fully connected layers will serve as a classifier on top of their extracted features. They will assign a probability for the object on the image being what the algorithm predicts it is.
+	The fully connected layers serve as a classifier on top of their extracted features. By using a provided algorithm, they will assign a probability for the objects on the image.
 \end{enumerate}
 
 \subsection{Feature extraction part}
 \subsubsection{Convolutional Layer}
 
-The convolution layer is the core building block of a Convolutional Network that does most of the computational heavy lifting. A convolution is executed by sliding the filter over the input. At every location, matrix multiplication is performed and sums the result onto the feature map. This extracting features from images happen throughout the CNN's convolutional layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
+The convolution layer is the core building block of a Convolutional Network that does most of the computational heavy lifting. A convolution is executed by sliding the filter over the input. At every location, matrix multiplication is performed and it sums the result onto the feature map. This extracting features from images happen throughout the CNN's convolutional layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
 
 % FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 \begin{figure}[H]
@@ -57,7 +58,7 @@ The convolution layer is the core building block of a Convolutional Network that
 
 When the feature map is made, we can pass each value in the feature map through a non-linearity function, such as ReLU, sigmoid before it becomes the input of the next convolution layer.
 
-Due to the size of the feature map being always smaller than the input, we have to do something to prevent our feature map from shrinking. This is where we use padding (\ref{fig:Chap3-CNN_Padding}). A layer of zero-value pixels is added to surround the input with zeros so that our feature map will not shrink. In addition to keeping the spatial size constant after performing convolution, padding also improves performance and ensures the Kernel and stride size will fit in the input.
+Because the size of the feature map is always smaller than the input, we have to do something to prevent our feature map from shrinking. This is where we use padding (\ref{fig:Chap3-CNN_Padding}). A layer of zero-value pixels is added to surround the input with zeros so that our feature map will not shrink. In addition to keeping the spatial size constant after performing convolution, padding also improves performance, ensures the Kernel and strides size will fit in the input.
 
 % FIXME: => Need picture
 \begin{figure}[H]
@@ -70,7 +71,7 @@ Due to the size of the feature map being always smaller than the input, we have 
 
 After a convolution layer, it is common to add a pooling layer in between CNN layers. The function of Pooling is to continuously reduce the dimensionality to reduce the number of parameters and computation in the network. This action shortens the training time and controls overfitting.
 
-There are mainly two types of Pooling Layers in a CNN: Max Pooling and Average Pooling. The functionality of these two types of layers is demonstrated in figure \ref{fig:Chap3-CNN_Pooling}. Max Pooling restores the maximum value from the picture segment covered by the Kernel. Average Pooling converts the average values from the bit of the picture surrounded by the Kernel.
+There are two main types of Pooling Layers in a CNN: Max Pooling and Average Pooling. The functionality of these two types of layers is demonstrated in figure \ref{fig:Chap3-CNN_Pooling}. Max Pooling restores the maximum value from the picture segment covered by the Kernel. Average Pooling converts the average values from the bit of the picture surrounded by the Kernel.
 
 \begin{figure}[H]
 	\centering
@@ -120,11 +121,11 @@ MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system
 
 MediaPipe Hands makes use of a machine learning pipeline that consists of several models that work together: A palm detection model, which acts on the entire image, will return an orientated hand bounding box. A hand landmark model that returns high-fidelity 3D hand key points from the cropped image region determined by the palm detector.
 
-However, providing the hand landmark model with a correctly cropped hand image minimizes the requirement for data augmentation drastically (such as rotations, translations, and scaling) and instead allows the network to focus on coordinate prediction accuracy. Furthermore, in this ML pipeline, crops can be created based on the hand landmarks recognized in the previous frame, and palm detection is only used to localize the hand when the landmark model can no longer detect its presence.
+However, providing the hand landmark model with a correctly cropped hand image minimizes the requirement for data augmentation drastically (such as rotations, translations, and scaling) and instead, allows the network to focus on coordinate prediction accuracy. Furthermore, in this ML pipeline, crops can be created based on the hand landmarks recognized in the previous frame, and palm detection is only used to localize the hand when the landmark model can no longer detect its presence.
 \subsection{Palm detection model}
 The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh \cite{MediaPipeFaceMesh}, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
 
-According to their statement, the methods they use to address the above challenges vary in many strategies. First, instead of training a hand detector, they train a palm detector because estimating bounding boxes of inflexible objects like palms and fists is much easier than recognizing hands with articulated fingers. Furthermore, the non-maximum suppression method performs effectively even in two-hand self-occlusion situations such as handshakes because palms are small objects. Furthermore, palms can be simulated using square bounding boxes (anchors in ML language) that ignore other aspect ratios, reducing 3-5 anchors. Second, even for tiny objects, an encoder-decoder feature extractor is used for more extensive picture context awareness (similar to the Retina Net approach). Finally, the significant scale variance limits focus loss during training to support many anchors.
+According to their statements, the methods they used to address the above challenges vary in many strategies. First, instead of training a hand detector, they trained a palm detector because estimating bounding boxes of inflexible objects like palms and fists was much easier than recognizing hands with articulated fingers. Furthermore, the non-maximum suppression method performs effectively even in two-hand self-occlusion situations such as handshakes because palms are small objects. Furthermore, palms can be simulated using square bounding boxes (anchors in ML language) that ignore other aspect ratios, reducing 3-5 anchors. Second, even for tiny objects, an encoder-decoder feature extractor is used for more extensive picture context awareness (similar to the Retina Net approach). Finally, the significant scale variance limits focus loss during training to support many anchors.
 
 Using the strategies described above gives an average precision of 95.7 percent in palm detection. With no decoder and a regular cross-entropy loss, the baseline is just 86.22 percent.
 
@@ -140,7 +141,7 @@ Following palm detection over the entire image, our next hand landmark model use
 
 \section{Distance Matrix}
 
-A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. In the diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
+A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. The diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
 
 \begin{figure}[H]
 	\centering
@@ -231,7 +232,7 @@ In computer science, beam search \cite{BeamSearch} is a heuristic search algorit
 
 % FIXME: Insert image about pseudo-code for beam-search
 
-The beam search algorithm will be implemented through the following steps, with two parameters will be included: output matrix and beam width (BW), which specifies the number of beams to keep. First, the beam list and corresponding score are initialized (lines 1 and 2). After that, from 3-15, the algorithm will loop over all time-steps of the matrix output. At this point, only the best scoring beams (equal BW) from the previous time-step are kept (line 4). For each beam, we calculate the score and get a result (line 8); we will cover this step in more detail later. Further, each beam is extended by all possible characters from the alphabet (line 10), and again, a score is calculated (line 11). After the last time-step, the best beams are returned (line 16).
+The beam search algorithm will be implemented through the following steps, with two parameters will be included: output matrix and beam width (BW), which specifies the number of beams to keep. First, the beam list and corresponding score are initialized (lines 1 and 2). After that, from 3-15, the algorithm will loop over all time-steps of the matrix output. At this point, only the best scoring beams (equal BW) from the previous time-step are kept (line 4). For each beam, we calculate the score and get a result (line 8); we will cover this step in more details later. Further, each beam is extended by all possible characters from the alphabet (line 10), and again, a score is calculated (line 11). After the last time-step, the best beams are returned (line 16).
 
 % FIXME: Insert image about beam search
 
@@ -242,7 +243,7 @@ The beam search algorithm will be implemented through the following steps, with 
 	\label{fig:Chap3-BSTree}
 \end{figure}
 
-As we can see, in figure \ref{fig:Chap3-BSTree}, both output matrix to be decoded, and the tree of beams is shown. Beam search algorithm extended as possible and keep exactly BW candidates. Finally, we finished the last iteration, and the final step of the algorithm is to return the beam with the highest score, which is "a" in this example.
+As we can see, in figure \ref{fig:Chap3-BSTree}, the output matrices are decoded, and the tree of beams is shown. Beam search algorithm extended as possible and keep exactly BW candidates. Finally, we finished the last iteration, and the final step of the algorithm is to return the beam with the highest score, which is "a" in this example.
 
 \subsubsection{Calculating the score}
 
@@ -262,22 +263,22 @@ As discussed above, in this part, we will talk about how to score the beam. We w
 	\label{fig:Chap3-CTC_Scoring}
 \end{figure}
 
-In figure \ref{fig:Chap3-CTC_Scoring}, we will see what happens when we extend a path. Three main case we can mention
+In figure \ref{fig:Chap3-CTC_Scoring}, we will see what happens when we extend a path. Three main cases we can mention
 is:
 \begin{itemize}
-	\item Extend by blank ('a' + '-' = 'a-')
-	\item Extend by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
-	\item Extend by some other character ('aa' + 'b' = 'aab')
+	\item Extended by blank ('a' + '-' = 'a-')
+	\item Extended by repeating last character ( 'aa' + 'a' = 'aaa' or 'aa-' + 'a' = 'aa-a')
+	\item Extended by some other character ('aa' + 'b' = 'aab')
 \end{itemize}
 
 % FIXME: Viết lại các công thức bên dưới
-And when we collapse the extended paths, two result we will get and some case we needed to handle:
+And when we collapse the extended paths, two results we will get and some cases we needed to handle:
 \begin{itemize}
 	\item The unchanged (copied) beam ('a' $ \rightarrow $ 'a'):
 	      \begin{itemize}
 		      \item To copy a beam, we can extend corresponding paths by a blank and get
 		            paths ending with a blank: $ P_b (n, t) += P_{tot}(b, t-1)*mat(blank, t) $
-		      \item Beside, with non-blank ending paths case, if we extend it by the last
+		      \item Besides, with the non-blank ending paths case, if we extend it by the last
 		            character (the beam is not empty): $ P_{nb}(b,t) += P_{nb}(b,t-1)*mat(b[-1],t) $
 		            with -1 indexes the last character in the beam
 	      \end{itemize}
@@ -288,7 +289,7 @@ And when we collapse the extended paths, two result we will get and some case we
 		            $ P_{nb}(b+c,t) += P_{tot}(b,t-1)*mat(c,t) $
 		      \item Or the last character of beam is repeated, we must ensure that the paths
 		            end with a blank: $ P_{nb}(b+c,t) += P_b(b,t-1)*mat(c,t) $
-		      \item We don't need t care about $P_b(b+c,t)$ because we added a non-blank character
+		      \item We don't need to care about $P_b(b+c,t)$ because we added a non-blank character
 	      \end{itemize}
 \end{itemize}
 
