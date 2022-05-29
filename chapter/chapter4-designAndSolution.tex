@@ -8,7 +8,7 @@
 
 Before designing a system that can translate sign language, we must know what makes a word in sign language and where to collect the data. After a moment of observing the sign language on the website \url{https://tudienngonngukyhieu.com/}, we found an interesting point that some of the words tend to have the same pattern. Moreover, the sign's meaning depends on the direction and location that the sign has. Furthermore, some of the terms need movements of the hands or fingers to represent the meaning. Hence, we can somehow convert a word from sign language into Vietnamese with those four factors.
 
-Nevertheless, first, we need to collect the sign language data for the model training phase in this thesis. Fortunately, the site https://tudienngonngukyhieu.com/ is considered the library with enough words in sign language that we need. Moreover, we learned some of the words from videos on youtube, taught by Mrs. Le Thi Thu Xuong, and channel CDS, a center for the Deaf in central Vietnam. Hence, we can train and test our system on our own.
+Nevertheless, first, we need to collect the sign language data for the model training phase in the thesis. Fortunately, the site https://tudienngonngukyhieu.com/ is considered the library with enough words in sign language that we need. Moreover, we learned some of the words from videos on youtube, taught by Mrs. Le Thi Thu Xuong, and channel CDS, a center for the Deaf in central Vietnam. Hence, we can train and test our system on our own.
 
 To prepare data, we collect many words from the website and youtube channel. Then, we label and separate it into many elements, which we will discuss later in the section about hand state (\ref{sec:handstate}). We made the google sheet for the data we gathered. In this file, we have prepared many words that were labeled (see figure \ref{fig:Chap4-Label-Word}). Besides, we have a sheet for many handshapes (see in figure \ref{fig:Chap4-Sheet-Pattern}), which help us to classify hand patterns.
 
@@ -31,7 +31,7 @@ To prepare data, we collect many words from the website and youtube channel. The
 
 \section{System Structure}
 
-Overall, the system includes three parts of hardware modules: a camera module, the user's smartphone, and the server. Among those modules, the crucial one that handles the most complicated work is the server, which we will focus on in this thesis.
+Overall, the system includes three parts of hardware modules: a camera module, the user's smartphone, and the server. Among those modules, the crucial one that handles the most complicated work is the server, which we will focus on in the thesis.
 
 Our sign language translating artificial intelligence system includes six main modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (figure \ref{fig:Chap4-OverviewOfTheSystemModules-Old}). Firstly, the system continuously captures the hand's motion, processes it with the hand landmark model, and then puts it into those modules. Each of them has a unique role. After combining the first four modules' results (hand pattern, direction, location, and action detection), the word decoder module will take the output data and produce the corresponding outcome. Then, the result will show up on the main screen; meanwhile, the phone will speak out that word.
 
@@ -42,7 +42,7 @@ Our sign language translating artificial intelligence system includes six main m
 	\label{fig:Chap4-OverviewOfTheSystemModules-Old}
 \end{figure}
 
-Those six main modules mentioned above are the ones we planned up at the beginning of this thesis. However, we found it hard to build the action detection module during the implementing period, despite going through most of the modules. It is problematic due to its demands on the smartphone and server.
+Those six main modules mentioned above are the ones we planned up at the beginning of the thesis. However, we found it hard to build the action detection module during the implementing period, despite going through most of the modules. It is problematic due to its demands on the smartphone and server.
 
 There are words in sign language that contain many continuously moving patterns. There are a few solutions to detect which action the hands are doing; the first way is to send the whole video the camera captured to the server to process. This way, however, requires a strong connection between the camera module, smartphone, and the server and puts stress on the physical devices (the camera and smartphone); as a result, those devices will get hot quickly and can be damaged somehow. Another way is to increase the frame rate to get the action, but this one can also stress those devices; Moreover, we must have an algorithm continuously processing and detecting the movements, which, we admit, is hard to achieve.
 
@@ -225,7 +225,7 @@ The previous model decodes a word into four factors: pattern, location, directio
 
 Right after the deprecation of the action detection module, the question that comes up is how we can find the correct word without that module. Therefore, we propose a different model for a word that is not decoded into four factors like the previous model. It only contains three elements left: pattern, direction, and location. Consequently, each set of those three elements is called a hand state (\ref{fig:Chap4-HandState}), and a word is decoded into many different hand states.
 
-This concept of hand state comes from the research of natural language processing, in which a word is composed of many characters. Accordingly, a word is concatenated from many hand states in this thesis. Then, we will get the desired word when going through the processing steps that we will discuss later in this proposal.
+This concept of hand state comes from the research of natural language processing, in which a word is composed of many characters. Accordingly, a word is concatenated from many hand states in the thesis. Then, we will get the desired word when going through the processing steps that we will discuss later in this proposal.
 
 \begin{figure}[H]
   \centering
@@ -368,11 +368,11 @@ In addition, sometimes, people do not always read the result from the phone's sc
 
 Instead of using that approach, we use a well-known speech service from Google called Text-to-speech \cite{GG:Text-to-Speech}. According to Google, Text-to-Speech converts text input into natural human speech audio data. Furthermore, this service supports many languages, including the one that we need, Vietnamese. With the provided API from that speech service, our application can speak up the result without an extensive sound database in the user's phone.
 
-This API is a freemium service. Text-to-Speech costs are determined by the number of characters transmitted to the service each month to be synthesized into audio. Google states on their website,  "The first 1 million characters for WaveNet voices are free each month. For Standard (non-WaveNet) voices, the first 4 million characters are free each month. After the free tier has been reached, Text-to-Speech is priced per 1 million text characters processed." This thesis only needs the standard (non-WaveNet) plan, which provides us 4 million characters free each month and only costs USD 4.00 per following 1 million characters. In the upcoming phases of building up the application, the number we will use is negligible compared to 4 million free characters. Therefore, we decided to apply this Text-to-speech module using the Google service.
+This API is a freemium service. Text-to-Speech costs are determined by the number of characters transmitted to the service each month to be synthesized into audio. Google states on their website,  "The first 1 million characters for WaveNet voices are free each month. For Standard (non-WaveNet) voices, the first 4 million characters are free each month. After the free tier has been reached, Text-to-Speech is priced per 1 million text characters processed." the thesis only needs the standard (non-WaveNet) plan, which provides us 4 million characters free each month and only costs USD 4.00 per following 1 million characters. In the upcoming phases of building up the application, the number we will use is negligible compared to 4 million free characters. Therefore, we decided to apply this Text-to-speech module using the Google service.
 
 \subsection{The camera module}
 
-After having discussed mainly the solutions and implementations of the soft modules in the system, we must move on to the main one that is considered to be the eyes of this thesis, which is the camera module. This section will discuss what parts are in a camera module and represent some images of a real one we built.
+After having discussed mainly the solutions and implementations of the soft modules in the system, we must move on to the main one that is considered to be the eyes of the thesis, which is the camera module. This section will discuss what parts are in a camera module and represent some images of a real one we built.
 
 We can easily find the camera modules' parts from any retailer selling electrical components, robots, and Arduino kits. Additionally, in the current era of e-commerce, it is easier for us to find and compare those components that we need online. The parts required to build a camera module are listed below.
 
@@ -420,7 +420,7 @@ Nevertheless, due to the smallest number that a 3D printer can print, the box's 
 
 \subsection{App design}
 
-The application must satisfy user experience, and user interface demands. And during the research phase of this thesis, we did design a prototype for the application, including one more features besides the main one. That side feature is a sign language dictionary. We illustrate that feature in Table \ref{tab:4-dictionary}.
+The application must satisfy user experience, and user interface demands. And during the research phase of the thesis, we did design a prototype for the application, including one more features besides the main one. That side feature is a sign language dictionary. We illustrate that feature in Table \ref{tab:4-dictionary}.
 
 Before going through the design of this application, we must state that they do not cover all the screens needed for the application yet. And they are not the final design that we have. However, we have some conventions when designing this prototype, such as the corner is rounded and the colors are pale, not too bright, to make the users feel calm somehow and comfortable when using the application.
 
