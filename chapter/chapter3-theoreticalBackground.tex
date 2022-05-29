@@ -1,8 +1,8 @@
-\chapter{Theoretical Background}
+\chapter{Theoretical background}
 
 \section{Convolution Neural Network - CNN}
 
-Convolution Neural Networks are a particular class of Neural Networks \cite{masood2018real}. They are made up of neurons that have learnable weights and biases. Each neuron receives some inputs, performs a dot product, and optionally follows it with a non-linearity. CNN mainly consists of Convolution Layers, Pooling Layers, Activation Layers, and Fully Connected Layers. ConvNet architectures make the explicit assumption that the inputs are images, which allows us to encode specific properties into the architecture. These then make the forward function more efficient to implement and vastly reduce the number of parameters in the network. Some of the primary uses of CNN can be mentioned as image classification, object detection, semantic segmentation, face recognition, ...
+Convolutional neural network is a type of neural network\cite{masood2018real}. It is composed of neurons with learnable weights and biases. Each neuron receives input, performs a dot product, and optionally follows with a non-linear response. Convolution Layers, Pooling Layers, Activation Layers, and Fully Connected Layers are the main components of CNN. ConvNet architectures explicitly assume that the inputs are images, allowing us to encode specific properties into the architecture. This makes the forward function easier to implement and reduces the number of parameters in the network significantly. Image classification, object detection, semantic segmentation, face recognition, and so on are some of the primary applications of CNN.
 
 %Insert picture about CNN https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 \begin{figure}[H]
@@ -110,7 +110,7 @@ Figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the ful
 \section{Media Pipe}\label{sec:MediaPipe}
 % FIXME: Lấy từ eureka bỏ vào
 \subsection{Introduction to Media Pipe Hands}
-MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system for hands and fingers \cite{zhang2020mediapipe}. It uses machine learning to infer 21 3D hand landmarks from a single frame. This solution delivers real-time performance on a cell phone and even scales to many hands, whereas current state-of-the-art systems rely primarily on powerful desktop environments for inference.
+MediaPipe Hands (\ref{fig:Chap3-MediaPipe}) is a high-resolution tracking system for hands and fingers\cite{zhang2020mediapipe}. It uses machine learning to infer 21 3D hand landmarks from a single frame. This solution delivers real-time performance on a cell phone and even scales to many hands, whereas current state-of-the-art systems rely primarily on powerful desktop environments for inference.
 
 \begin{figure}[H]
 	\centering
@@ -123,7 +123,7 @@ MediaPipe Hands makes use of a machine learning pipeline that consists of severa
 
 However, providing the hand landmark model with a correctly cropped hand image minimizes the requirement for data augmentation drastically (such as rotations, translations, and scaling) and instead, allows the network to focus on coordinate prediction accuracy. Furthermore, in this ML pipeline, crops can be created based on the hand landmarks recognized in the previous frame, and palm detection is only used to localize the hand when the landmark model can no longer detect its presence.
 \subsection{Palm detection model}
-The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh \cite{MediaPipeFaceMesh}, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
+The Media Pipe team provides the palm detection model to detect initial hand locations and distinguish whether the hand recognized is left or right, which is very useful as each sign goes along with a different side will result in different meanings. They created a single-shot detector model, comparable to the face detection model in MediaPipe Face Mesh\cite{MediaPipeFaceMesh}, tailored for mobile real-time applications. Hand detection is difficult: our model must detect occluded and self-occluded hands and work across many hand sizes with a significant scale span relative to the image frame.
 
 According to their statements, the methods they used to address the above challenges vary in many strategies. First, instead of training a hand detector, they trained a palm detector because estimating bounding boxes of inflexible objects like palms and fists was much easier than recognizing hands with articulated fingers. Furthermore, the non-maximum suppression method performs effectively even in two-hand self-occlusion situations such as handshakes because palms are small objects. Furthermore, palms can be simulated using square bounding boxes (anchors in ML language) that ignore other aspect ratios, reducing 3-5 anchors. Second, even for tiny objects, an encoder-decoder feature extractor is used for more extensive picture context awareness (similar to the Retina Net approach). Finally, the significant scale variance limits focus loss during training to support many anchors.
 
@@ -139,9 +139,9 @@ Following palm detection over the entire image, our next hand landmark model use
 \end{figure}
 
 
-\section{Distance Matrix}
+\section{Distance matrix}
 
-A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the Figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. The diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
+A distance matrix\cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the Figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. The diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
 
 \begin{figure}[H]
 	\centering
@@ -152,7 +152,7 @@ A distance matrix \cite{DistanceMatrix} is a table that shows the distance betwe
 
 % FIXME: Insert picture of distance matrix
 
-\subsection{Create Distance Matrix}
+\subsection{Create distance matrix}
 
 A distance matrix is computed from a raw data table. In the example below (Figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out the distance between A and B.
 
@@ -182,7 +182,7 @@ We can use the same formula with more than two variables, known as the Euclidean
 %   [x] Pseudo code
 \subsection{Connectionist Temporal Classification}
 
-Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful in tackling sequence problems like handwriting (Figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies. Using CTC ensures that one does not need an aligned dataset, which makes the training process
+Connectionist Temporal Classification (CTC)\cite{hannun2017sequence} is a type of Neural Network output helpful in tackling sequence problems like handwriting (Figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies. Using CTC ensures that one does not need an aligned dataset, which makes the training process
 more straightforward.
 
 % FIXME: Insert about CTC in speech recognition
@@ -217,11 +217,11 @@ CTC can solve both problems for us:
 \end{itemize}
 
 \subsection{Beam Search with CTC decoder}
-CTC has more than the Decoding phase, it can have the Encoding, Loss calculation, but we don't need it in the thesis scope anymore. So, here, we only mention to CTC decoder, but in the way, it combines with Beam Search \cite{scheidl2018word}. Because CTC in decoding context can connect with another algorithm like best-path decoding, ...
+CTC has more than the Decoding phase, it can have the Encoding, Loss calculation, but we don't need it in the thesis scope anymore. So, here, we only mention to CTC decoder, but in the way, it combines with Beam Search\cite{scheidl2018word}. Because CTC in decoding context can connect with another algorithm like best-path decoding, ...
 
 \subsubsection{Beam search}
 
-In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set. Beam search is an optimization of best-first search the reduces its memory requirements. Best-first search is a graph search that orders all partial solutions (states) according to some heuristic. But in beam search, only a predetermined number of the best partial solutions are kept as candidates. Pseudocode for the basic version of beam-search is shown in Figure \ref{fig:Chap3-Basic-Version-BeamSearch}
+In computer science, beam search\cite{BeamSearch} is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set. Beam search is an optimization of best-first search the reduces its memory requirements. Best-first search is a graph search that orders all partial solutions (states) according to some heuristic. But in beam search, only a predetermined number of the best partial solutions are kept as candidates. Pseudocode for the basic version of beam-search is shown in Figure \ref{fig:Chap3-Basic-Version-BeamSearch}
 
 \begin{figure}[H]
 	\centering

@@ -1,5 +1,5 @@
-\chapter{Design and Solution}
-\section{Gathering Data}
+\chapter{Design and solution}
+\section{Gathering data}
 % TODO: Thu thập dữ liệu và phân loại như thế nào -> Lấy từ web ..., các video thủ ngữ trên zootube
 % TODO: Tiến hành tổng hợp và phân loại -> tổng hợp thành bảng, phần loại từ thành các pattern, location, direction để chuẩn bị cho mấy mục dưới
 % TODO: Chèn hình về cái sheet vào
@@ -8,7 +8,7 @@
 
 Before we can design a system that can translate sign language, we must first understand what a sign language word is and where to collect the data. After observing the sign language on the websites \url{https://tudienngonngukyhieu.com/} and \url{https://qipedc.moet.gov.vn/}, we noticed that some of the words have the same pattern. Furthermore, the sign's meaning is determined by its orientation and location. Furthermore, some of the terms require hand or finger movements to represent the meaning. As a result, using those four factors, we can convert a word from sign language to Vietnamese.
 
-However, we must first collect sign language data for the thesis's model training phase. Fortunately, those two websites contain a sufficient number of sign language words. We also learned a few words from YouTube videos taught by Mrs. Le Thi Thu Xuong \cite{yt:LeThiThuXuong} and channel CDS, Central Deaf Services in Dang Nang, Vietnam \cite{yt:CDS}. As a result, we can independently train and test our system.
+However, we must first collect sign language data for the thesis's model training phase. Fortunately, those two websites contain a sufficient number of sign language words. We also learned a few words from YouTube videos taught by Mrs. Le Thi Thu Xuong\cite{yt:LeThiThuXuong} and channel CDS, Central Deaf Services in Dang Nang, Vietnam\cite{yt:CDS}. As a result, we can independently train and test our system.
 
 We gathered a large number of words from those two websites and YouTube channel to prepare the data. Then we label and divide it into many elements, which we will discuss later in the Section \ref{sec:handstate}. For the data we collected, we created a Google Sheet. We have prepared many labeled words in this file (see Figure \ref{fig:Chap4-Label-Word}). In addition, we have a sheet for many different hand shapes (see Figure \ref{fig:Chap4-Sheet-Pattern}), which helps us classify hand patterns.
 
@@ -28,7 +28,7 @@ We gathered a large number of words from those two websites and YouTube channel 
 
 
 
-\section{System Structure}
+\section{System structure}
 
 Overall, the system is composed of three hardware modules: a camera module, the user's smartphone, and the server. The server, which will be the focus of this thesis, is one of those modules that handles the most complex work.
 
@@ -53,7 +53,7 @@ To solve the problem, we had to deprecate that module and change our method for 
 	\label{fig:Chap4-OverviewOfTheSystemModules-New}
 \end{figure}
 
-\section{Detail Implementation}\label{sec:DetailImplementation}
+\section{Detail implementation}\label{sec:DetailImplementation}
 
 \subsection{Hand pattern recognition}
 
@@ -292,7 +292,7 @@ The minus point is evaluated on the second point based on its matching pattern w
 
 % + Khi đánh giá các hand state, đối với trường hợp so trùng 2 pattern. Do các pattern này được nhận diện từ module hand pattern regconition (vision approach), do đó, sẽ có khả năng bị nhận diện bị sai, hoặc bị nhầm. Vì lẽ đó, để có thể đánh giá một cách chính xác và công bằng nhất có thể thì ở đây, đối với những pattern hay bị nhận diện sai, ta sẽ trừ điểm thấp và ngược lại, với những pattern đơn giản mà hệ thống lại nhận diện sai thì sẽ bị trừ điểm nhiều hơn.
 
-Following the completion of the preceding evaluation and scoring steps, we will use a function to normalize the data (here, the authors use the softmax function \cite{SoftMax}) and return a set of probabilities for the hand states in the row. Wait. This set of probabilities will be used as input for the beam search step.
+Following the completion of the preceding evaluation and scoring steps, we will use a function to normalize the data (here, the authors use the softmax function\cite{SoftMax}) and return a set of probabilities for the hand states in the row. Wait. This set of probabilities will be used as input for the beam search step.
 
 \subsubsection{ Using beamsearch with CTC decode }
 % TODO: Trình bày cách sử dụng beamsearch để tìm các cặp bộ 3
@@ -354,7 +354,7 @@ However, as we can see, after the beam search step, we will get a sequence of ha
 
 All that remains is for us to map to the database, as we did in the previous Section, but instead of mapping with a 4-component set, we will map with input retrieved from this previous step. Finally, without using the action detect module, we will obtain the word (Figure \ref{fig:Chap4-Result}).
 
-\subsection{Text-to-speech}
+\subsection{Text-to-Speech}
 
 Furthermore, because people do not always read the result from the phone's screen, the application can speak it out loud to make it easier for them to know the answer after the translation process. One method is to create a database of many sound files that have been tagged with the corresponding Vietnamese word. This approach, however, is inefficient because it necessitates a significant amount of effort to create the database. Every single word must be recorded and then mapped together.
 
