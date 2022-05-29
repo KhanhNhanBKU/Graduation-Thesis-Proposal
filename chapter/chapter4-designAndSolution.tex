@@ -10,7 +10,7 @@ Before we can design a system that can translate sign language, we must first un
 
 However, we must first collect sign language data for the thesis's model training phase. Fortunately, those two websites contain a sufficient number of sign language words. We also learned a few words from YouTube videos taught by Mrs. Le Thi Thu Xuong \cite{yt:LeThiThuXuong} and channel CDS, Central Deaf Services in Dang Nang, Vietnam \cite{yt:CDS}. As a result, we can independently train and test our system.
 
-We gathered a large number of words from those two websites and YouTube channel to prepare the data. Then we label and divide it into many elements, which we will discuss later in the hand state section (\ref{sec:handstate}). For the data we collected, we created a Google Sheet. We have prepared many labeled words in this file (see figure \ref{fig:Chap4-Label-Word}). In addition, we have a sheet for many different hand shapes (see figure \ref{fig:Chap4-Sheet-Pattern}), which helps us classify hand patterns.
+We gathered a large number of words from those two websites and YouTube channel to prepare the data. Then we label and divide it into many elements, which we will discuss later in the Section \ref{sec:handstate}. For the data we collected, we created a Google Sheet. We have prepared many labeled words in this file (see Figure \ref{fig:Chap4-Label-Word}). In addition, we have a sheet for many different hand shapes (see Figure \ref{fig:Chap4-Sheet-Pattern}), which helps us classify hand patterns.
 
 \begin{figure}[H]
 	\centering
@@ -22,7 +22,7 @@ We gathered a large number of words from those two websites and YouTube channel 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Chap4/Sheet-Pattern.png}
-	\caption{Google sheet about Hand Shape can be recognized}
+	\caption{Google sheet about hand shapes can be recognized}
 	\label{fig:Chap4-Sheet-Pattern}
 \end{figure}
 
@@ -32,7 +32,7 @@ We gathered a large number of words from those two websites and YouTube channel 
 
 Overall, the system is composed of three hardware modules: a camera module, the user's smartphone, and the server. The server, which will be the focus of this thesis, is one of those modules that handles the most complex work.
 
-Our artificial intelligence system for sign language translation consists of six major modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (figure \ref{fig:Chap4-OverviewOfTheSystemModules-Old}). To begin, the system continuously captures the motion of the hand, processes it with the hand landmark model, and then stores it in those modules. Each of them plays a distinct role. The word decoder module will take the output data and produce the corresponding outcome after combining the results of the first four modules (hand pattern, direction, location, and action detection). The result will then appear on the main screen, while the phone will speak out that word.
+Our artificial intelligence system for sign language translation consists of six major modules: hand pattern recognition, direction determination, location detection, action detection, word decoder, and text to speech (Figure \ref{fig:Chap4-OverviewOfTheSystemModules-Old}). To begin, the system continuously captures the motion of the hand, processes it with the hand landmark model, and then stores it in those modules. Each of them plays a distinct role. The word decoder module will take the output data and produce the corresponding outcome after combining the results of the first four modules (hand pattern, direction, location, and action detection). The result will then appear on the main screen, while the phone will speak out that word.
 
 \begin{figure}[H]
 	\centering
@@ -59,7 +59,7 @@ To solve the problem, we had to deprecate that module and change our method for 
 
 The first and most fundamental module of this system is hand pattern recognition. When a person with a disability performs sign language, their hands move in a variety of ways, with their hands spread out, clenched, or their fingers pointing out at something. As a result, the role of this module is to recognize the hand pattern. The system can then provide the final result by combining the outcome with other modules.
 
-This module makes use of the hand landmark model's output, which has a matrix size of 21. We get a new matrix representing the distance between those 21 coordinates after calculating all of the values in that matrix. As seen in figure \ref{fig:Chap4-OverviewOfTheSystemModules-New}, using the distance matrix as the input of CNN with the designed structure (see figure \ref{fig:Chap4-StructureOfConvolutionalNeuralNetwork}) will tell us the pattern of the hand at the time it is captured.
+This module makes use of the hand landmark model's output, which has a matrix size of 21. We get a new matrix representing the distance between those 21 coordinates after calculating all of the values in that matrix. As seen in Figure \ref{fig:Chap4-OverviewOfTheSystemModules-New}, using the distance matrix as the input of CNN with the designed structure (see Figure \ref{fig:Chap4-StructureOfConvolutionalNeuralNetwork}) will tell us the pattern of the hand at the time it is captured.
 
 \begin{figure}[H]
 	\centering
@@ -70,7 +70,7 @@ This module makes use of the hand landmark model's output, which has a matrix si
 
 \subsection{Direction determination}
 
-The hand has four directions, which are right, left, up, down, front, and back. The pattern of each hand, when combined with different directions, yields a different meaning. For example, the pattern that points at someone means the word "you," whereas the pattern that points at ourselves means the word "I." (see figure \ref{fig:Chap4-WordYouInSignLanguage} and figure \ref{fig:Chap4-WordIInSignLanguage}).
+The hand has four directions, which are right, left, up, down, front, and back. The pattern of each hand, when combined with different directions, yields a different meaning. For example, the pattern that points at someone means the word "you," whereas the pattern that points at ourselves means the word "I." (see Figure \ref{fig:Chap4-WordYouInSignLanguage} and Figure \ref{fig:Chap4-WordIInSignLanguage}).
 
 \begin{figure}[H]
 	\centering
@@ -104,9 +104,9 @@ For instance, a hand is pointing in the left direction. When projected on the ax
 	\label{fig:Chap4-vector0-8-forwardLeft}
 \end{figure}
 
-\subsection{Location detection}
+\subsection{Location detection}\label{sec:locationDetection}
 
-Hand placement differs; is the hand on the brow, mouth, or chest level, and so on. Each hand pattern associated with each location will yield a different set of words. Nonetheless, with only one camera and a view from above, it is difficult for the AI to determine the coordinates of the hand (see figure \ref{fig:Chap4-ViewFromCamera}). However, we devised some solutions to this problem.
+Hand placement differs; is the hand on the brow, mouth, or chest level, and so on. Each hand pattern associated with each location will yield a different set of words. Nonetheless, with only one camera and a view from above, it is difficult for the AI to determine the coordinates of the hand (see Figure \ref{fig:Chap4-ViewFromCamera}). However, we devised some solutions to this problem.
 
 % The first method we use to determine the location of the hand is zooming. In this solution, we will take images of hands and calculate their size in each frame to determine whether those hands are growing or shrinking. As a result, if those hands are smaller than before, they are getting further away from the camera, and their locations are somewhere near the chest or stomach. Otherwise, the hand is closer to the camera, at the level of the mouth, nose, or forehead.
 
@@ -119,7 +119,7 @@ Hand placement differs; is the hand on the brow, mouth, or chest level, and so o
 
 % Nonetheless, the above solution has a flaw: each man's hand is different in size, and the system does not know the correct hand position. Another option is to use a wide-angle camera that is positioned away from the brow. The camera can have a much wider field of view with this solution. Nonetheless, because we only had a standard-angle camera, we couldn't test this solution and confirm its suitability.
 
-The first solution to detect the hand's location is using an ultrasonic sensor. In short, this sensor is an instrument that measures the distance to an object using ultrasonic sound waves (see figure \ref{fig:Chap4-UltrasonicSensorFunction}). It works by emitting a sound wave with a frequency above the human hearing range. The sensor's transducer functions as a microphone, receiving and transmitting ultrasonic sound. The sensor measures the time between sending and receiving an ultrasonic pulse to determine the distance to a target.
+The first solution to detect the hand's location is using an ultrasonic sensor. In short, this sensor is an instrument that measures the distance to an object using ultrasonic sound waves (see Figure \ref{fig:Chap4-UltrasonicSensorFunction}). It works by emitting a sound wave with a frequency above the human hearing range. The sensor's transducer functions as a microphone, receiving and transmitting ultrasonic sound. The sensor measures the time between sending and receiving an ultrasonic pulse to determine the distance to a target.
 
 \begin{figure}[H]
 	\centering
@@ -136,7 +136,7 @@ The first solution to detect the hand's location is using an ultrasonic sensor. 
   \label{fig:Chap4-UltrasonicSensorHYSRF05}
 \end{wrapfigure}
 
-In the thesis, we use the ultrasonic sensor HY-SRF05 (figure \ref{fig:Chap4-UltrasonicSensorHYSRF05}), which is relatively inexpensive and meets our requirement for measuring the distance between the camera and the hand. According to the retailer, this sensor has a scanning range of up to 15 degrees. Furthermore, its scanning range is between 2 cm and 450 cm, with a relative error of around 0.3 cm. Furthermore, the most accurate measurement distance is less than 100 cm, which is more than enough to measure from the user's forehead to their waist.
+In the thesis, we use the ultrasonic sensor HY-SRF05 (Figure \ref{fig:Chap4-UltrasonicSensorHYSRF05}), which is relatively inexpensive and meets our requirement for measuring the distance between the camera and the hand. According to the retailer, this sensor has a scanning range of up to 15 degrees. Furthermore, its scanning range is between 2 cm and 450 cm, with a relative error of around 0.3 cm. Furthermore, the most accurate measurement distance is less than 100 cm, which is more than enough to measure from the user's forehead to their waist.
 
 However, the sensor method has yet to produce the desired result. The sensor can only detect one hand at a time, but what if sign language uses both hands at the same time? In this case, we cannot achieve the best possible results with only one sensor.
 
@@ -160,7 +160,7 @@ Figure \ref{fig:Chap4-LocationModule} shows the result we get
 	\label{fig:Chap4-LocationModule}
 \end{figure}
 
-As a result, after receiving the result from this location module, we placed it in the hand state. Similarly, in the section that follows, we will discuss how that hand state will aid us in translating sign language into Vietnamese.
+As a result, after receiving the result from this location module, we placed it in the hand state. Similarly, in the Section that follows, we will discuss how that hand state will aid us in translating sign language into Vietnamese.
 
 % TODO
   % New approach : Sử dựng phương pháp khác để có thể đo khoảng cách
@@ -221,7 +221,7 @@ This concept of hand state stems from natural language processing research, in w
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{img/Chap4/HandState.png}
-  \caption{ Hand State which construct from pattern, location and direction}
+  \caption{ Hand state which construct from pattern, location and direction}
   \label{fig:Chap4-HandState}
 \end{figure}
 
@@ -236,7 +236,7 @@ After we have grasped the concept of hand state, we will proceed to the most imp
   \label{fig:Chap4-Architechture}
 \end{figure}
 
-The authors' model for this section is shown in Figure \ref{fig:Chap4-Architechture}. A queue of hand states from the previous three components will be used as input. The queue length is set to 5 in our conventions, but this is not the final number because we need more calculations and experimentation to find the optimal queue length. This model is comprised of three steps:
+The authors' model for this Section is shown in Figure \ref{fig:Chap4-Architechture}. A queue of hand states from the previous three components will be used as input. The queue length is set to 5 in our conventions, but this is not the final number because we need more calculations and experimentation to find the optimal queue length. This model is comprised of three steps:
 
 \begin{enumerate}
   \item \textbf{Vectorization:} This step converts a queue of many hand states (Figure \ref{fig:Chap4-HandStateQueue}) into a matrix for beam search input.
@@ -254,7 +254,7 @@ We get a list of hand states when we get to this step. Because we need a matrix 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{img/Chap4/HandStateQueue.png}
-  \caption{A queue of hand state which get from three component in section ... }
+  \caption{A queue of hand states to sign "Thank you"}
   \label{fig:Chap4-HandStateQueue}
 \end{figure}
 
@@ -352,7 +352,7 @@ However, as we can see, after the beam search step, we will get a sequence of ha
       % từ bước ... .
       % Và như thế, ta sẽ thu được từ vựng mà không cần phải dùng tới module action detection.
 
-All that remains is for us to map to the database, as we did in the previous section, but instead of mapping with a 4-component set, we will map with input retrieved from this previous step. Finally, without using the action detect module, we will obtain the word (Figure \ref{fig:Chap4-Result}).
+All that remains is for us to map to the database, as we did in the previous Section, but instead of mapping with a 4-component set, we will map with input retrieved from this previous step. Finally, without using the action detect module, we will obtain the word (Figure \ref{fig:Chap4-Result}).
 
 \subsection{Text-to-speech}
 
@@ -364,13 +364,13 @@ This API is available for free. The cost of text-to-speech is determined by the 
 
 \subsection{The camera module}
 
-After discussing the solutions and implementations of the system's soft modules, we must move on to the main one, which is considered the thesis's eyes, which is the camera module. This section will go over the components of a camera module and show some images of a real one that we built.
+After discussing the solutions and implementations of the system's soft modules, we must move on to the main one, which is considered the thesis's eyes, which is the camera module. This Section will go over the components of a camera module and show some images of a real one that we built.
 
 Parts for the camera modules are easily available from any retailer that sells electrical components, robots, and Arduino kits. Furthermore, in this day and age of e-commerce, it is much easier to find and compare the components that we require online. The components needed to construct a camera module are listed below.
 
 First, we require a camera component, which the ESP32-CAM is ideal for. It is inexpensive and simple to use, which makes it ideal for our thesis, which requires complex functions such as image tracking and recognition. Furthermore, it incorporates Wi-Fi and traditional Bluetooth, allowing us to send images to the user's smartphone for the next steps in sign language translation.
 
-Second, we will require a converter adapter to assist us in sideloading the program into the camera module. The ultrasonic sensor mentioned in the TK section is the third component we require. It aids in location detection by informing the system of the distance between the hands and the camera module. Last but not least, this camera module requires a battery to power the entire module, and we believe that a volume of around 100 mAh is adequate.
+Second, we will require a converter adapter to assist us in sideloading the program into the camera module. The ultrasonic sensor mentioned in the Section \ref{sec:locationDetection} is the third component we require. It aids in location detection by informing the system of the distance between the hands and the camera module. Last but not least, this camera module requires a battery to power the entire module, and we believe that a volume of around 100 mAh is adequate.
 
 Furthermore, all of the above components must be stored in a box. We designed that package on Tinkercad, an online 3D modeling program that runs in a web browser, using current 3D printing technology. After gathering all of the necessary components, we attempted to put them together and obtained the result shown below.
 

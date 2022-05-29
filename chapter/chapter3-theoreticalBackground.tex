@@ -12,11 +12,11 @@ Convolution Neural Networks are a particular class of Neural Networks \cite{maso
 	\label{fig:Chap3-OverviewTheCNN}
 \end{figure}
 
-The figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of a convolution neural network, which is taking an image as input and then extracting features from it through various layers and then finally predicting the class of the object in the given image.
+The Figure \ref{fig:Chap3-OverviewTheCNN} above shows an example of a convolution neural network, which is taking an image as input and then extracting features from it through various layers and then finally predicting the class of the object in the given image.
 
 \subsection{Architecture}
 
-Convolution Neural Networks have a different architecture with regular Neural Networks, and we can see this difference in figure \ref{fig:Chap3-DiffArchCNN_NNN} below. Regular Neural Networks transform an input through a series of hidden layers. Every layer comprises a set of neurons, where each layer is fully connected to all neurons in the previous layers. Finally, a last fully-connected output layer represents the predictions with CNN architecture. First of all, the layers are organized into three dimensions: width, height, and depth. Further, the neurons in one layer do not connect to all neurons in the next layer but only to a small region. Lastly, the system will reduce the final output to a single vector of probability scores, organized along the depth dimension.
+Convolution Neural Networks have a different architecture with regular Neural Networks, and we can see this difference in Figure \ref{fig:Chap3-DiffArchCNN_NNN} below. Regular Neural Networks transform an input through a series of hidden layers. Every layer comprises a set of neurons, where each layer is fully connected to all neurons in the previous layers. Finally, a last fully-connected output layer represents the predictions with CNN architecture. First of all, the layers are organized into three dimensions: width, height, and depth. Further, the neurons in one layer do not connect to all neurons in the next layer but only to a small region. Lastly, the system will reduce the final output to a single vector of probability scores, organized along the depth dimension.
 
 %FIXME: Insert image of diff architecture : https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
 \begin{figure}[H]
@@ -34,7 +34,7 @@ Convolution Neural Networks have a different architecture with regular Neural Ne
 	\label{fig:Chap3-CNN_Arch}
 \end{figure}
 
-As we can see in figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two parts:
+As we can see in Figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two parts:
 \begin{enumerate}
 	\item The hidden layers/ Feature extraction part\\
 	In this part, the network will perform a series of convolutions and pooling operations while the features are detected. Imagine you have a picture of a zebra, these are the parts where the
@@ -46,7 +46,7 @@ As we can see in figure \ref{fig:Chap3-CNN_Arch}, CNN can be divided into two pa
 \subsection{Feature extraction part}
 \subsubsection{Convolutional Layer}
 
-The convolution layer is the core building block of a Convolutional Network that does most of the computational heavy lifting. A convolution is executed by sliding the filter over the input. At every location, matrix multiplication is performed and it sums the result onto the feature map. This extracting features from images happen throughout the CNN's convolutional layers. This process is illustrated in figure \ref{fig:Chap3-CNN_Layer}
+The convolution layer is the core building block of a Convolutional Network that does most of the computational heavy lifting. A convolution is executed by sliding the filter over the input. At every location, matrix multiplication is performed and it sums the result onto the feature map. This extracting features from images happen throughout the CNN's convolutional layers. This process is illustrated in Figure \ref{fig:Chap3-CNN_Layer}
 
 % FIXME: https://scholarworks.iupui.edu/bitstream/handle/1805/24768/FINAL%20Prasham_Shah_Thesis%20.pdf?sequence=1&isAllowed=y
 \begin{figure}[H]
@@ -71,7 +71,7 @@ Because the size of the feature map is always smaller than the input, we have to
 
 After a convolution layer, it is common to add a pooling layer in between CNN layers. The function of Pooling is to continuously reduce the dimensionality to reduce the number of parameters and computation in the network. This action shortens the training time and controls overfitting.
 
-There are two main types of Pooling Layers in a CNN: Max Pooling and Average Pooling. The functionality of these two types of layers is demonstrated in figure \ref{fig:Chap3-CNN_Pooling}. Max Pooling restores the maximum value from the picture segment covered by the Kernel. Average Pooling converts the average values from the bit of the picture surrounded by the Kernel.
+There are two main types of Pooling Layers in a CNN: Max Pooling and Average Pooling. The functionality of these two types of layers is demonstrated in Figure \ref{fig:Chap3-CNN_Pooling}. Max Pooling restores the maximum value from the picture segment covered by the Kernel. Average Pooling converts the average values from the bit of the picture surrounded by the Kernel.
 
 \begin{figure}[H]
 	\centering
@@ -84,7 +84,7 @@ There are two main types of Pooling Layers in a CNN: Max Pooling and Average Poo
 
 \subsubsection{Activation Layers}
 
-In general, Neural networks and CNNs rely on a non-linear "trigger" function to signal distinct identification of likely features on each hidden layer. CNN may use a variety of specific functions (figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
+In general, Neural networks and CNNs rely on a non-linear "trigger" function to signal distinct identification of likely features on each hidden layer. CNN may use a variety of specific functions (Figure \ref{fig:Chap3-CNN_ActiveFunction}), such as rectified linear units (ReLUs) and continuous trigger (non-linear) functions—to efficiently implement this non-linear triggering.
 
 \begin{figure}[H]
 	\centering
@@ -103,7 +103,7 @@ Figure \ref{fig:Chap3-FC} illustrates the way of input value stream into the ful
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Chap3/FC}
-	\caption{ Fully connected Layer}
+	\caption{ Fully connected layer}
 	\label{fig:Chap3-FC}
 \end{figure}
 % FIXME: Insert picture ...
@@ -130,23 +130,23 @@ According to their statements, the methods they used to address the above challe
 Using the strategies described above gives an average precision of 95.7 percent in palm detection. With no decoder and a regular cross-entropy loss, the baseline is just 86.22 percent.
 
 \subsection{Hand landmark model}
-Following palm detection over the entire image, our next hand landmark model uses regression to accomplish exact key point localization of 21 3D hand-knuckle coordinates (see figure \ref{fig:Chap3-HandLandMark}) within the detected hand regions, i.e., direct, coordinate prediction. Even with partially visible hands and self-occlusions, the model develops a consistent internal hand posture representation.
+Following palm detection over the entire image, our next hand landmark model uses regression to accomplish exact key point localization of 21 3D hand-knuckle coordinates (see Figure \ref{fig:Chap3-HandLandMark}) within the detected hand regions, i.e., direct, coordinate prediction. Even with partially visible hands and self-occlusions, the model develops a consistent internal hand posture representation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/Chap3/HandLandMark}
-	\caption{ 21 Hand Landmarks }
+	\caption{ 21 hand landmarks }
 	\label{fig:Chap3-HandLandMark}
 \end{figure}
 
 
 \section{Distance Matrix}
 
-A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. The diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
+A distance matrix \cite{DistanceMatrix} is a table that shows the distance between pairs of objects. For example, in the Figure \ref{fig:Chap3-DM}., we can see the length between A and B is 16, B and C is 37, and so on. The diagonal of the table is the distance to the object from itself, so the value, as we can see, is 0. Distance matrices are sometimes called dissimilarity matrices.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/Chap3/DM}
-	\caption{ Distance Matrix }
+	\caption{ Distance matrix }
 	\label{fig:Chap3-DM}
 \end{figure}
 
@@ -154,7 +154,7 @@ A distance matrix \cite{DistanceMatrix} is a table that shows the distance betwe
 
 \subsection{Create Distance Matrix}
 
-A distance matrix is computed from a raw data table. In the example below (figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out the distance between A and B.
+A distance matrix is computed from a raw data table. In the example below (Figure \ref{fig:Chap3-DM_Formula}), we can use high school math (Pythagoras) to work out the distance between A and B.
 
 % FIXME: Chèn công thức vào đây
 \begin{figure}[H]
@@ -164,13 +164,13 @@ A distance matrix is computed from a raw data table. In the example below (figur
 	\label{fig:Chap3-DM_Formula}
 \end{figure}
 
-We can use the same formula with more than two variables, known as the Euclidean distance. As a result, we have the distance matrix represented like figure \ref{fig:Chap3-DM-Raw}.
+We can use the same formula with more than two variables, known as the Euclidean distance. As a result, we have the distance matrix represented like Figure \ref{fig:Chap3-DM-Raw}.
 
 % FIXME: chèn bảng kết quả vào
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/Chap3/DM-Raw}
-	\caption{ The Distance Matrix is constructed from Raw Data }
+	\caption{ The distance matrix is constructed from raw data }
 	\label{fig:Chap3-DM-Raw}
 \end{figure}
 
@@ -182,7 +182,7 @@ We can use the same formula with more than two variables, known as the Euclidean
 %   [x] Pseudo code
 \subsection{Connectionist Temporal Classification}
 
-Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful in tackling sequence problems like handwriting (figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies. Using CTC ensures that one does not need an aligned dataset, which makes the training process
+Connectionist Temporal Classification (CTC) \cite{hannun2017sequence} is a type of Neural Network output helpful in tackling sequence problems like handwriting (Figure \ref{fig:Chap3-Overview-CTC}) and speech recognition where the timing varies. Using CTC ensures that one does not need an aligned dataset, which makes the training process
 more straightforward.
 
 % FIXME: Insert about CTC in speech recognition
@@ -195,11 +195,11 @@ more straightforward.
 
 \subsection{Why we want to use CTC}
 
-In the context of handwritten recognition, we could create a dataset with images of text-lines, and then specify for each horizontal position of the image the corresponding character as shown in figure \ref{fig:Chap3-Annottion-image-CTC} Then, we could train a model to output a character-score for each horizontal position. However, there are two problems with this solution.
+In the context of handwritten recognition, we could create a dataset with images of text-lines, and then specify for each horizontal position of the image the corresponding character as shown in Figure \ref{fig:Chap3-Annottion-image-CTC} Then, we could train a model to output a character-score for each horizontal position. However, there are two problems with this solution.
 
 \begin{itemize}
 	\item It takes much time, and annotating the dataset at the character level is tiresome.
-	\item What if the character takes up more than one time-step ?. We could get "tooo" because the "o" is a wide-character as shown in figure \ref{fig:Chap3-Annottion-image-CTC}. We must remove all duplicate characters like "t" and "o".
+	\item What if the character takes up more than one time-step ?. We could get "tooo" because the "o" is a wide-character as shown in Figure \ref{fig:Chap3-Annottion-image-CTC}. We must remove all duplicate characters like "t" and "o".
 \end{itemize}
 
 % FIXME: Insert image ...
@@ -221,7 +221,7 @@ CTC has more than the Decoding phase, it can have the Encoding, Loss calculation
 
 \subsubsection{Beam search}
 
-In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set. Beam search is an optimization of best-first search the reduces its memory requirements. Best-first search is a graph search that orders all partial solutions (states) according to some heuristic. But in beam search, only a predetermined number of the best partial solutions are kept as candidates. Pseudocode for the basic version of beam-search is shown in figure \ref{fig:Chap3-Basic-Version-BeamSearch}
+In computer science, beam search \cite{BeamSearch} is a heuristic search algorithm that explores a graph by expanding the most promising node in a limited set. Beam search is an optimization of best-first search the reduces its memory requirements. Best-first search is a graph search that orders all partial solutions (states) according to some heuristic. But in beam search, only a predetermined number of the best partial solutions are kept as candidates. Pseudocode for the basic version of beam-search is shown in Figure \ref{fig:Chap3-Basic-Version-BeamSearch}
 
 \begin{figure}[H]
 	\centering
@@ -243,7 +243,7 @@ The beam search algorithm will be implemented through the following steps, with 
 	\label{fig:Chap3-BSTree}
 \end{figure}
 
-As we can see, in figure \ref{fig:Chap3-BSTree}, the output matrices are decoded, and the tree of beams is shown. Beam search algorithm extended as possible and keep exactly BW candidates. Finally, we finished the last iteration, and the final step of the algorithm is to return the beam with the highest score, which is "a" in this example.
+As we can see, in Figure \ref{fig:Chap3-BSTree}, the output matrices are decoded, and the tree of beams is shown. Beam search algorithm extended as possible and keep exactly BW candidates. Finally, we finished the last iteration, and the final step of the algorithm is to return the beam with the highest score, which is "a" in this example.
 
 \subsubsection{Calculating the score}
 
@@ -263,7 +263,7 @@ As discussed above, in this part, we will talk about how to score the beam. We w
 	\label{fig:Chap3-CTC_Scoring}
 \end{figure}
 
-In figure \ref{fig:Chap3-CTC_Scoring}, we will see what happens when we extend a path. Three main cases we can mention
+In Figure \ref{fig:Chap3-CTC_Scoring}, we will see what happens when we extend a path. Three main cases we can mention
 is:
 \begin{itemize}
 	\item Extended by blank ('a' + '-' = 'a-')
@@ -295,7 +295,7 @@ And when we collapse the extended paths, two results we will get and some cases 
 
 \subsubsection{Putting it all together}
 
-The CTC beam search algorithm is depicted in the figure \ref{fig:Chap3-BS_CTC}. It is similar to the basic version that was previously shown. It does, however, contain the code for scoring the beams: copied beams (lines 7–10) and extended beams (lines 15–19). Finally, in order to find the best scoring beams, the program rates them using the Ptot (line 4) and then selects the best beams (BW).
+The CTC beam search algorithm is depicted in the Figure \ref{fig:Chap3-BS_CTC}. It is similar to the basic version that was previously shown. It does, however, contain the code for scoring the beams: copied beams (lines 7-10) and extended beams (lines 15-19). Finally, in order to find the best scoring beams, the program rates them using the Ptot (line 4) and then selects the best beams (BW).
 
 \begin{figure}[H]
 	\centering
@@ -323,7 +323,7 @@ Overall, the product app has been developed with technologies such as Java for A
 
 % \begin{itemize}
 % 	\item \textbf{Cross-Platform:} One of the significant advantages of React Native is that we can write the same code for both the Android and iOS ecosystems simultaneously, with just minor changes for each platform.
-% 	\item \textbf{One programming language:} There is no need to be familiar with the languages used for platform-specific application development because React Native employs JavaScript, which is currently one of the most popular programming languages\cite{10MostPopularProgrammingLang}. To be more specific, in this project, we use an advanced version of JavaScript, which is known as TypeScript\cite{TypeScript}, and we will discuss it in the later section.
+% 	\item \textbf{One programming language:} There is no need to be familiar with the languages used for platform-specific application development because React Native employs JavaScript, which is currently one of the most popular programming languages\cite{10MostPopularProgrammingLang}. To be more specific, in this project, we use an advanced version of JavaScript, which is known as TypeScript\cite{TypeScript}, and we will discuss it in the later Section.
 % 	\item \textbf{Performance:} Because both platforms use the same code, React Native allows for the rapid creation of mobile applications. It also has a hot reloading functionality that ensures that modest changes to the program are shown to the developer right away.
 % \end{itemize}
 
@@ -379,7 +379,7 @@ Overall, the product app has been developed with technologies such as Java for A
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/technology/java.png}
-	\caption{Java Logo}
+	\caption{Java logo}
 	\label{fig:JavaLogo}
 \end{figure}
 
@@ -392,7 +392,7 @@ Java is an object-oriented programming language based on classes that are design
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/technology/firebase.png}
-	\caption{FireBase Logo}
+	\caption{FireBase logo}
 	\label{fig:FireBaseLogo}
 \end{figure}
 
